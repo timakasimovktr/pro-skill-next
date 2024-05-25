@@ -5,10 +5,10 @@ export default function middleware(req){
     let url = req.url
     
     if(!verify && url.includes('/dashboard')){
-        return NextResponse.redirect("http://localhost:3000");
+        return NextResponse.redirect("http://proskill-academy.com");
     }
 
     if(verify && url.includes('/register')){
-        return NextResponse.redirect("http://localhost:3000/dashboard");
+        return NextResponse.redirect("http://proskill-academy.com/dashboard");
     }
 }
