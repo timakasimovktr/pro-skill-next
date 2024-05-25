@@ -109,7 +109,7 @@ const CourseDashboard = () => {
       });
   };
 
-  const getNotes = useCallback(async () => {
+  const getNotes = async () => {
     axios
       .get(APP_ROUTES.URL + "/notes", {
         headers: {
@@ -122,7 +122,7 @@ const CourseDashboard = () => {
       .catch(function (error) {
         console.log(error);
       });
-  });
+  };
 
   const createNote = async (e) => {
     e.preventDefault();
