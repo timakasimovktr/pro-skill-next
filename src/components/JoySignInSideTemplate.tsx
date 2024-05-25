@@ -162,7 +162,7 @@ export default function JoySignInSideTemplate() {
                 <Typography level="body-sm">
                   Yangi foydalanuvchi?{" "}
                   <Link href="/registration" level="title-sm">
-                   Ro'yxatdan o'tish!
+                   Royxatdan otish!
                   </Link>
                 </Typography>
               </Stack>

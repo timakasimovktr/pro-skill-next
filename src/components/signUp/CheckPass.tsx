@@ -30,7 +30,7 @@ const CheckPass = () => {
           >
             <FormControl required>
               <FormLabel>Matn</FormLabel>
-              <Textarea type="text" minRows={4} name="description" />
+              <Textarea minRows={4} name="description" />
             </FormControl>
             <Box>
               <Button type="submit" fullWidth>

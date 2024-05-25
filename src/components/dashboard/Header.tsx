@@ -75,6 +75,7 @@ export default function Header(props) {
   const [open, setOpen] = React.useState(false);
   const [userInfo, setUserInfo] = React.useState({});
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const getUserInfo = async () => {
     try {
       const { data } = await axios.get(APP_ROUTES.URL + "/auth/profile", {
@@ -91,7 +92,7 @@ export default function Header(props) {
 
   React.useLayoutEffect(() => {
     getUserInfo();
-  }, []);
+  }, [getUserInfo]);
 
   return (
     <Box

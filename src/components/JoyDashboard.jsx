@@ -1,3 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react/jsx-no-undef */
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import * as React from "react";
 import { CssVarsProvider } from "@mui/joy/styles";
@@ -68,6 +71,7 @@ export default function Dashboard() {
       });
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const getBought = async () => {
     axios
       .get(APP_ROUTES.URL + "/item/bought", {
@@ -225,7 +229,7 @@ export default function Dashboard() {
     getNotes();
     getProfile();
     getBought();
-  }, []);
+  }, [getBought, getNotes, getProfile]);
 
   return (
     <CssVarsProvider disableTransitionOnChange>
@@ -282,13 +286,13 @@ export default function Dashboard() {
                     }}
                   >
                     <FormControl>
-                      <FormLabel>Eslatma qo'shish</FormLabel>
+                      <FormLabel>Eslatma qoshish</FormLabel>
                       <Input type="text" name="title" />
                     </FormControl>
 
                     <FormControl required>
                       <FormLabel>Matn</FormLabel>
-                      <Textarea type="text" minRows={4} name="description" />
+                      <Textarea minRows={4} name="description" />
                     </FormControl>
                     <Box>
                       <Button type="submit" fullWidth>
@@ -313,7 +317,7 @@ export default function Dashboard() {
                     }}
                   >
                     <FormControl>
-                      <FormLabel>Eslatma qo'shish</FormLabel>
+                      <FormLabel>Eslatma qoshish</FormLabel>
                       <Input
                         type="text"
                         name="title"
@@ -460,7 +464,7 @@ export default function Dashboard() {
                                 level="body-sm"
                                 sx={{ color: "#50963b", fontWeight: "500" }}
                               >
-                                To'lov qilingan
+                                Tolov qilingan
                               </Typography>
                               <SouthEastRoundedIcon
                                 sx={{ color: "#50963b", width: "20px" }}
@@ -488,7 +492,7 @@ export default function Dashboard() {
                           sx={{ width: "100%", height: "100%" }}
                         >
                           <AspectRatio minHeight="120px" maxHeight="200px">
-                            <img
+                            <Image
                               src={APP_ROUTES.URL + el.item.photoUrl}
                               srcSet={APP_ROUTES.URL + "/" + el.item.photoUrl}
                               loading="lazy"
@@ -523,7 +527,7 @@ export default function Dashboard() {
                                 level="body-sm"
                                 sx={{ color: "#50963b", fontWeight: "500" }}
                               >
-                                To'lov qilingan
+                                Tolov qilingan
                               </Typography>
                               <SouthEastRoundedIcon
                                 sx={{ color: "#50963b", width: "20px" }}
@@ -584,7 +588,7 @@ export default function Dashboard() {
                         sx={{ width: "100%", marginBottom: "15px" }}
                       >
                         <AspectRatio minHeight="120px" maxHeight="200px">
-                          <img
+                          <Image
                             src={APP_ROUTES.URL + "/" + item.photoUrl}
                             srcSet={APP_ROUTES.URL + "/" + item.photoUrl}
                             loading="lazy"
@@ -773,7 +777,7 @@ export default function Dashboard() {
             </TabPanel>
             <TabPanel value={1} sx={{ p: 0 }}>
               <AspectRatio ratio="21/9">
-                <img
+                <Image
                   alt=""
                   src="https://www.gazeta.uz/media/img/2022/01/DhxJJ316424213436263_b.jpg"
                   srcSet="https://www.gazeta.uz/media/img/2022/01/DhxJJ316424213436263_b.jpg 2x"

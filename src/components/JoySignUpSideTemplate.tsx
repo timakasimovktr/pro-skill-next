@@ -245,7 +245,7 @@ export default function JoySignUpSideTemplate() {
                     <Input type="text" name="city" />
                   </FormControl>
                   <FormControl required>
-                    <FormLabel>Tug'ilgan sana</FormLabel>
+                    <FormLabel>Tugilgan sana</FormLabel>
                     <Input type="date" name="birthday" />
                   </FormControl>
                   <FormControl required>
@@ -268,7 +268,7 @@ export default function JoySignUpSideTemplate() {
                       />
                     </Box>
                     <Button type="submit" loading={isLoading} fullWidth>
-                      Ro'yxatdan o'tish
+                      Royxatdan otish
                     </Button>
                   </Stack>
                 </form>

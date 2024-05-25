@@ -18,6 +18,7 @@ export default function AccordionControlled(props) {
   const [videoUrl, setVideoUrl] = React.useState(null);
   const [i, setI] = React.useState(0);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleStartVideo = () => {
     if (videoUrl) {
       props.setCurrentVideo(APP_ROUTES.URL + "/" + videoUrl);
@@ -38,11 +39,11 @@ export default function AccordionControlled(props) {
         profileProps
       );
     }
-  }, [props.profile.courses]);
+  }, [profileProps, props, props.profile.courses]);
 
   React.useEffect(() => {
     handleStartVideo();
-  }, [videoUrl]);
+  }, [handleStartVideo, videoUrl]);
 
   return (
     <AccordionGroup sx={{ width: "100%" }}>

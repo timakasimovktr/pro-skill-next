@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import * as React from "react";
 import { CssVarsProvider } from "@mui/joy/styles";
@@ -108,7 +109,7 @@ const CourseDashboard = () => {
       });
   };
 
-  const getNotes = async () => {
+  const getNotes = useCallback(async () => {
     axios
       .get(APP_ROUTES.URL + "/notes", {
         headers: {
@@ -121,7 +122,7 @@ const CourseDashboard = () => {
       .catch(function (error) {
         console.log(error);
       });
-  };
+  });
 
   const createNote = async (e) => {
     e.preventDefault();
@@ -227,7 +228,7 @@ const CourseDashboard = () => {
   React.useLayoutEffect(() => {
     getProfile();
     getNotes();
-  }, []);
+  }, [getNotes, getProfile]);
 
   return (
     <CssVarsProvider>
@@ -258,13 +259,13 @@ const CourseDashboard = () => {
                     }}
                   >
                     <FormControl>
-                      <FormLabel>Eslatma qo'shish</FormLabel>
+                      <FormLabel>Eslatma qoshish</FormLabel>
                       <Input type="text" name="title" />
                     </FormControl>
 
                     <FormControl required>
                       <FormLabel>Matn</FormLabel>
-                      <Textarea type="text" minRows={4} name="description" />
+                      <Textarea minRows={4} name="description" />
                     </FormControl>
                     <Box>
                       <Button type="submit" fullWidth>
@@ -289,7 +290,7 @@ const CourseDashboard = () => {
                     }}
                   >
                     <FormControl>
-                      <FormLabel>Eslatma qo'shish</FormLabel>
+                      <FormLabel>Eslatma qoshish</FormLabel>
                       <Input
                         type="text"
                         name="title"
@@ -409,7 +410,7 @@ const CourseDashboard = () => {
                 className="lessonInfoContainer"
               >
                 <TabList>
-                  <Tab color="success">Kurs haqida ma'lumot</Tab>
+                  <Tab color="success">Kurs haqida malumot</Tab>
                   <Tab color="success">Sinovlar</Tab>
                   <Tab color="success">Eslatmalar</Tab>
                 </TabList>
