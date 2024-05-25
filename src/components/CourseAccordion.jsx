@@ -18,7 +18,6 @@ export default function AccordionControlled(props) {
   const [videoUrl, setVideoUrl] = React.useState(null);
   const [i, setI] = React.useState(0);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleStartVideo = () => {
     if (videoUrl) {
       props.setCurrentVideo(APP_ROUTES.URL + "/" + videoUrl);
@@ -29,15 +28,9 @@ export default function AccordionControlled(props) {
 
   React.useEffect(() => {
     if (profileProps?.videoUrl) {
-      setVideoUrl(
-        profileProps.videoUrl
-      );
-      props.setCurrentQuestions(
-        profileProps.questions
-      );
-      props.setCurrentLesson(
-        profileProps
-      );
+      setVideoUrl(profileProps.videoUrl);
+      props.setCurrentQuestions(profileProps.questions);
+      props.setCurrentLesson(profileProps);
     }
   }, [profileProps, props]);
 
