@@ -75,24 +75,23 @@ export default function Header(props) {
   const [open, setOpen] = React.useState(false);
   const [userInfo, setUserInfo] = React.useState({});
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const getUserInfo = async () => {
-    try {
-      const { data } = await axios.get(APP_ROUTES.URL + "/auth/profile", {
-        headers: {
-          Authorization: `Bearer ${cookies.get("access_token")}`,
-        },
-      });
-      setUserInfo(data);
-    } catch (error) {
-      router.push("/");
-      cookies.remove("access_token");
-    }
-  };
+  React.useEffect(() => {
+    const getUserInfo = async () => {
+      try {
+        const { data } = await axios.get(APP_ROUTES.URL + "/auth/profile", {
+          headers: {
+            Authorization: `Bearer ${cookies.get("access_token")}`,
+          },
+        });
+        setUserInfo(data);
+      } catch (error) {
+        router.push("/");
+        cookies.remove("access_token");
+      }
+    };
 
-  React.useLayoutEffect(() => {
     getUserInfo();
-  }, [getUserInfo]);
+  }, [cookies, router]);
 
   return (
     <Box

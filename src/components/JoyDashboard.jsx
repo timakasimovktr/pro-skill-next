@@ -225,12 +225,12 @@ export default function Dashboard() {
       });
   };
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     getNews();
     getNotes();
     getProfile();
     getBought();
-  }, [getBought, getNotes, getProfile]);
+  }, []);
 
   return (
     <CssVarsProvider disableTransitionOnChange>

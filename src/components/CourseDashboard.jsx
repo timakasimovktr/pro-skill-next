@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import * as React from "react";
 import { CssVarsProvider } from "@mui/joy/styles";
@@ -109,7 +108,7 @@ const CourseDashboard = () => {
       });
   };
 
-  const getNotes = async () => {
+  const getNotes = React.useCallback(async () => {
     axios
       .get(APP_ROUTES.URL + "/notes", {
         headers: {
@@ -122,7 +121,7 @@ const CourseDashboard = () => {
       .catch(function (error) {
         console.log(error);
       });
-  };
+  }, [access_token]);
 
   const createNote = async (e) => {
     e.preventDefault();
@@ -206,7 +205,7 @@ const CourseDashboard = () => {
       });
   };
 
-  const getProfile = async () => {
+  const getProfile = React.useCallback(async () => {
     axios
       .get(APP_ROUTES.URL + "/auth/profile", {
         headers: {
@@ -223,9 +222,9 @@ const CourseDashboard = () => {
       .catch(function (error) {
         console.log(error);
       });
-  };
+  }, [access_token, router]);
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     getProfile();
     getNotes();
   }, [getNotes, getProfile]);
@@ -444,15 +443,17 @@ const CourseDashboard = () => {
                       (completedLesson) =>
                         completedLesson.lessonId === currentLesson.id
                     ) && (
-                      <Box sx={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        flexDirection: "column",
-                        minHeight: "400px",
-                        backgroundImage: `url(https://images.pexels.com/photos/1925536/pexels-photo-1925536.jpeg)`,
-                        backgroundSize: "cover",
-                      }}>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          flexDirection: "column",
+                          minHeight: "400px",
+                          backgroundImage: `url(https://images.pexels.com/photos/1925536/pexels-photo-1925536.jpeg)`,
+                          backgroundSize: "cover",
+                        }}
+                      >
                         <Box
                           sx={{
                             display: "flex",
@@ -493,7 +494,8 @@ const CourseDashboard = () => {
                                   completedLesson.lessonId === currentLesson.id
                               )
                               .answers.filter((answer) => answer).length
-                          } / {currentQuestions.length}
+                          }{" "}
+                          / {currentQuestions.length}
                         </Box>
                       </Box>
                     )}

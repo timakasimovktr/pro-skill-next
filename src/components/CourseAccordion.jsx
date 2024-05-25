@@ -39,11 +39,11 @@ export default function AccordionControlled(props) {
         profileProps
       );
     }
-  }, [profileProps, props, props.profile.courses]);
+  }, [profileProps, props]);
 
   React.useEffect(() => {
     handleStartVideo();
-  }, [handleStartVideo, videoUrl]);
+  });
 
   return (
     <AccordionGroup sx={{ width: "100%" }}>

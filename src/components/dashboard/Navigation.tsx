@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 import * as React from "react";
 import Box from "@mui/joy/Box";
@@ -9,6 +8,7 @@ import ListItemButton from "@mui/joy/ListItemButton";
 import ListItemDecorator from "@mui/joy/ListItemDecorator";
 import ListItemContent from "@mui/joy/ListItemContent";
 import Divider from "@mui/joy/Divider";
+import Image from 'next/image';
 
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
@@ -41,7 +41,7 @@ export default function Navigation() {
       });
   };
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     getBooks();
   }, []);
 
@@ -121,11 +121,12 @@ export default function Navigation() {
               sx={{ width: "100%", marginBottom: "15px" }}
             >
               <AspectRatio minHeight="120px" maxHeight="200px">
-                <img
+                <Image
                   src={APP_ROUTES.URL + "/" + book.photoUrl}
-                  srcSet={APP_ROUTES.URL + "/" + book.photoUrl}
-                  loading="lazy"
                   alt=""
+                  loading="lazy"
+                  width={300}
+                  height={200}
                 />
               </AspectRatio>
               <div>
