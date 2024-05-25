@@ -168,7 +168,6 @@ export default function JoySignInSideTemplate() {
               </Stack>
             </Stack>
             <Divider
-              className="beautyDivider"
               sx={(theme) => ({
                 [theme.getColorSchemeSelector("light")]: {
                   color: { xs: "#000", md: "yoki" },
