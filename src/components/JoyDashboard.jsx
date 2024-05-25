@@ -21,7 +21,7 @@ import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
 import Input from "@mui/joy/Input";
 import Textarea from "@mui/joy/Textarea";
-import Image from 'next/image';
+import Image from "next/image";
 
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
@@ -254,9 +254,7 @@ export default function Dashboard() {
           }),
         }}
       >
-        <Layout.Header
-          className="beautyHeader"
-        >
+        <Layout.Header className="beautyHeader">
           <Header profile={profile} />
         </Layout.Header>
         <Layout.SideNav
@@ -498,6 +496,8 @@ export default function Dashboard() {
                               srcSet={APP_ROUTES.URL + "/" + el.item.photoUrl}
                               loading="lazy"
                               alt={el.item.title}
+                              width="400"
+                              height="200"
                             />
                           </AspectRatio>
                           <div
@@ -552,7 +552,10 @@ export default function Dashboard() {
                 )}
               </Box>
             </Box>
-            <Divider orientation="vertical" className="dashboardDivider beautyDivider" />
+            <Divider
+              orientation="vertical"
+              className="dashboardDivider beautyDivider"
+            />
             <Box sx={{ width: "30%" }} className="newsWrapper">
               {news.length > 0 && (
                 <Typography
@@ -593,6 +596,8 @@ export default function Dashboard() {
                             src={APP_ROUTES.URL + "/" + item.photoUrl}
                             srcSet={APP_ROUTES.URL + "/" + item.photoUrl}
                             loading="lazy"
+                            width="400"
+                            height="200"
                             alt=""
                           />
                         </AspectRatio>
@@ -780,6 +785,8 @@ export default function Dashboard() {
               <AspectRatio ratio="21/9">
                 <Image
                   alt=""
+                  width="400"
+                  height="200"
                   src="https://www.gazeta.uz/media/img/2022/01/DhxJJ316424213436263_b.jpg"
                   srcSet="https://www.gazeta.uz/media/img/2022/01/DhxJJ316424213436263_b.jpg 2x"
                 />
