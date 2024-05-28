@@ -85,14 +85,14 @@ export default function Navigation() {
                 <ListItemContent>Xabarlar</ListItemContent>
               </ListItemButton>
             </ListItem> */}
-            {/* <ListItem>
+            <ListItem>
               <ListItemButton>
                 <ListItemDecorator>
                   <SettingsRoundedIcon fontSize="medium" />
                 </ListItemDecorator>
                 <ListItemContent>Sozlama</ListItemContent>
               </ListItemButton>
-            </ListItem> */}
+            </ListItem>
           </List>
         </ListItem>
       </List>
@@ -118,7 +118,7 @@ export default function Navigation() {
               invertedColors
               orientation="vertical"
               size="sm"
-              sx={{ width: "100%", marginBottom: "15px" }}
+              sx={{ width: "100%", marginBottom: "15px", borderRadius: "20px"}}
             >
               <AspectRatio minHeight="120px" maxHeight="200px">
                 <Image

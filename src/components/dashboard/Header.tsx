@@ -173,7 +173,7 @@ export default function Header(props) {
           alignItems: "center",
         }}
       >
-        <ColorSchemeToggle />
+        {/* <ColorSchemeToggle /> */}
         <Dropdown>
           <MenuButton
             variant="plain"

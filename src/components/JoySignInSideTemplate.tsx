@@ -143,7 +143,7 @@ export default function JoySignInSideTemplate() {
               width: 400,
               maxWidth: "100%",
               mx: "auto",
-              borderRadius: "sm",
+              borderRadius: "md",
               "& form": {
                 display: "flex",
                 flexDirection: "column",

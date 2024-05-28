@@ -368,10 +368,11 @@ export default function Dashboard() {
               sx={{
                 border: "1px solid",
                 borderColor: "neutral.outlinedBorder",
-                borderRadius: "sm",
+                borderRadius: "20px",
+                bgcolor: "#8EA488",
                 gridColumn: "1/-1",
                 display: "flex",
-                padding: "10px 20px",
+                padding: "20px 20px",
               }}
             >
               <Box
@@ -382,11 +383,11 @@ export default function Dashboard() {
               >
                 <Typography
                   level="title-md"
-                  sx={{ fontSize: 20, fontWeight: 700 }}
+                  sx={{ fontSize: 20, fontWeight: 700, color: "white" }}
                 >
                   Xush kelibsiz {profile.fullName}!
                 </Typography>
-                <Typography level="body-sm">
+                <Typography level="body-sm" sx={{ color: "white" }}>
                   Shaxsiy hisobingizga xush kelibsiz. Bu erda siz bizning barcha
                   xizmatlarimizdan foydalanishingiz mumkin.
                 </Typography>
@@ -430,7 +431,7 @@ export default function Dashboard() {
                           invertedColors
                           orientation="vertical"
                           size="sm"
-                          sx={{ width: "100%" }}
+                          sx={{ width: "100%", borderRadius: "20px" }}
                         >
                           <AspectRatio minHeight="120px" maxHeight="200px">
                             <img
@@ -488,7 +489,11 @@ export default function Dashboard() {
                           invertedColors
                           orientation="vertical"
                           size="sm"
-                          sx={{ width: "100%", height: "100%" }}
+                          sx={{
+                            width: "100%",
+                            height: "100%",
+                            borderRadius: "20px",
+                          }}
                         >
                           <AspectRatio minHeight="120px" maxHeight="200px">
                             <Image
@@ -589,7 +594,11 @@ export default function Dashboard() {
                         invertedColors
                         orientation="vertical"
                         size="sm"
-                        sx={{ width: "100%", marginBottom: "15px" }}
+                        sx={{
+                          width: "100%",
+                          marginBottom: "15px",
+                          borderRadius: "20px",
+                        }}
                       >
                         <AspectRatio minHeight="120px" maxHeight="200px">
                           <Image
@@ -707,7 +716,8 @@ export default function Dashboard() {
                       gap: 1,
                       border: "1px solid #32383e40",
                       padding: "20px",
-                      borderRadius: "8px",
+                      borderRadius: "15px",
+                      bgcolor: "#4C6A55"
                     }}
                   >
                     <div>
@@ -723,7 +733,7 @@ export default function Dashboard() {
                       >
                         <Typography
                           level="title-md"
-                          sx={{ alignItems: "center", fontWeight: 600 }}
+                          sx={{ alignItems: "center", fontWeight: 600, color: "white" }}
                         >
                           {note.title}
                         </Typography>{" "}
@@ -732,6 +742,7 @@ export default function Dashboard() {
                           sx={{
                             alignItems: "center",
                             overflowWrap: "anywhere",
+                            color: "white"
                           }}
                         >
                           {note.description}
@@ -763,7 +774,7 @@ export default function Dashboard() {
                           size="sm"
                           onClick={() => updateNote(note.id)}
                         >
-                          <CreateRoundedIcon />
+                          <CreateRoundedIcon sx={{ color: "black" }}/>
                         </IconButton>
                         <IconButton
                           component="span"
@@ -772,7 +783,7 @@ export default function Dashboard() {
                           size="sm"
                           onClick={() => deleteNote(note.id)}
                         >
-                          <DeleteRoundedIcon sx={{ color: "red" }} />
+                          <DeleteRoundedIcon sx={{ color: "black" }} />
                         </IconButton>
                       </Box>
                     </Box>

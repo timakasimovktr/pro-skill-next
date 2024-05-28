@@ -180,7 +180,7 @@ export default function JoySignUpSideTemplate() {
               width: 400,
               maxWidth: "100%",
               mx: "auto",
-              borderRadius: "sm",
+              borderRadius: "md",
               "& form": {
                 display: "flex",
                 flexDirection: "column",

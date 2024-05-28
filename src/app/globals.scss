@@ -150,6 +150,10 @@ input[type=checkbox] {
     }
 }
 
+.mainWrapper{
+    height: calc(100% - 88px);
+}
+
 .courseInfoTabPanel {
     height: 432px;
     overflow-y: auto;

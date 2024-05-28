@@ -7,10 +7,6 @@ import Avatar from "@mui/joy/Avatar";
 import AvatarGroup from "@mui/joy/AvatarGroup";
 import Box from "@mui/joy/Box";
 import Button from "@mui/joy/Button";
-import Card from "@mui/joy/Card";
-import CardOverflow from "@mui/joy/CardOverflow";
-import CardCover from "@mui/joy/CardCover";
-import CardContent from "@mui/joy/CardContent";
 import Typography from "@mui/joy/Typography";
 import IconButton from "@mui/joy/IconButton";
 import Divider from "@mui/joy/Divider";
@@ -462,7 +458,7 @@ const CourseDashboard = () => {
                             flexDirection: "column",
                             backgroundColor: "rgba(0, 0, 0, 0.7)",
                             padding: "20px",
-                            borderRadius: "8px",
+                            borderRadius: "15px",
                           }}
                         >
                           <h2 style={{ color: "white", fontSize: "20px" }}>
@@ -586,7 +582,7 @@ const CourseDashboard = () => {
                           gap: 1,
                           border: "1px solid #32383e40",
                           padding: "20px",
-                          borderRadius: "8px",
+                          borderRadius: "15px",
                           marginBottom: "10px",
                         }}
                       >
