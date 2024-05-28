@@ -55,12 +55,6 @@ export default function Dashboard() {
   const [bought, setBought] = React.useState([]);
   const [boughtCourses, setBoughtCourses] = React.useState([]);
 
-  const paidItems = [
-    { condition: profile.isLessonPaid, text: "Dars" },
-    { condition: profile.isModulePaid, text: "Modul" },
-    { condition: profile.isCoursePaid, text: "Kurs" },
-  ];
-
   const getNews = async () => {
     axios
       .get(APP_ROUTES.URL + "/news")

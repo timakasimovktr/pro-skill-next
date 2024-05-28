@@ -348,7 +348,7 @@ const CourseDashboard = () => {
           <Box
             sx={{
               minWidth: "100%",
-              height: "calc(100vh - 300px)",
+              height: "calc(100vh - 200px)",
               minHeight: "400px",
               display: "flex",
               justifyContent: "center",
@@ -360,7 +360,7 @@ const CourseDashboard = () => {
             <Box
               sx={{
                 width: "75%",
-                height: "calc(100vh - 300px)",
+                height: "calc(100vh - 200px)",
                 minHeight: "400px",
                 display: "flex",
                 justifyContent: "center",
@@ -393,7 +393,7 @@ const CourseDashboard = () => {
               sx={{
                 width: "25%",
                 overflowY: "auto",
-                height: "calc(100vh - 300px)",
+                height: "calc(100vh - 200px)",
                 padding: "20px 10px 20px 0",
                 minHeight: "400px",
               }}
@@ -428,6 +428,7 @@ const CourseDashboard = () => {
                 </Typography>
                 <CourseAccordion
                   setCurrentVideo={setCurrentVideo}
+                  currentVideo={currentVideo}
                   setCurrentQuestions={setCurrentQuestions}
                   setCurrentLesson={setCurrentLesson}
                   profile={profile}

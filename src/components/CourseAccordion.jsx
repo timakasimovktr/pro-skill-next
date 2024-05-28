@@ -19,7 +19,7 @@ export default function AccordionControlled(props) {
   const [i, setI] = React.useState(0);
 
   const handleStartVideo = () => {
-    if (videoUrl) {
+    if (videoUrl && !props.currentVideo) {
       props.setCurrentVideo(APP_ROUTES.URL + "/" + videoUrl);
     } else {
       console.error("Video URL is not available");
@@ -27,7 +27,7 @@ export default function AccordionControlled(props) {
   };
 
   React.useEffect(() => {
-    if (profileProps?.videoUrl) {
+    if (profileProps?.videoUrl && !props.currentVideo) {
       setVideoUrl(profileProps.videoUrl);
       props.setCurrentQuestions(profileProps.questions);
       props.setCurrentLesson(profileProps);
