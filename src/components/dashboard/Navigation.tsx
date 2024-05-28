@@ -33,7 +33,7 @@ export default function Navigation() {
     axios
       .get(APP_ROUTES.URL + "/library/withItems")
       .then(function (response) {
-        const booksArray = response.data.filter((item) => item.id === 2)[0];
+        const booksArray = response.data.filter((item) => item.id === 1)[0];
         setBooks(booksArray.items);
       })
       .catch(function (error) {
