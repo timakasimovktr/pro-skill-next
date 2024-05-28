@@ -245,7 +245,7 @@ export default function Dashboard() {
           gridTemplateColumns: {
             xs: "1fr",
             sm: "minmax(64px, 200px) minmax(450px, 1fr)",
-            md: "minmax(160px, 300px) minmax(600px, 1fr) minmax(300px, 420px)",
+            md: "minmax(140px, 240px) minmax(600px, 1fr) minmax(250px, 320px)",
           },
           width: "100%",
           ...(drawerOpen && {
@@ -787,7 +787,7 @@ export default function Dashboard() {
                           size="sm"
                           onClick={() => deleteNote(note.id)}
                         >
-                          <DeleteRoundedIcon sx={{ color: "red" }} />
+                          <DeleteRoundedIcon sx={{ color: "white" }} />
                         </IconButton>
                       </Box>
                     </Box>

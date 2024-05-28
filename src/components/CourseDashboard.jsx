@@ -234,7 +234,7 @@ const CourseDashboard = () => {
           gridTemplateColumns: {
             xs: "1fr",
             sm: "minmax(64px, 200px) minmax(450px, 1fr)",
-            md: "minmax(160px, 300px) minmax(600px, 1fr)",
+            md: "minmax(140px, 240px) minmax(600px, 1fr)",
           },
           width: "100%",
         }}
@@ -381,7 +381,7 @@ const CourseDashboard = () => {
                   style={{
                     width: "100%",
                     height: "100%",
-                    backgroundColor: "#2d2f31",
+                    backgroundColor: "#4C6A55",
                     borderRadius: "20px",
                   }}
                 >

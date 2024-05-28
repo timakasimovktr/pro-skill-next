@@ -121,7 +121,7 @@ export default function Navigation() {
               invertedColors
               orientation="vertical"
               size="sm"
-              sx={{ width: "100%", marginBottom: "15px", borderRadius: "20px", bgcolor: "#4C6A55" }}
+              sx={{ width: "100%", marginBottom: "15px", borderRadius: "20px" }}
             >
               <AspectRatio minHeight="120px" maxHeight="200px">
                 <Image
@@ -133,8 +133,8 @@ export default function Navigation() {
                 />
               </AspectRatio>
               <div>
-                <Typography level="title-md" sx={{ color: "white" }}>{book.title}</Typography>
-                <Typography level="body-sm" sx={{ color: "#C7C7C7"}}>{book.author}</Typography>
+                <Typography level="title-md">{book.title}</Typography>
+                <Typography level="body-sm">{book.author}</Typography>
                 <Box
                   sx={{
                     width: "100%",
@@ -146,12 +146,12 @@ export default function Navigation() {
                 >
                   <Typography
                     level="body-sm"
-                    sx={{ fontWeight: "500", color: "white" }}
+                    sx={{ color: "#50963b", fontWeight: "500" }}
                   >
                     Китоб сотиб олинг
                   </Typography>
                   <SouthEastRoundedIcon
-                    sx={{ color: "white", width: "20px" }}
+                    sx={{ color: "#50963b", width: "20px" }}
                   />
                 </Box>
               </div>
