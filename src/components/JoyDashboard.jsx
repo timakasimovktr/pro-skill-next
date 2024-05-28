@@ -266,7 +266,7 @@ export default function Dashboard() {
         <Layout.Main
           sx={{
             height: "calc(100vh - 64px)",
-            overflowY: "auto",
+            overflowY: "hidden",
             width: "100%",
           }}
           className="mainContainer"
@@ -294,7 +294,9 @@ export default function Dashboard() {
                       <Textarea minRows={4} name="description" />
                     </FormControl>
                     <Box>
-                      <Button type="submit" fullWidth>
+                      <Button type="submit" fullWidth sx={{
+                        bgcolor: "#4C6A55"
+                      }}>
                         Saqlash
                       </Button>
                     </Box>
@@ -343,7 +345,9 @@ export default function Dashboard() {
                       />
                     </FormControl>
                     <Box>
-                      <Button type="submit" fullWidth>
+                      <Button type="submit" fullWidth sx={{
+                        bgcolor: "#4C6A55"
+                      }}>
                         Saqlash
                       </Button>
                     </Box>
@@ -398,7 +402,7 @@ export default function Dashboard() {
             className="mainWrapper"
             sx={{ marginTop: "15px", display: "flex", gap: "15px" }}
           >
-            <Box sx={{ width: "70%" }} className="boughtProductsWrapper">
+            <Box sx={{ width: "70%", overflowY: "auto", paddingBottom: "20px" }} className="boughtProductsWrapper">
               <Typography
                 level="title-lg"
                 sx={{
@@ -414,7 +418,7 @@ export default function Dashboard() {
                   sx={{ color: "#50963b", width: "20px", marginLeft: "10px" }}
                 />
               </Typography>
-              <Box sx={{ display: "flex", gap: "15px", flexWrap: "wrap" }}>
+              <Box sx={{ display: "flex", gap: "15px", flexWrap: "wrap", paddingRight: "10px" }}>
                 {bought.length > 0 || profile.courses ? (
                   <>
                     {boughtCourses.map((el, index) => (
@@ -561,7 +565,7 @@ export default function Dashboard() {
               orientation="vertical"
               className="dashboardDivider beautyDivider"
             />
-            <Box sx={{ width: "30%" }} className="newsWrapper">
+            <Box sx={{ width: "30%", overflowY: "auto", paddingRight: "10px" }} className="newsWrapper">
               {news.length > 0 && (
                 <Typography
                   level="title-md"
@@ -653,8 +657,8 @@ export default function Dashboard() {
             overflowY: "auto",
           }}
         >
-          <Box sx={{ p: 2, display: "flex", alignItems: "center" }}>
-            <Typography level="title-md" sx={{ flex: 1 }}>
+          <Box sx={{ p: 2, display: "flex", alignItems: "center", overflowY: "auto" }}>
+            <Typography level="title-md" sx={{ flex: 1}}>
               Foydali funktsiyalar
             </Typography>
             {/* <IconButton
@@ -762,7 +766,7 @@ export default function Dashboard() {
                           justifyContent: "center",
                         }}
                       >
-                        <Typography level="body-xs" sx={{ mt: 1 }}>
+                        <Typography level="body-xs" sx={{ mt: 1, color: "white" }}>
                           {note.createdAt.slice(0, 10)}
                         </Typography>
                       </Box>
@@ -774,7 +778,7 @@ export default function Dashboard() {
                           size="sm"
                           onClick={() => updateNote(note.id)}
                         >
-                          <CreateRoundedIcon sx={{ color: "black" }}/>
+                          <CreateRoundedIcon sx={{ color: "white" }}/>
                         </IconButton>
                         <IconButton
                           component="span"
@@ -783,7 +787,7 @@ export default function Dashboard() {
                           size="sm"
                           onClick={() => deleteNote(note.id)}
                         >
-                          <DeleteRoundedIcon sx={{ color: "black" }} />
+                          <DeleteRoundedIcon sx={{ color: "red" }} />
                         </IconButton>
                       </Box>
                     </Box>

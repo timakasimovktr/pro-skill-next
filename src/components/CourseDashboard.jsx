@@ -231,14 +231,31 @@ const CourseDashboard = () => {
 
       <Layout.Root
         sx={{
-          display: "flex",
-          flexDirection: "column",
+          gridTemplateColumns: {
+            xs: "1fr",
+            sm: "minmax(64px, 200px) minmax(450px, 1fr)",
+            md: "minmax(160px, 300px) minmax(600px, 1fr)",
+          },
+          width: "100%",
         }}
       >
         <Layout.Header>
           <Header profile={profile} />
         </Layout.Header>
-        <Layout.Main sx={{ width: "100%", padding: 0 }}>
+        <Layout.SideNav
+          sx={{ height: "calc(100vh - 64px)", overflowY: "auto" }}
+          className="sideNav"
+        >
+          <Navigation />
+        </Layout.SideNav>
+        <Layout.Main
+          sx={{
+            width: "100%",
+            padding: 0,
+            height: "calc(100vh - 64px)",
+            overflowY: "auto",
+          }}
+        >
           <ToastContainer />
           {/* =======================POPUP======================== */}
 
@@ -263,7 +280,9 @@ const CourseDashboard = () => {
                       <Textarea minRows={4} name="description" />
                     </FormControl>
                     <Box>
-                      <Button type="submit" fullWidth>
+                      <Button type="submit" fullWidth sx={{
+                        bgcolor: "#4C6A55"
+                      }}>
                         Saqlash
                       </Button>
                     </Box>
@@ -312,7 +331,9 @@ const CourseDashboard = () => {
                       />
                     </FormControl>
                     <Box>
-                      <Button type="submit" fullWidth>
+                      <Button type="submit" fullWidth sx={{
+                        bgcolor: "#4C6A55"
+                      }}>
                         Saqlash
                       </Button>
                     </Box>
@@ -327,7 +348,7 @@ const CourseDashboard = () => {
           <Box
             sx={{
               minWidth: "100%",
-              height: "calc(100vh - 200px)",
+              height: "calc(100vh - 300px)",
               minHeight: "400px",
               display: "flex",
               justifyContent: "center",
@@ -339,58 +360,79 @@ const CourseDashboard = () => {
             <Box
               sx={{
                 width: "75%",
-                height: "calc(100vh - 201px)",
+                height: "calc(100vh - 300px)",
                 minHeight: "400px",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
               }}
             >
-              <video
-                src={currentVideo}
-                controls
-                style={{
+              <Box
+                sx={{
                   width: "100%",
-                  height: "calc(100vh - 201px)",
+                  height: "100%",
                   minHeight: "400px",
-                  backgroundColor: "#2d2f31",
+                  padding: "20px",
                 }}
               >
-                <source src={currentVideo} type="video/mp4" />
-              </video>
+                <video
+                  src={currentVideo}
+                  controls
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    backgroundColor: "#2d2f31",
+                    borderRadius: "20px",
+                  }}
+                >
+                  <source src={currentVideo} type="video/mp4" />
+                </video>
+              </Box>
             </Box>
             <Box
               sx={{
                 width: "25%",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "flex-start",
-                alignItems: "flex-start",
                 overflowY: "auto",
-                height: "calc(100vh - 201px)",
+                height: "calc(100vh - 300px)",
+                padding: "20px 10px 20px 0",
                 minHeight: "400px",
               }}
             >
-              <Typography
-                variant="h3"
+              <Box
                 sx={{
-                  width: "100%",
-                  borderRadius: "0px",
-                  margin: "0px",
-                  color: "primary.main",
-                  padding: "10px 21px",
-                  borderBottom: "1px solid",
-                  borderColor: "neutral.outlinedBorder",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "flex-start",
+                  alignItems: "flex-start",
+                  border: "#CDD7E1 solid 1px",
+                  borderRadius: "20px",
                 }}
               >
-                {profile.courses?.title}
-              </Typography>
-              <CourseAccordion
-                setCurrentVideo={setCurrentVideo}
-                setCurrentQuestions={setCurrentQuestions}
-                setCurrentLesson={setCurrentLesson}
-                profile={profile}
-              />
+                <Typography
+                  variant="h3"
+                  sx={{
+                    width: "100%",
+                    borderRadius: "0px",
+                    margin: "0px",
+                    color: "primary.main",
+                    padding: "10px 21px",
+                    borderBottom: "1px solid",
+                    borderColor: "neutral.outlinedBorder",
+                    bgcolor: "#4C6A55",
+                    borderRadius: "20px 20px 0 0",
+                  }}
+                >
+                  <span style={{ color: "white" }}>
+                    {profile.courses?.title}
+                  </span>
+                </Typography>
+                <CourseAccordion
+                  setCurrentVideo={setCurrentVideo}
+                  setCurrentQuestions={setCurrentQuestions}
+                  setCurrentLesson={setCurrentLesson}
+                  profile={profile}
+                />
+              </Box>
             </Box>
           </Box>
           <Box sx={{ width: "100%", display: "flex" }}>
@@ -677,6 +719,7 @@ const CourseDashboard = () => {
                       width: "100%",
                       height: "100%",
                       minHeight: "400px",
+                      borderRadius: "20px",
                     }}
                   ></iframe>
                 </TabPanel>
@@ -687,6 +730,7 @@ const CourseDashboard = () => {
                       width: "100%",
                       height: "100%",
                       minHeight: "400px",
+                      borderRadius: "20px",
                     }}
                   ></iframe>
                 </TabPanel>
@@ -697,6 +741,7 @@ const CourseDashboard = () => {
                       width: "100%",
                       height: "100%",
                       minHeight: "400px",
+                      borderRadius: "20px",
                     }}
                   ></iframe>
                 </TabPanel>

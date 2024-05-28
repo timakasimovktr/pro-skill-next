@@ -291,7 +291,9 @@ export default function JoySignUpSideTemplate() {
                       <Input type="text" name="checkPass" />
                     </FormControl>
                     <Box>
-                      <Button type="submit" loading={isLoading} fullWidth>
+                      <Button type="submit" loading={isLoading} fullWidth sx={{
+                        bgcolor: "#4C6A55"
+                      }}>
                         Saqlash
                       </Button>
                     </Box>

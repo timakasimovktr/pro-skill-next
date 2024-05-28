@@ -8,7 +8,7 @@ import ListItemButton from "@mui/joy/ListItemButton";
 import ListItemDecorator from "@mui/joy/ListItemDecorator";
 import ListItemContent from "@mui/joy/ListItemContent";
 import Divider from "@mui/joy/Divider";
-import Image from 'next/image';
+import Image from "next/image";
 
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
@@ -59,23 +59,25 @@ export default function Navigation() {
               marginTop: 0,
             }}
           >
-            <ListItem>
-              <ListItemButton selected className="selectedListItem">
-                <ListItemDecorator>
-                  <HomeRoundedIcon fontSize="large" />
-                </ListItemDecorator>
-                <ListItemContent>Assosiy</ListItemContent>
-              </ListItemButton>
-            </ListItem>
+            <a href="/dashboard" title="course">
+              <ListItem>
+                <ListItemButton className="selectedListItem">
+                  <ListItemDecorator>
+                    <HomeRoundedIcon fontSize="large" />
+                  </ListItemDecorator>
+                  <ListItemContent>Assosiy</ListItemContent>
+                </ListItemButton>
+              </ListItem>
+            </a>
             <a href="/dashboard/course" title="course">
-            <ListItem>
-              <ListItemButton>
-                <ListItemDecorator>
-                  <SchoolRoundedIcon fontSize="large" />
-                </ListItemDecorator>
-                <ListItemContent>Kurs</ListItemContent>
-              </ListItemButton>
-            </ListItem>
+              <ListItem>
+                <ListItemButton>
+                  <ListItemDecorator>
+                    <SchoolRoundedIcon fontSize="large" />
+                  </ListItemDecorator>
+                  <ListItemContent>Kurs</ListItemContent>
+                </ListItemButton>
+              </ListItem>
             </a>
             {/* <ListItem>
               <ListItemButton>
@@ -113,12 +115,13 @@ export default function Navigation() {
             className="soldProductCard"
           >
             <Card
+              className="beautyBlock"
               color="success"
               variant="outlined"
               invertedColors
               orientation="vertical"
               size="sm"
-              sx={{ width: "100%", marginBottom: "15px", borderRadius: "20px"}}
+              sx={{ width: "100%", marginBottom: "15px", borderRadius: "20px", bgcolor: "#4C6A55" }}
             >
               <AspectRatio minHeight="120px" maxHeight="200px">
                 <Image
@@ -130,8 +133,8 @@ export default function Navigation() {
                 />
               </AspectRatio>
               <div>
-                <Typography level="title-md">{book.title}</Typography>
-                <Typography level="body-sm">{book.author}</Typography>
+                <Typography level="title-md" sx={{ color: "white" }}>{book.title}</Typography>
+                <Typography level="body-sm" sx={{ color: "#C7C7C7"}}>{book.author}</Typography>
                 <Box
                   sx={{
                     width: "100%",
@@ -143,12 +146,12 @@ export default function Navigation() {
                 >
                   <Typography
                     level="body-sm"
-                    sx={{ color: "#50963b", fontWeight: "500" }}
+                    sx={{ fontWeight: "500", color: "white" }}
                   >
                     Китоб сотиб олинг
                   </Typography>
                   <SouthEastRoundedIcon
-                    sx={{ color: "#50963b", width: "20px" }}
+                    sx={{ color: "white", width: "20px" }}
                   />
                 </Box>
               </div>

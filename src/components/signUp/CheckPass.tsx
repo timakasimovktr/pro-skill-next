@@ -18,9 +18,9 @@ import { useRouter } from "next/navigation";
 
 const CheckPass = () => {
   return (
-    <DialogContainer onClose={() => (false)}>
+    <DialogContainer onClose={() => false}>
       <DialogPopup onClose={(e) => e.stopPropagation()}>
-        <form onSubmit={(e) => (e)}>
+        <form onSubmit={(e) => e}>
           <Box
             sx={{
               display: "flex",
@@ -33,7 +33,13 @@ const CheckPass = () => {
               <Textarea minRows={4} name="description" />
             </FormControl>
             <Box>
-              <Button type="submit" fullWidth>
+              <Button
+                type="submit"
+                fullWidth
+                sx={{
+                  bgcolor: "#4C6A55",
+                }}
+              >
                 Saqlash
               </Button>
             </Box>
