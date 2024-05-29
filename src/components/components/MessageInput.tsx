@@ -84,11 +84,6 @@ export default function MessageInput(props: MessageInputProps) {
               handleClick();
             }
           }}
-          sx={{
-            '& textarea:first-of-type': {
-              minHeight: 72,
-            },
-          }}
         />
       </FormControl>
     </Box>

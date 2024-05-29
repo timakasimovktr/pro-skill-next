@@ -801,7 +801,7 @@ export default function Dashboard() {
                   Сообщение от Куратора
                 </Typography>
                 <Typography level="body-sm" sx={{ color: "#fff" }}>
-                  Bu yerda sizning xabaringiz bo'lishi mumkin
+                  Bu yerda sizning xabaringiz bolishi mumkin
                 </Typography>
               </Box>
               <Box
@@ -819,7 +819,7 @@ export default function Dashboard() {
                   Сообщение от Куратора
                 </Typography>
                 <Typography level="body-sm" sx={{ color: "#fff" }}>
-                  Bu yerda sizning xabaringiz bo'lishi mumkin
+                  Bu yerda sizning xabaringiz bo`lishi mumkin
                 </Typography>
               </Box>
               <Box
@@ -837,7 +837,7 @@ export default function Dashboard() {
                   Сообщение от Куратора
                 </Typography>
                 <Typography level="body-sm" sx={{ color: "#fff" }}>
-                  Bu yerda sizning xabaringiz bo'lishi mumkin
+                  Bu yerda sizning xabaringiz bo`lishi mumkin
                 </Typography>
               </Box>
               <Box
@@ -855,7 +855,7 @@ export default function Dashboard() {
                   Сообщение от Куратора
                 </Typography>
                 <Typography level="body-sm" sx={{ color: "#fff" }}>
-                  Bu yerda sizning xabaringiz bo'lishi mumkin
+                  Bu yerda sizning xabaringiz bo`lishi mumkin
                 </Typography>
               </Box>
               <Box
@@ -873,7 +873,7 @@ export default function Dashboard() {
                   Сообщение от Куратора
                 </Typography>
                 <Typography level="body-sm" sx={{ color: "#fff" }}>
-                  Bu yerda sizning xabaringiz bo'lishi mumkin
+                  Bu yerda sizning xabaringiz bo`lishi mumkin
                 </Typography>
               </Box>
 
