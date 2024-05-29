@@ -226,7 +226,12 @@ export default function Header(props) {
             <Typography
               level="body-xs"
               textColor="text.tertiary"
-              sx={{ fontSize: "14px", width: "100%", textAlign: "left", paddingLeft: "10px"}}
+              sx={{
+                fontSize: "14px",
+                width: "100%",
+                textAlign: "left",
+                paddingLeft: "10px",
+              }}
             >
               Sizda {props.profile.balls} ballar bor
             </Typography>
@@ -234,10 +239,12 @@ export default function Header(props) {
               <HelpRoundedIcon />
               Yordam
             </MenuItem>
-            <MenuItem>
-              <SettingsRoundedIcon />
-              Sozlama
-            </MenuItem>
+            <a href="/profile" title="profile">
+              <MenuItem>
+                <SettingsRoundedIcon />
+                Sozlama
+              </MenuItem>
+            </a>
             <ListDivider />
             <MenuItem
               onClick={() => {

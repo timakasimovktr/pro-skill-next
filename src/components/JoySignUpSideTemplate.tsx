@@ -166,7 +166,7 @@ export default function JoySignUpSideTemplate() {
               </IconButton>
               <Typography level="title-lg">Pro-Skill</Typography>
             </Box>
-            <ColorSchemeToggle />
+            {/* <ColorSchemeToggle /> */}
           </Box>
           <Box
             component="main"

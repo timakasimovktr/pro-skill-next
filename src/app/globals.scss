@@ -8,6 +8,18 @@
 * {
     font-family: "Poppins", sans-serif !important;
     box-sizing: border-box !important;
+
+    &::-webkit-scrollbar {
+        width: 1px;
+        
+        &-track {
+            background: #f1f1f1;
+        }
+
+        &-thumb {
+            background: #c7c7c7;
+        }
+    }
 }
 
 h1 {
@@ -150,7 +162,11 @@ input[type=checkbox] {
     }
 }
 
-.mainWrapper{
+.activeLesson {
+    background: #0052131f;
+}
+
+.mainWrapper {
     height: calc(100% - 88px);
 }
 

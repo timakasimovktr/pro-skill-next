@@ -15,6 +15,7 @@ import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
 import MessageRoundedIcon from "@mui/icons-material/MessageRounded";
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 import SouthEastRoundedIcon from "@mui/icons-material/SouthEastRounded";
+import MarkUnreadChatAltRoundedIcon from '@mui/icons-material/MarkUnreadChatAltRounded';
 
 import Button from "@mui/joy/Button";
 import Card from "@mui/joy/Card";
@@ -24,9 +25,10 @@ import AspectRatio from "@mui/joy/AspectRatio";
 import axios from "axios";
 import { useCookies } from "next-client-cookies";
 import { APP_ROUTES } from "../Route";
-import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 export default function Navigation() {
+  const pathName = usePathname();
   const [books, setBooks] = React.useState([]);
 
   const getBooks = async () => {
@@ -61,7 +63,7 @@ export default function Navigation() {
           >
             <a href="/dashboard" title="course">
               <ListItem>
-                <ListItemButton className="selectedListItem">
+                <ListItemButton selected={pathName === "/dashboard"}>
                   <ListItemDecorator>
                     <HomeRoundedIcon fontSize="large" />
                   </ListItemDecorator>
@@ -71,7 +73,7 @@ export default function Navigation() {
             </a>
             <a href="/dashboard/course" title="course">
               <ListItem>
-                <ListItemButton>
+                <ListItemButton selected={pathName === "/dashboard/course"}>
                   <ListItemDecorator>
                     <SchoolRoundedIcon fontSize="large" />
                   </ListItemDecorator>
@@ -79,36 +81,40 @@ export default function Navigation() {
                 </ListItemButton>
               </ListItem>
             </a>
-            {/* <ListItem>
-              <ListItemButton>
-                <ListItemDecorator>
-                  <MessageRoundedIcon fontSize="large" />
-                </ListItemDecorator>
-                <ListItemContent>Xabarlar</ListItemContent>
-              </ListItemButton>
-            </ListItem> */}
-            <ListItem>
-              <ListItemButton>
-                <ListItemDecorator>
-                  <SettingsRoundedIcon fontSize="medium" />
-                </ListItemDecorator>
-                <ListItemContent>Sozlama</ListItemContent>
-              </ListItemButton>
-            </ListItem>
+            <a href="/profile" title="profile">
+              <ListItem>
+                <ListItemButton selected={pathName === "/profile"}>
+                  <ListItemDecorator>
+                    <SettingsRoundedIcon fontSize="medium" />
+                  </ListItemDecorator>
+                  <ListItemContent>Sozlama</ListItemContent>
+                </ListItemButton>
+              </ListItem>
+            </a>
+            <a href="/chat" title="profile">
+              <ListItem>
+                <ListItemButton selected={pathName === "/chat"}>
+                  <ListItemDecorator>
+                    <MarkUnreadChatAltRoundedIcon fontSize="medium" />
+                  </ListItemDecorator>
+                  <ListItemContent>Chat</ListItemContent>
+                </ListItemButton>
+              </ListItem>
+            </a>
           </List>
         </ListItem>
       </List>
       <Divider className="beautyDivider" sx={{ margin: "15px 0" }} />
       <Typography
         level="title-md"
-        sx={{ marginBottom: "15px", fontWeight: "500" }}
+        sx={{ marginBottom: "15px", fontWeight: "500", color: "#4C6A55", }}
       >
         Kitoblar:
       </Typography>
       {books.length > 0 &&
         books.map((book, index) => (
           <a
-            href="http://proskill-academy.com/library"
+            href="http://proskill-academy.com/"
             target="_blank"
             key={index}
             style={{ width: "100%" }}
@@ -116,7 +122,6 @@ export default function Navigation() {
           >
             <Card
               className="beautyBlock"
-              color="success"
               variant="outlined"
               invertedColors
               orientation="vertical"
@@ -133,12 +138,19 @@ export default function Navigation() {
                 />
               </AspectRatio>
               <div>
-                <Typography level="title-md">{book.title}</Typography>
-                <Typography level="body-sm">{book.author}</Typography>
+                <Typography level="title-md" sx={{ fontSize: "14px" }}>
+                  {book.title}
+                </Typography>
+                <Typography
+                  level="body-sm"
+                  sx={{ fontSize: "12px", marginTop: "5px" }}
+                >
+                  {book.author}
+                </Typography>
                 <Box
                   sx={{
                     width: "100%",
-                    marginTop: "10px",
+                    marginTop: "5px",
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",

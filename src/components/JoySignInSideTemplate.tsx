@@ -129,7 +129,7 @@ export default function JoySignInSideTemplate() {
               </IconButton>
               <Typography level="title-lg">Pro-Skill</Typography>
             </Box>
-            <ColorSchemeToggle />
+            {/* <ColorSchemeToggle /> */}
           </Box>
           <Box
             component="main"

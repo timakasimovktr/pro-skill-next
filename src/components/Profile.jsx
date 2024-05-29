@@ -22,13 +22,18 @@ import FormLabel from "@mui/joy/FormLabel";
 import Input from "@mui/joy/Input";
 import Textarea from "@mui/joy/Textarea";
 import Image from "next/image";
+import Stack from "@mui/joy/Stack";
+import CardOverflow from "@mui/joy/CardOverflow";
+import CardActions from "@mui/joy/CardActions";
+import Select from "@mui/joy/Select";
+import Option from "@mui/joy/Option";
 
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
-import SouthEastRoundedIcon from "@mui/icons-material/SouthEastRounded";
-import InventoryRoundedIcon from "@mui/icons-material/InventoryRounded";
-import NewspaperRoundedIcon from "@mui/icons-material/NewspaperRounded";
+import EditRoundedIcon from "@mui/icons-material/EditRounded";
+import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
+import AccessTimeFilledRoundedIcon from "@mui/icons-material/AccessTimeFilledRounded";
 
 import Layout from "./dashboard/Layout";
 import Navigation from "./dashboard/Navigation";
@@ -42,7 +47,7 @@ import { useCookies } from "next-client-cookies";
 import { APP_ROUTES } from "./Route";
 import { useRouter } from "next/navigation";
 
-export default function Dashboard() {
+export default function Profile() {
   const cookies = useCookies();
   const access_token = cookies.get("access_token");
   const [drawerOpen, setDrawerOpen] = React.useState(false);
@@ -286,9 +291,13 @@ export default function Dashboard() {
                       <Textarea minRows={4} name="description" />
                     </FormControl>
                     <Box>
-                      <Button type="submit" fullWidth sx={{
-                        bgcolor: "#4C6A55"
-                      }}>
+                      <Button
+                        type="submit"
+                        fullWidth
+                        sx={{
+                          bgcolor: "#4C6A55",
+                        }}
+                      >
                         Saqlash
                       </Button>
                     </Box>
@@ -337,9 +346,13 @@ export default function Dashboard() {
                       />
                     </FormControl>
                     <Box>
-                      <Button type="submit" fullWidth sx={{
-                        bgcolor: "#4C6A55"
-                      }}>
+                      <Button
+                        type="submit"
+                        fullWidth
+                        sx={{
+                          bgcolor: "#4C6A55",
+                        }}
+                      >
                         Saqlash
                       </Button>
                     </Box>
@@ -392,247 +405,189 @@ export default function Dashboard() {
           </Box>
           <Box
             className="mainWrapper"
-            sx={{ marginTop: "15px", display: "flex", gap: "15px" }}
+            sx={{
+              marginTop: "15px",
+              display: "flex",
+              gap: "15px",
+              paddingBottom: "15px",
+            }}
           >
-            <Box sx={{ width: "70%", overflowY: "auto", paddingBottom: "20px" }} className="boughtProductsWrapper">
-              <Typography
-                level="title-lg"
-                sx={{
-                  marginBottom: "15px",
-                  color: "#4C6A55",
-                  fontWeight: "500",
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                Sotib olingan kurslar
-                <InventoryRoundedIcon
-                  sx={{ color: "#4C6A55", width: "20px", marginLeft: "10px" }}
-                />
-              </Typography>
-              <Box sx={{ display: "flex", gap: "15px", flexWrap: "wrap", paddingRight: "10px" }}>
-                {bought.length > 0 || profile.courses ? (
-                  <>
-                    {boughtCourses.map((el, index) => (
-                      <a
-                        href="/dashboard/course"
-                        key={index}
-                        style={{ width: "calc(50% - 7.5px)" }}
-                        className="soldProductCard"
-                      >
-                        <Card
-                          className="beautyBlock"
-                          variant="outlined"
-                          invertedColors
-                          orientation="vertical"
-                          size="sm"
-                          sx={{ width: "100%", borderRadius: "20px" }}
-                        >
-                          <AspectRatio minHeight="120px" maxHeight="200px">
-                            <img
-                              src={APP_ROUTES.URL + "/" + el.el.photoUrls[0]}
-                              srcSet={APP_ROUTES.URL + "/" + el.el.photoUrls[0]}
-                              loading="lazy"
-                              alt={el.el.title}
-                            />
-                          </AspectRatio>
-                          <div>
-                            <Typography level="title-md">
-                              {el.el.title}
-                            </Typography>
-                            <div className="chip">
-                              <Typography level="body-xs">{el.text}</Typography>
-                            </div>
-                            <Typography level="body-sm">
-                              {el.el.description.slice(0, 90) + "..."}
-                            </Typography>
-                            <Box
-                              sx={{
-                                width: "100%",
-                                marginTop: "10px",
-                                display: "flex",
-                                justifyContent: "space-between",
-                                alignItems: "center",
-                              }}
-                            >
-                              <Typography
-                                level="body-sm"
-                                sx={{ color: "#50963b", fontWeight: "500" }}
-                              >
-                                Tolov qilingan
-                              </Typography>
-                              <SouthEastRoundedIcon
-                                sx={{ color: "#50963b", width: "20px" }}
-                              />
-                            </Box>
-                          </div>
-                        </Card>
-                      </a>
-                    ))}
-
-                    {bought.map((el, index) => (
-                      <a
-                        href={`${APP_ROUTES.URL}/${el.item.fileUrl}`}
-                        key={index}
-                        style={{ width: "calc(50% - 7.5px)" }}
-                        className="soldProductCard"
-                      >
-                        <Card
-                          className="beautyBlock"
-                          variant="outlined"
-                          invertedColors
-                          orientation="vertical"
-                          size="sm"
-                          sx={{
-                            width: "100%",
-                            height: "100%",
-                            borderRadius: "20px",
-                          }}
-                        >
-                          <AspectRatio minHeight="120px" maxHeight="200px">
-                            <Image
-                              src={APP_ROUTES.URL + el.item.photoUrl}
-                              srcSet={APP_ROUTES.URL + "/" + el.item.photoUrl}
-                              loading="lazy"
-                              alt={el.item.title}
-                              width="400"
-                              height="200"
-                            />
-                          </AspectRatio>
-                          <div
-                            style={{
-                              height: "100%",
-                              display: "flex",
-                              justifyContent: "space-between",
-                              alignItems: "flex-start",
-                              flexDirection: "column",
-                            }}
-                          >
-                            <Typography level="title-md">
-                              {el.item.title}
-                            </Typography>
-                            <Typography level="body-sm">
-                              {el.item.subtitle}
-                            </Typography>
-                            <Box
-                              sx={{
-                                width: "100%",
-                                marginTop: "10px",
-                                display: "flex",
-                                justifyContent: "space-between",
-                                alignItems: "center",
-                              }}
-                            >
-                              <Typography
-                                level="body-sm"
-                                sx={{ color: "#50963b", fontWeight: "500" }}
-                              >
-                                Tolov qilingan
-                              </Typography>
-                              <SouthEastRoundedIcon
-                                sx={{ color: "#50963b", width: "20px" }}
-                              />
-                            </Box>
-                          </div>
-                        </Card>
-                      </a>
-                    ))}
-                  </>
-                ) : (
-                  <Typography
-                    level="title-md"
-                    sx={{
-                      color: "neutral.outlinedColor",
-                      width: "100%",
-                    }}
-                  >
-                    Siz hali hech narsa sotib olmadingiz!
-                  </Typography>
-                )}
-              </Box>
-            </Box>
-            {/* <Divider
-              orientation="vertical"
-              className="dashboardDivider beautyDivider"
-            /> */}
-            <Box sx={{ width: "30%", overflowY: "auto", paddingRight: "10px" }} className="newsWrapper">
-              {news.length > 0 && (
-                <Typography
-                  level="title-md"
-                  sx={{
-                    marginBottom: "15px",
-                    color: "#4C6A55",
-                    fontWeight: "500",
-                  }}
-                >
-                  Yangiliklar
-                  <NewspaperRoundedIcon
-                    sx={{ color: "#50963b", width: "20px", marginLeft: "10px" }}
-                  />
+            <Card sx={{ width: "100%", height: "min-content", borderRadius: "20px" }}>
+              <Box sx={{ mb: 1}}>
+                <Typography level="title-md">Shaxsiy malumotlar</Typography>
+                <Typography level="body-sm">
+                    Bu sizning shaxsingiz haqidagi ma`lumotlarni ko`rsatadi
                 </Typography>
-              )}
-              {news.length > 0 &&
-                news.map((item, index) => {
-                  return (
-                    <a
-                      href={item.mainUrl}
-                      key={index}
-                      target="_blank"
-                      style={{ width: "calc(50% - 7.5px)" }}
-                      className="soldProductCard"
+              </Box>
+              <Divider />
+              <Stack
+                direction="row"
+                spacing={3}
+                sx={{ display: { xs: "none", md: "flex" }, my: 1 }}
+              >
+                <Stack direction="column" spacing={1}>
+                  <AspectRatio
+                    ratio="1"
+                    maxHeight={200}
+                    sx={{ flex: 1, minWidth: 120, borderRadius: "100%" }}
+                  >
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/512/6596/6596121.png"
+                      srcSet="https://cdn-icons-png.flaticon.com/512/6596/6596121.png 2x"
+                      loading="lazy"
+                      alt=""
+                    />
+                  </AspectRatio>
+                </Stack>
+                <Stack spacing={2} sx={{ flexGrow: 1 }}>
+                  <Stack spacing={1}>
+                    <FormLabel>Ф.И.О.</FormLabel>
+                    <FormControl
+                      sx={{
+                        display: { sm: "flex-column", md: "flex-row" },
+                        gap: 2,
+                      }}
                     >
-                      <Card
-                        className="beautyBlock"
-                        variant="outlined"
-                        invertedColors
-                        orientation="vertical"
+                      <Input readOnly size="sm" placeholder="First name" value={profile.fullName} sx={{borderRadius: "10px"}}/>
+                    </FormControl>
+                  </Stack>
+                  <Stack spacing={1}>
+                    <FormLabel>Shahar</FormLabel>
+                    <FormControl
+                      sx={{
+                        display: { sm: "flex-column", md: "flex-row" },
+                        gap: 2,
+                      }}
+                    >
+                      <Input readOnly size="sm" placeholder="First name" value={profile.city} sx={{borderRadius: "10px"}}/>
+                    </FormControl>
+                  </Stack>
+                  <Stack spacing={1}>
+                    <FormLabel>Telefon</FormLabel>
+                    <FormControl
+                      sx={{
+                        display: { sm: "flex-column", md: "flex-row" },
+                        gap: 2,
+                      }}
+                    >
+                      <Input readOnly size="sm" placeholder="First name" value={profile.phoneNumber} sx={{borderRadius: "10px"}}/>
+                    </FormControl>
+                  </Stack>
+                  <Stack direction="row" spacing={2}>
+                    <FormControl>
+                      <FormLabel>Roli</FormLabel>
+                      <Input readOnly size="sm" defaultValue="Talaba" />
+                    </FormControl>
+                    <FormControl sx={{ flexGrow: 1 }}>
+                      <FormLabel>Email</FormLabel>
+                      <Input
+                        readOnly
                         size="sm"
-                        sx={{
-                          width: "100%",
-                          marginBottom: "15px",
-                          borderRadius: "20px",
-                        }}
-                      >
-                        <AspectRatio minHeight="120px" maxHeight="200px">
-                          <Image
-                            src={APP_ROUTES.URL + "/" + item.photoUrl}
-                            srcSet={APP_ROUTES.URL + "/" + item.photoUrl}
-                            loading="lazy"
-                            width="400"
-                            height="200"
-                            alt=""
-                          />
-                        </AspectRatio>
-                        <div>
-                          <Typography level="title-md" sx={{ fontSize: "12px" }}>{item.title}</Typography>
-                          <Typography level="body-sm" sx={{ fontSize: "12px", marginTop: "5px" }}>
-                            {item.createdAt.slice(0, 10)}
-                          </Typography>
-                          <Box
-                            sx={{
-                              width: "100%",
-                              marginTop: "5px",
-                              display: "flex",
-                              justifyContent: "space-between",
-                              alignItems: "center",
-                            }}
-                          >
-                            <Typography
-                              level="body-sm"
-                              sx={{ color: "#50963b", fontWeight: "500", fontSize: "12px" }}
-                            >
-                              Tomosha qiling
-                            </Typography>
-                            <SouthEastRoundedIcon
-                              sx={{ color: "#50963b", width: "15px" }}
-                            />
-                          </Box>
-                        </div>
-                      </Card>
-                    </a>
-                  );
-                })}
-            </Box>
+                        type="email"
+                        startDecorator={<EmailRoundedIcon />}
+                        placeholder="email"
+                        value={profile.email}
+                        defaultValue="siriwatk@test.com"
+                        sx={{ flexGrow: 1 }}
+                      />
+                    </FormControl>
+                  </Stack>
+                </Stack>
+              </Stack>
+              <Stack
+                direction="column"
+                spacing={2}
+                sx={{ display: { xs: "flex", md: "none" }, my: 1 }}
+              >
+                <Stack direction="row" spacing={2}>
+                  <Stack direction="column" spacing={1}>
+                    <AspectRatio
+                      ratio="1"
+                      maxHeight={108}
+                      sx={{ flex: 1, minWidth: 108, borderRadius: "100%" }}
+                    >
+                      <img
+                        src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=286"
+                        srcSet="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=286&dpr=2 2x"
+                        loading="lazy"
+                        alt=""
+                      />
+                    </AspectRatio>
+                    <IconButton
+                      aria-label="upload new picture"
+                      size="sm"
+                      variant="outlined"
+                      color="neutral"
+                      sx={{
+                        bgcolor: "background.body",
+                        position: "absolute",
+                        zIndex: 2,
+                        borderRadius: "50%",
+                        left: 85,
+                        top: 180,
+                        boxShadow: "sm",
+                      }}
+                    >
+                      <EditRoundedIcon />
+                    </IconButton>
+                  </Stack>
+                  <Stack spacing={1} sx={{ flexGrow: 1 }}>
+                    <FormLabel>Name</FormLabel>
+                    <FormControl
+                      sx={{
+                        display: {
+                          sm: "flex-column",
+                          md: "flex-row",
+                        },
+                        gap: 2,
+                      }}
+                    >
+                      <Input size="sm" placeholder="First name" />
+                      <Input size="sm" placeholder="Last name" />
+                    </FormControl>
+                  </Stack>
+                </Stack>
+                <FormControl>
+                  <FormLabel>Role</FormLabel>
+                  <Input size="sm" defaultValue="UI Developer" />
+                </FormControl>
+                <FormControl sx={{ flexGrow: 1 }}>
+                  <FormLabel>Email</FormLabel>
+                  <Input
+                    size="sm"
+                    type="email"
+                    startDecorator={<EmailRoundedIcon />}
+                    placeholder="email"
+                    defaultValue="siriwatk@test.com"
+                    sx={{ flexGrow: 1 }}
+                  />
+                </FormControl>
+                <div>{/* <CountrySelector /> */}</div>
+                <div>
+                  <FormControl sx={{ display: { sm: "contents" } }}>
+                    <FormLabel>Timezone</FormLabel>
+                    <Select
+                      size="sm"
+                      startDecorator={<AccessTimeFilledRoundedIcon />}
+                      defaultValue="1"
+                    >
+                      <Option value="1">
+                        Indochina Time (Bangkok){" "}
+                        <Typography textColor="text.tertiary" ml={0.5}>
+                          — GMT+07:00
+                        </Typography>
+                      </Option>
+                      <Option value="2">
+                        Indochina Time (Ho Chi Minh City){" "}
+                        <Typography textColor="text.tertiary" ml={0.5}>
+                          — GMT+07:00
+                        </Typography>
+                      </Option>
+                    </Select>
+                  </FormControl>
+                </div>
+              </Stack>
+            </Card>
           </Box>
         </Layout.Main>
         <Sheet
@@ -645,8 +600,17 @@ export default function Dashboard() {
             overflowY: "auto",
           }}
         >
-          <Box sx={{ p: 2, display: "flex", alignItems: "center", overflowY: "auto", paddingLeft: { xs: "15px", sm: "0" } }} className="beautyBlock">
-            <Typography level="title-md" sx={{ flex: 1, color: "#4C6A55",}}>
+          <Box
+            sx={{
+              p: 2,
+              display: "flex",
+              alignItems: "center",
+              overflowY: "auto",
+              paddingLeft: { xs: "15px", sm: "0" },
+            }}
+            className="beautyBlock"
+          >
+            <Typography level="title-md" sx={{ flex: 1 }}>
               Foydali funktsiyalar
             </Typography>
           </Box>
@@ -662,7 +626,12 @@ export default function Dashboard() {
             </TabList>
             <TabPanel
               value={0}
-              sx={{ display: "flex", flexDirection: "column", gap: 1, paddingLeft: { xs: "15px", sm: "0" } }}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                gap: 1,
+                paddingLeft: { xs: "15px", sm: "0" },
+              }}
             >
               <Box
                 sx={{
@@ -701,7 +670,7 @@ export default function Dashboard() {
                       border: "1px solid #32383e40",
                       padding: "20px",
                       borderRadius: "15px",
-                      bgcolor: "#4C6A55"
+                      bgcolor: "#4C6A55",
                     }}
                   >
                     <div>
@@ -717,7 +686,11 @@ export default function Dashboard() {
                       >
                         <Typography
                           level="title-md"
-                          sx={{ alignItems: "center", fontWeight: 600, color: "white" }}
+                          sx={{
+                            alignItems: "center",
+                            fontWeight: 600,
+                            color: "white",
+                          }}
                         >
                           {note.title}
                         </Typography>{" "}
@@ -726,7 +699,7 @@ export default function Dashboard() {
                           sx={{
                             alignItems: "center",
                             overflowWrap: "anywhere",
-                            color: "white"
+                            color: "white",
                           }}
                         >
                           {note.description}
@@ -746,7 +719,10 @@ export default function Dashboard() {
                           justifyContent: "center",
                         }}
                       >
-                        <Typography level="body-xs" sx={{ mt: 1, color: "white" }}>
+                        <Typography
+                          level="body-xs"
+                          sx={{ mt: 1, color: "white" }}
+                        >
                           {note.createdAt.slice(0, 10)}
                         </Typography>
                       </Box>
@@ -758,7 +734,7 @@ export default function Dashboard() {
                           size="sm"
                           onClick={() => updateNote(note.id)}
                         >
-                          <CreateRoundedIcon sx={{ color: "white" }}/>
+                          <CreateRoundedIcon sx={{ color: "white" }} />
                         </IconButton>
                         <IconButton
                           component="span"
@@ -776,8 +752,8 @@ export default function Dashboard() {
               })}
               {/* Заметки */}
             </TabPanel>
-            <TabPanel value={1} sx={{ p: 0, pr: "10px", mt: "10px" }}>
-              <AspectRatio ratio="21/9" sx={{ mb: "10px", borderRadius: "20px"}}>
+            <TabPanel value={1} sx={{ p: 0 }}>
+              <AspectRatio ratio="21/9">
                 <Image
                   alt=""
                   width="400"
@@ -786,98 +762,6 @@ export default function Dashboard() {
                   srcSet="https://www.gazeta.uz/media/img/2022/01/DhxJJ316424213436263_b.jpg 2x"
                 />
               </AspectRatio>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "5px",
-                  padding: "15px",
-                  bgcolor: "#4C6A55",
-                  borderRadius: "20px 20px 20px 0",
-                  marginBottom: "10px",
-                }}
-              >
-                <Typography level="title-sm" sx={{ color: "#fff", fontSize: "12px" }}>
-                  Сообщение от Куратора
-                </Typography>
-                <Typography level="body-sm" sx={{ color: "#fff" }}>
-                  Bu yerda sizning xabaringiz bo'lishi mumkin
-                </Typography>
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "5px",
-                  padding: "15px",
-                  bgcolor: "#4C6A55",
-                  borderRadius: "20px 20px 20px 0",
-                  marginBottom: "10px",
-                }}
-              >
-                <Typography level="title-sm" sx={{ color: "#fff", fontSize: "12px" }}>
-                  Сообщение от Куратора
-                </Typography>
-                <Typography level="body-sm" sx={{ color: "#fff" }}>
-                  Bu yerda sizning xabaringiz bo'lishi mumkin
-                </Typography>
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "5px",
-                  padding: "15px",
-                  bgcolor: "#4C6A55",
-                  borderRadius: "20px 20px 20px 0",
-                  marginBottom: "10px",
-                }}
-              >
-                <Typography level="title-sm" sx={{ color: "#fff", fontSize: "12px" }}>
-                  Сообщение от Куратора
-                </Typography>
-                <Typography level="body-sm" sx={{ color: "#fff" }}>
-                  Bu yerda sizning xabaringiz bo'lishi mumkin
-                </Typography>
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "5px",
-                  padding: "15px",
-                  bgcolor: "#4C6A55",
-                  borderRadius: "20px 20px 20px 0",
-                  marginBottom: "10px",
-                }}
-              >
-                <Typography level="title-sm" sx={{ color: "#fff", fontSize: "12px" }}>
-                  Сообщение от Куратора
-                </Typography>
-                <Typography level="body-sm" sx={{ color: "#fff" }}>
-                  Bu yerda sizning xabaringiz bo'lishi mumkin
-                </Typography>
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "5px",
-                  padding: "15px",
-                  bgcolor: "#4C6A55",
-                  borderRadius: "20px 20px 20px 0",
-                  marginBottom: "10px",
-                }}
-              >
-                <Typography level="title-sm" sx={{ color: "#fff", fontSize: "12px" }}>
-                  Сообщение от Куратора
-                </Typography>
-                <Typography level="body-sm" sx={{ color: "#fff" }}>
-                  Bu yerda sizning xabaringiz bo'lishi mumkin
-                </Typography>
-              </Box>
-
-              
             </TabPanel>
           </Tabs>
         </Sheet>

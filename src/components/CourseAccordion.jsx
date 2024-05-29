@@ -73,10 +73,11 @@ export default function AccordionControlled(props) {
                 return (
                   <Box
                     key={index}
-                    className="lessonButton"
+                    className={`lessonButton ${
+                      props.currentLesson?.id === lesson.id ? "activeLesson" : "" 
+                    }`}
                     sx={{
-                      bgcolor: "neutral.light",
-                      borderColor: "neutral.outlinedBorder",
+                      borderColor: "#4C6A55",
                       borderBottomWidth: "1px",
                       borderTopWidth: "1px",
                       borderStyle: "solid",
@@ -183,16 +184,17 @@ export default function AccordionControlled(props) {
                           <Select
                             placeholder="Dars materiallari"
                             onClick={(e) => e.stopPropagation()}
-                            sx={{ fontSize: "12px" }}
+                            sx={{ fontSize: "12px", color: "black" }}
                           >
                             {lesson.items.map((item, index) => (
-                              <Option key={index} sx={{ fontSize: "12px" }}>
+                              <Option key={index} sx={{ fontSize: "12px", color: "black" }}>
                                 <a
                                   href={APP_ROUTES.URL + "/" + item}
                                   target="_blank"
                                   rel="noreferrer"
+                                  style={{ color: "black" }}
                                 >
-                                  {item}
+                                  document.{item.split(".").pop()}
                                 </a>
                               </Option>
                             ))}

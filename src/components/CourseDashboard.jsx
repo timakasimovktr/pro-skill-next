@@ -230,11 +230,19 @@ const CourseDashboard = () => {
       <CssBaseline />
 
       <Layout.Root
+        // sx={{
+        //   gridTemplateColumns: {
+        //     xs: "1fr",
+        //     sm: "minmax(64px, 200px) minmax(450px, 1fr)",
+        //     md: "minmax(140px, 240px) minmax(600px, 1fr)",
+        //   },
+        //   width: "100%",
+        // }}
         sx={{
           gridTemplateColumns: {
             xs: "1fr",
-            sm: "minmax(64px, 200px) minmax(450px, 1fr)",
-            md: "minmax(140px, 240px) minmax(600px, 1fr)",
+            sm: "minmax(450px, 1fr)",
+            md: "minmax(600px, 1fr)",
           },
           width: "100%",
         }}
@@ -242,12 +250,12 @@ const CourseDashboard = () => {
         <Layout.Header>
           <Header profile={profile} />
         </Layout.Header>
-        <Layout.SideNav
+        {/* <Layout.SideNav
           sx={{ height: "calc(100vh - 64px)", overflowY: "auto" }}
           className="sideNav"
         >
           <Navigation />
-        </Layout.SideNav>
+        </Layout.SideNav> */}
         <Layout.Main
           sx={{
             width: "100%",
@@ -280,9 +288,13 @@ const CourseDashboard = () => {
                       <Textarea minRows={4} name="description" />
                     </FormControl>
                     <Box>
-                      <Button type="submit" fullWidth sx={{
-                        bgcolor: "#4C6A55"
-                      }}>
+                      <Button
+                        type="submit"
+                        fullWidth
+                        sx={{
+                          bgcolor: "#4C6A55",
+                        }}
+                      >
                         Saqlash
                       </Button>
                     </Box>
@@ -331,9 +343,13 @@ const CourseDashboard = () => {
                       />
                     </FormControl>
                     <Box>
-                      <Button type="submit" fullWidth sx={{
-                        bgcolor: "#4C6A55"
-                      }}>
+                      <Button
+                        type="submit"
+                        fullWidth
+                        sx={{
+                          bgcolor: "#4C6A55",
+                        }}
+                      >
                         Saqlash
                       </Button>
                     </Box>
@@ -353,7 +369,7 @@ const CourseDashboard = () => {
               display: "flex",
               justifyContent: "center",
               alignItems: "flex-start",
-              borderBottom: "1px solid",
+              // borderBottom: "1px solid",
               borderColor: "neutral.outlinedBorder",
             }}
           >
@@ -372,11 +388,14 @@ const CourseDashboard = () => {
                   width: "100%",
                   height: "100%",
                   minHeight: "400px",
-                  padding: "20px",
+                  padding: "10px",
                 }}
               >
                 <video
                   src={currentVideo}
+                  poster={
+                    "https://www.gazeta.uz/media/img/2022/01/DhxJJ316424213436263_b.jpg"
+                  }
                   controls
                   style={{
                     width: "100%",
@@ -394,7 +413,7 @@ const CourseDashboard = () => {
                 width: "25%",
                 overflowY: "auto",
                 height: "calc(100vh - 200px)",
-                padding: "20px 10px 20px 0",
+                padding: "10px 10px 10px 0",
                 minHeight: "400px",
               }}
             >
@@ -406,6 +425,7 @@ const CourseDashboard = () => {
                   alignItems: "flex-start",
                   border: "#CDD7E1 solid 1px",
                   borderRadius: "20px",
+                  overflow: "hidden",
                 }}
               >
                 <Typography
@@ -431,6 +451,7 @@ const CourseDashboard = () => {
                   currentVideo={currentVideo}
                   setCurrentQuestions={setCurrentQuestions}
                   setCurrentLesson={setCurrentLesson}
+                  currentLesson={currentLesson}
                   profile={profile}
                 />
               </Box>
@@ -439,7 +460,7 @@ const CourseDashboard = () => {
           <Box sx={{ width: "100%", display: "flex" }}>
             <Box
               sx={{
-                width: "50%",
+                width: "55%",
               }}
             >
               <Tabs
@@ -447,10 +468,25 @@ const CourseDashboard = () => {
                 defaultValue={0}
                 className="lessonInfoContainer"
               >
-                <TabList>
-                  <Tab color="success">Kurs haqida malumot</Tab>
-                  <Tab color="success">Sinovlar</Tab>
-                  <Tab color="success">Eslatmalar</Tab>
+                <TabList disableUnderline sx={{ paddingLeft: "10px" }}>
+                  <Tab
+                    indicatorInset
+                    sx={{ borderRadius: "10px" }}
+                  >
+                    Kurs haqida malumot
+                  </Tab>
+                  <Tab
+                    indicatorInset
+                    sx={{ borderRadius: "10px" }}
+                  >
+                    Sinovlar
+                  </Tab>
+                  <Tab
+                    indicatorInset
+                    sx={{ borderRadius: "10px" }}
+                  >
+                    Eslatmalar
+                  </Tab>
                 </TabList>
                 <TabPanel value={0} className="courseInfoTabPanel">
                   <h2 style={{ marginBottom: "5px" }}>
@@ -488,6 +524,7 @@ const CourseDashboard = () => {
                           justifyContent: "center",
                           alignItems: "center",
                           flexDirection: "column",
+                          borderRadius: "20px",
                           minHeight: "400px",
                           backgroundImage: `url(https://images.pexels.com/photos/1925536/pexels-photo-1925536.jpeg)`,
                           backgroundSize: "cover",
@@ -594,6 +631,7 @@ const CourseDashboard = () => {
                       display: "flex",
                       justifyContent: "space-between",
                       alignItems: "center",
+                      color: "#4C6A55",
                       marginBottom: "10px",
                     }}
                   >
@@ -703,15 +741,15 @@ const CourseDashboard = () => {
               </Tabs>
             </Box>
             <Divider orientation="vertical" className="beautyDivider" />
-            <Box sx={{ width: "50%" }}>
+            <Box sx={{ width: "45%" }}>
               <Tabs
                 aria-label="Vertical tabs"
                 sx={{ width: "100%", height: "100%", minHeight: "400px" }}
               >
-                <TabList>
-                  <Tab>Shashka</Tab>
-                  <Tab>Iloncha</Tab>
-                  <Tab>Shaxmat</Tab>
+                <TabList disableUnderline sx={{ paddingLeft: "10px" }}>
+                  <Tab sx={{ borderRadius: "10px" }} indicatorInset>Shashka</Tab>
+                  <Tab sx={{ borderRadius: "10px" }} indicatorInset>Iloncha</Tab>
+                  <Tab sx={{ borderRadius: "10px" }} indicatorInset>Shaxmat</Tab>
                 </TabList>
                 <TabPanel value={0}>
                   <iframe
