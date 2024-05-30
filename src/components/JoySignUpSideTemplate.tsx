@@ -37,30 +37,6 @@ interface SignInFormElement extends HTMLFormElement {
   readonly elements: FormElements;
 }
 
-function ColorSchemeToggle(props: IconButtonProps) {
-  const { onClick, ...other } = props;
-  const { mode, setMode } = useColorScheme();
-  const [mounted, setMounted] = React.useState(false);
-
-  React.useEffect(() => setMounted(true), []);
-
-  return (
-    <IconButton
-      aria-label="toggle light/dark mode"
-      size="sm"
-      variant="outlined"
-      disabled={!mounted}
-      onClick={(event) => {
-        setMode(mode === "light" ? "dark" : "light");
-        onClick?.(event);
-      }}
-      {...other}
-    >
-      {mode === "light" ? <DarkModeRoundedIcon /> : <LightModeRoundedIcon />}
-    </IconButton>
-  );
-}
-
 export default function JoySignUpSideTemplate() {
   const cookies = useCookies();
   const router = useRouter();
@@ -117,7 +93,7 @@ export default function JoySignUpSideTemplate() {
   };
 
   return (
-    <CssVarsProvider defaultMode="light" disableTransitionOnChange>
+    <CssVarsProvider defaultMode="light">
       <CssBaseline />
       <GlobalStyles
         styles={{
@@ -166,7 +142,6 @@ export default function JoySignUpSideTemplate() {
               </IconButton>
               <Typography level="title-lg">Pro-Skill</Typography>
             </Box>
-            {/* <ColorSchemeToggle /> */}
           </Box>
           <Box
             component="main"

@@ -10,19 +10,14 @@ import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRound
 import PhoneInTalkRoundedIcon from '@mui/icons-material/PhoneInTalkRounded';
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import { UserProps } from '../types';
-// import { toggleMessagesPane } from '../utils';
 
-type MessagesPaneHeaderProps = {
-  sender: UserProps;
-};
-
-export default function MessagesPaneHeader(props: MessagesPaneHeaderProps) {
-  const { sender } = props;
+export default function MessagesPaneHeader() {
   return (
     <Stack
       direction="row"
       justifyContent="space-between"
       sx={{
+        borderRadius: '15px',
         borderBottom: '1px solid',
         borderColor: 'divider',
         backgroundColor: 'background.body',
@@ -38,11 +33,10 @@ export default function MessagesPaneHeader(props: MessagesPaneHeaderProps) {
           sx={{
             display: { xs: 'inline-flex', sm: 'none' },
           }}
-          // onClick={() => toggleMessagesPane()}
         >
           <ArrowBackIosNewRoundedIcon />
         </IconButton>
-        <Avatar size="lg" src={sender.avatar} />
+        <Avatar size="lg" src="https://cdn-icons-png.flaticon.com/512/6596/6596121.png" />
         <div>
           <Typography
             fontWeight="lg"
@@ -50,7 +44,7 @@ export default function MessagesPaneHeader(props: MessagesPaneHeaderProps) {
             component="h2"
             noWrap
             endDecorator={
-              sender.online ? (
+              true ? (
                 <Chip
                   variant="outlined"
                   size="sm"

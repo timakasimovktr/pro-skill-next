@@ -27,7 +27,7 @@ export default function MessageInput(props: MessageInputProps) {
     }
   };
   return (
-    <Box sx={{ px: 2, pb: 3, borderRadius: "20px" }}>
+    <Box sx={{ px: 2, pb: 2, borderRadius: "20px" }}>
       <FormControl sx={{borderRadius: "20px"}}>
         <Textarea
           placeholder="Напишите куратору (куратор ответит в течении 5 минут)"
@@ -38,6 +38,9 @@ export default function MessageInput(props: MessageInputProps) {
           }}
           sx={{
             borderRadius: '20px',
+            pt: 2,
+            pl: 2,
+            pr: 1,
           }}
           value={textAreaValue}
           minRows={3}

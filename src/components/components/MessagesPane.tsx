@@ -1,64 +1,105 @@
-import * as React from 'react';
-import Box from '@mui/joy/Box';
-import Sheet from '@mui/joy/Sheet';
-import Stack from '@mui/joy/Stack';
-import AvatarWithStatus from './AvatarWithStatus';
-import ChatBubble from './ChatBubble';
-import MessageInput from './MessageInput';
-import MessagesPaneHeader from './MessagesPaneHeader';
-import { ChatProps, MessageProps } from '../types';
+"use client";
+import * as React from "react";
+import Box from "@mui/joy/Box";
+import Sheet from "@mui/joy/Sheet";
+import Stack from "@mui/joy/Stack";
+import AvatarWithStatus from "./AvatarWithStatus";
+import ChatBubble from "./ChatBubble";
+import MessageInput from "./MessageInput";
+import MessagesPaneHeader from "./MessagesPaneHeader";
+import { ChatProps, MessageProps } from "../types";
+import { APP_ROUTES } from "../Route";
+import axios from "axios";
+import { useCookies } from "next-client-cookies";
+import { useRouter } from "next/navigation";
+import io from "socket.io-client";
 
-type MessagesPaneProps = {
-  chat: ChatProps;
-};
+export default function MessagesPane() {
+  const router = useRouter();
+  const cookies = useCookies();
+  const [textAreaValue, setTextAreaValue] = React.useState("");
+  const [userMessages, setUserMessages] = React.useState([]);
 
-export default function MessagesPane(props: MessagesPaneProps) {
-  const { chat } = props;
-  const [chatMessages, setChatMessages] = React.useState(chat.messages);
-  const [textAreaValue, setTextAreaValue] = React.useState('');
+  const socket = io("http://213.230.71.82:5000", {
+    transportOptions: {
+      polling: {
+        extraHeaders: {
+          Authorization: `Bearer ${cookies.get("access_token")}`,
+        },
+      },
+    },
+  });
+
+  const getUserMessages = async () => {
+    try {
+      const { data } = await axios.get(APP_ROUTES.URL + "/chat/user", {
+        headers: {
+          Authorization: `Bearer ${cookies.get("access_token")}`,
+        },
+      });
+      setUserMessages(data);
+    } catch (error) {
+      router.push("/");
+    }
+  };
+
+  socket.on("message", (data) => {
+    getUserMessages();
+  });
 
   React.useEffect(() => {
-    setChatMessages(chat.messages);
-  }, [chat.messages]);
+    getUserMessages();
+
+    return () => {
+      socket.off('message');
+    };
+  }, []);
 
   return (
     <Sheet
       sx={{
-        height: { xs: '100dvh' },
-        display: 'flex',
-        flexDirection: 'column',
-        backgroundColor: 'background.level1',
+        borderRadius: '15px',
+        height: { xs: "calc(100vh - 94px)" },
+        display: "flex",
+        flexDirection: "column",
+        backgroundColor: "background.level1",
+        border: "1px solid #32383e40",
       }}
     >
-      <MessagesPaneHeader sender={chat.sender} />
+      <MessagesPaneHeader />
       <Box
         sx={{
-          display: 'flex',
+          display: "flex",
           flex: 1,
           minHeight: 0,
           px: 2,
           py: 3,
-          overflowY: 'scroll',
-          flexDirection: 'column-reverse',
+          overflowY: "scroll",
+          flexDirection: "column-reverse",
         }}
       >
         <Stack spacing={2} justifyContent="flex-end">
-          {chatMessages.map((message: MessageProps, index: number) => {
-            const isYou = message.sender === 'Вы';
+          {userMessages.map((message, index) => {
+            const isYou = !message.fromMentor;
             return (
               <Stack
                 key={index}
                 direction="row"
                 spacing={2}
-                flexDirection={isYou ? 'row-reverse' : 'row'}
+                flexDirection={isYou ? "row-reverse" : "row"}
               >
-                {message.sender !== 'Вы' && (
+                {message.fromMentor !== "false" && (
                   <AvatarWithStatus
-                    online={message.sender.online}
-                    src={message.sender.avatar}
+                    online
+                    src="https://cdn-icons-png.flaticon.com/512/6596/6596121.png"
                   />
                 )}
-                <ChatBubble variant={isYou ? 'sent' : 'received'} {...message} />
+                <ChatBubble
+                  variant={isYou ? "sent" : "received"}
+                  sender={isYou ? "Вы" : "Куратор"}
+                  content={message.message}
+                  {...message}
+                />
               </Stack>
             );
           })}
@@ -68,17 +109,9 @@ export default function MessagesPane(props: MessagesPaneProps) {
         textAreaValue={textAreaValue}
         setTextAreaValue={setTextAreaValue}
         onSubmit={() => {
-          const newId = chatMessages.length + 1;
-          const newIdString = newId.toString();
-          setChatMessages([
-            ...chatMessages,
-            {
-              id: newIdString,
-              sender: 'Вы',
-              content: textAreaValue,
-              timestamp: 'Just now',
-            },
-          ]);
+          socket.emit("message", { text: textAreaValue });
+          setTextAreaValue("");
+          getUserMessages();
         }}
       />
     </Sheet>

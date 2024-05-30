@@ -51,36 +51,18 @@ export default function Profile() {
   const cookies = useCookies();
   const access_token = cookies.get("access_token");
   const [drawerOpen, setDrawerOpen] = React.useState(false);
-  const [news, setNews] = React.useState([]);
   const [notes, setNotes] = React.useState([]);
   const [editNote, setEditNote] = React.useState([]);
   const [openCreateNote, setOpenCreateNote] = React.useState(false);
   const [openUpdateNote, setOpenUpdateNote] = React.useState(false);
   const [profile, setProfile] = React.useState({});
-  const [bought, setBought] = React.useState([]);
-  const [boughtCourses, setBoughtCourses] = React.useState([]);
+  const [mentorMessages, setMentorMessages] = React.useState([]);
 
-  const getNews = async () => {
+  const getMentorMessages = async () => {
     axios
-      .get(APP_ROUTES.URL + "/news")
+      .get(APP_ROUTES.URL + "/message")
       .then(function (response) {
-        setNews(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const getBought = async () => {
-    axios
-      .get(APP_ROUTES.URL + "/item/bought", {
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-        },
-      })
-      .then((response) => {
-        setBought(response.data);
+        setMentorMessages(response.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -223,14 +205,13 @@ export default function Profile() {
   };
 
   React.useEffect(() => {
-    getNews();
     getNotes();
     getProfile();
-    getBought();
+    getMentorMessages();
   }, []);
 
   return (
-    <CssVarsProvider disableTransitionOnChange>
+    <CssVarsProvider>
       <CssBaseline />
       {drawerOpen && (
         <Layout.SideDrawer onClose={() => setDrawerOpen(false)}>
@@ -412,11 +393,17 @@ export default function Profile() {
               paddingBottom: "15px",
             }}
           >
-            <Card sx={{ width: "100%", height: "min-content", borderRadius: "20px" }}>
-              <Box sx={{ mb: 1}}>
+            <Card
+              sx={{
+                width: "100%",
+                height: "min-content",
+                borderRadius: "20px",
+              }}
+            >
+              <Box sx={{ mb: 1 }}>
                 <Typography level="title-md">Shaxsiy malumotlar</Typography>
                 <Typography level="body-sm">
-                    Bu sizning shaxsingiz haqidagi ma`lumotlarni ko`rsatadi
+                  Bu sizning shaxsingiz haqidagi ma`lumotlarni ko`rsatadi
                 </Typography>
               </Box>
               <Divider />
@@ -448,7 +435,13 @@ export default function Profile() {
                         gap: 2,
                       }}
                     >
-                      <Input readOnly size="sm" placeholder="First name" value={profile.fullName} sx={{borderRadius: "10px"}}/>
+                      <Input
+                        readOnly
+                        size="sm"
+                        placeholder="First name"
+                        value={profile.fullName}
+                        sx={{ borderRadius: "10px" }}
+                      />
                     </FormControl>
                   </Stack>
                   <Stack spacing={1}>
@@ -459,7 +452,13 @@ export default function Profile() {
                         gap: 2,
                       }}
                     >
-                      <Input readOnly size="sm" placeholder="First name" value={profile.city} sx={{borderRadius: "10px"}}/>
+                      <Input
+                        readOnly
+                        size="sm"
+                        placeholder="First name"
+                        value={profile.city}
+                        sx={{ borderRadius: "10px" }}
+                      />
                     </FormControl>
                   </Stack>
                   <Stack spacing={1}>
@@ -470,7 +469,13 @@ export default function Profile() {
                         gap: 2,
                       }}
                     >
-                      <Input readOnly size="sm" placeholder="First name" value={profile.phoneNumber} sx={{borderRadius: "10px"}}/>
+                      <Input
+                        readOnly
+                        size="sm"
+                        placeholder="First name"
+                        value={profile.phoneNumber}
+                        sx={{ borderRadius: "10px" }}
+                      />
                     </FormControl>
                   </Stack>
                   <Stack direction="row" spacing={2}>
@@ -610,7 +615,7 @@ export default function Profile() {
             }}
             className="beautyBlock"
           >
-            <Typography level="title-md" sx={{ flex: 1 }}>
+            <Typography level="title-md" sx={{ flex: 1, color: "#4C6A55" }}>
               Foydali funktsiyalar
             </Typography>
           </Box>
@@ -641,7 +646,7 @@ export default function Profile() {
                 }}
               >
                 <Box>
-                  <Typography level="title-md" sx={{color: "#4C6A55"}}>
+                  <Typography level="title-md" sx={{ color: "#4C6A55" }}>
                     Sizning eslatmalaringiz
                   </Typography>
                 </Box>
@@ -752,8 +757,11 @@ export default function Profile() {
               })}
               {/* Заметки */}
             </TabPanel>
-            <TabPanel value={1} sx={{ p: 0 }}>
-              <AspectRatio ratio="21/9">
+            <TabPanel value={1} sx={{ p: 0, pr: "10px", mt: "10px" }}>
+              <AspectRatio
+                ratio="21/9"
+                sx={{ mb: "10px", borderRadius: "20px" }}
+              >
                 <Image
                   alt=""
                   width="400"
@@ -762,6 +770,38 @@ export default function Profile() {
                   srcSet="https://www.gazeta.uz/media/img/2022/01/DhxJJ316424213436263_b.jpg 2x"
                 />
               </AspectRatio>
+              {mentorMessages.map((message, index) => {
+                return (
+                  <Box
+                    key={index}
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "5px",
+                      padding: "15px",
+                      bgcolor: "#4C6A55",
+                      borderRadius: "20px 20px 20px 0",
+                      marginBottom: "10px",
+                    }}
+                  >
+                    <Typography
+                      level="title-sm"
+                      sx={{ color: "#fff", fontSize: "12px" }}
+                    >
+                      {message.title}
+                    </Typography>
+                    <Typography level="body-sm" sx={{ color: "#fff" }}>
+                      {message.description}
+                    </Typography>
+                    <Typography
+                      level="body-sm"
+                      sx={{ color: "#e6e6e6", fontSize: "10px" }}
+                    >
+                      {message.createdAt.slice(0, 10)}
+                    </Typography>
+                  </Box>
+                );
+              })}
             </TabPanel>
           </Tabs>
         </Sheet>

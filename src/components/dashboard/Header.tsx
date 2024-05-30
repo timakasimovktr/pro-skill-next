@@ -38,37 +38,6 @@ import { APP_ROUTES } from "../Route";
 import { useRouter } from "next/navigation";
 import { responsiveFontSizes } from "@mui/material";
 
-function ColorSchemeToggle() {
-  const { mode, setMode } = useColorScheme();
-  const [mounted, setMounted] = React.useState(false);
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
-  if (!mounted) {
-    return <IconButton size="sm" variant="outlined" color="primary" />;
-  }
-  return (
-    <Tooltip title="Mavzuni o'zgartirish" variant="outlined">
-      <IconButton
-        id="toggle-mode"
-        size="sm"
-        variant="plain"
-        color="neutral"
-        sx={{ alignSelf: "center" }}
-        onClick={() => {
-          if (mode === "light") {
-            setMode("dark");
-          } else {
-            setMode("light");
-          }
-        }}
-      >
-        {mode === "light" ? <DarkModeRoundedIcon /> : <LightModeRoundedIcon />}
-      </IconButton>
-    </Tooltip>
-  );
-}
-
 export default function Header(props) {
   const cookies = useCookies();
   const router = useRouter();
@@ -173,7 +142,6 @@ export default function Header(props) {
           alignItems: "center",
         }}
       >
-        {/* <ColorSchemeToggle /> */}
         <Dropdown>
           <MenuButton
             variant="plain"

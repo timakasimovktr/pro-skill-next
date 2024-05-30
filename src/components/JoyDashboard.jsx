@@ -54,6 +54,7 @@ export default function Dashboard() {
   const [profile, setProfile] = React.useState({});
   const [bought, setBought] = React.useState([]);
   const [boughtCourses, setBoughtCourses] = React.useState([]);
+  const [mentorMessages, setMentorMessages] = React.useState([]);
 
   const getNews = async () => {
     axios
@@ -66,7 +67,17 @@ export default function Dashboard() {
       });
   };
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const getMentorMessages = async () => {
+    axios
+      .get(APP_ROUTES.URL + "/message")
+      .then(function (response) {
+        setMentorMessages(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   const getBought = async () => {
     axios
       .get(APP_ROUTES.URL + "/item/bought", {
@@ -222,10 +233,11 @@ export default function Dashboard() {
     getNotes();
     getProfile();
     getBought();
+    getMentorMessages();
   }, []);
 
   return (
-    <CssVarsProvider disableTransitionOnChange>
+    <CssVarsProvider>
       <CssBaseline />
       {drawerOpen && (
         <Layout.SideDrawer onClose={() => setDrawerOpen(false)}>
@@ -286,9 +298,13 @@ export default function Dashboard() {
                       <Textarea minRows={4} name="description" />
                     </FormControl>
                     <Box>
-                      <Button type="submit" fullWidth sx={{
-                        bgcolor: "#4C6A55"
-                      }}>
+                      <Button
+                        type="submit"
+                        fullWidth
+                        sx={{
+                          bgcolor: "#4C6A55",
+                        }}
+                      >
                         Saqlash
                       </Button>
                     </Box>
@@ -337,9 +353,13 @@ export default function Dashboard() {
                       />
                     </FormControl>
                     <Box>
-                      <Button type="submit" fullWidth sx={{
-                        bgcolor: "#4C6A55"
-                      }}>
+                      <Button
+                        type="submit"
+                        fullWidth
+                        sx={{
+                          bgcolor: "#4C6A55",
+                        }}
+                      >
                         Saqlash
                       </Button>
                     </Box>
@@ -394,7 +414,10 @@ export default function Dashboard() {
             className="mainWrapper"
             sx={{ marginTop: "15px", display: "flex", gap: "15px" }}
           >
-            <Box sx={{ width: "70%", overflowY: "auto", paddingBottom: "20px" }} className="boughtProductsWrapper">
+            <Box
+              sx={{ width: "70%", overflowY: "auto", paddingBottom: "20px" }}
+              className="boughtProductsWrapper"
+            >
               <Typography
                 level="title-lg"
                 sx={{
@@ -410,7 +433,14 @@ export default function Dashboard() {
                   sx={{ color: "#4C6A55", width: "20px", marginLeft: "10px" }}
                 />
               </Typography>
-              <Box sx={{ display: "flex", gap: "15px", flexWrap: "wrap", paddingRight: "10px" }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  gap: "15px",
+                  flexWrap: "wrap",
+                  paddingRight: "10px",
+                }}
+              >
                 {bought.length > 0 || profile.courses ? (
                   <>
                     {boughtCourses.map((el, index) => (
@@ -555,7 +585,10 @@ export default function Dashboard() {
               orientation="vertical"
               className="dashboardDivider beautyDivider"
             /> */}
-            <Box sx={{ width: "30%", overflowY: "auto", paddingRight: "10px" }} className="newsWrapper">
+            <Box
+              sx={{ width: "30%", overflowY: "auto", paddingRight: "10px" }}
+              className="newsWrapper"
+            >
               {news.length > 0 && (
                 <Typography
                   level="title-md"
@@ -604,8 +637,16 @@ export default function Dashboard() {
                           />
                         </AspectRatio>
                         <div>
-                          <Typography level="title-md" sx={{ fontSize: "12px" }}>{item.title}</Typography>
-                          <Typography level="body-sm" sx={{ fontSize: "12px", marginTop: "5px" }}>
+                          <Typography
+                            level="title-md"
+                            sx={{ fontSize: "12px" }}
+                          >
+                            {item.title}
+                          </Typography>
+                          <Typography
+                            level="body-sm"
+                            sx={{ fontSize: "12px", marginTop: "5px" }}
+                          >
                             {item.createdAt.slice(0, 10)}
                           </Typography>
                           <Box
@@ -619,7 +660,11 @@ export default function Dashboard() {
                           >
                             <Typography
                               level="body-sm"
-                              sx={{ color: "#50963b", fontWeight: "500", fontSize: "12px" }}
+                              sx={{
+                                color: "#50963b",
+                                fontWeight: "500",
+                                fontSize: "12px",
+                              }}
                             >
                               Tomosha qiling
                             </Typography>
@@ -645,8 +690,17 @@ export default function Dashboard() {
             overflowY: "auto",
           }}
         >
-          <Box sx={{ p: 2, display: "flex", alignItems: "center", overflowY: "auto", paddingLeft: { xs: "15px", sm: "0" } }} className="beautyBlock">
-            <Typography level="title-md" sx={{ flex: 1, color: "#4C6A55",}}>
+          <Box
+            sx={{
+              p: 2,
+              display: "flex",
+              alignItems: "center",
+              overflowY: "auto",
+              paddingLeft: { xs: "15px", sm: "0" },
+            }}
+            className="beautyBlock"
+          >
+            <Typography level="title-md" sx={{ flex: 1, color: "#4C6A55" }}>
               Foydali funktsiyalar
             </Typography>
           </Box>
@@ -662,7 +716,12 @@ export default function Dashboard() {
             </TabList>
             <TabPanel
               value={0}
-              sx={{ display: "flex", flexDirection: "column", gap: 1, paddingLeft: { xs: "15px", sm: "0" } }}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                gap: 1,
+                paddingLeft: { xs: "15px", sm: "0" },
+              }}
             >
               <Box
                 sx={{
@@ -672,7 +731,7 @@ export default function Dashboard() {
                 }}
               >
                 <Box>
-                  <Typography level="title-md" sx={{color: "#4C6A55"}}>
+                  <Typography level="title-md" sx={{ color: "#4C6A55" }}>
                     Sizning eslatmalaringiz
                   </Typography>
                 </Box>
@@ -701,7 +760,7 @@ export default function Dashboard() {
                       border: "1px solid #32383e40",
                       padding: "20px",
                       borderRadius: "15px",
-                      bgcolor: "#4C6A55"
+                      bgcolor: "#4C6A55",
                     }}
                   >
                     <div>
@@ -717,7 +776,11 @@ export default function Dashboard() {
                       >
                         <Typography
                           level="title-md"
-                          sx={{ alignItems: "center", fontWeight: 600, color: "white" }}
+                          sx={{
+                            alignItems: "center",
+                            fontWeight: 600,
+                            color: "white",
+                          }}
                         >
                           {note.title}
                         </Typography>{" "}
@@ -726,7 +789,7 @@ export default function Dashboard() {
                           sx={{
                             alignItems: "center",
                             overflowWrap: "anywhere",
-                            color: "white"
+                            color: "white",
                           }}
                         >
                           {note.description}
@@ -746,7 +809,10 @@ export default function Dashboard() {
                           justifyContent: "center",
                         }}
                       >
-                        <Typography level="body-xs" sx={{ mt: 1, color: "white" }}>
+                        <Typography
+                          level="body-xs"
+                          sx={{ mt: 1, color: "white" }}
+                        >
                           {note.createdAt.slice(0, 10)}
                         </Typography>
                       </Box>
@@ -758,7 +824,7 @@ export default function Dashboard() {
                           size="sm"
                           onClick={() => updateNote(note.id)}
                         >
-                          <CreateRoundedIcon sx={{ color: "white" }}/>
+                          <CreateRoundedIcon sx={{ color: "white" }} />
                         </IconButton>
                         <IconButton
                           component="span"
@@ -777,7 +843,10 @@ export default function Dashboard() {
               {/* Заметки */}
             </TabPanel>
             <TabPanel value={1} sx={{ p: 0, pr: "10px", mt: "10px" }}>
-              <AspectRatio ratio="21/9" sx={{ mb: "10px", borderRadius: "20px"}}>
+              <AspectRatio
+                ratio="21/9"
+                sx={{ mb: "10px", borderRadius: "20px" }}
+              >
                 <Image
                   alt=""
                   width="400"
@@ -786,98 +855,35 @@ export default function Dashboard() {
                   srcSet="https://www.gazeta.uz/media/img/2022/01/DhxJJ316424213436263_b.jpg 2x"
                 />
               </AspectRatio>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "5px",
-                  padding: "15px",
-                  bgcolor: "#4C6A55",
-                  borderRadius: "20px 20px 20px 0",
-                  marginBottom: "10px",
-                }}
-              >
-                <Typography level="title-sm" sx={{ color: "#fff", fontSize: "12px" }}>
-                  Сообщение от Куратора
-                </Typography>
-                <Typography level="body-sm" sx={{ color: "#fff" }}>
-                  Bu yerda sizning xabaringiz bolishi mumkin
-                </Typography>
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "5px",
-                  padding: "15px",
-                  bgcolor: "#4C6A55",
-                  borderRadius: "20px 20px 20px 0",
-                  marginBottom: "10px",
-                }}
-              >
-                <Typography level="title-sm" sx={{ color: "#fff", fontSize: "12px" }}>
-                  Сообщение от Куратора
-                </Typography>
-                <Typography level="body-sm" sx={{ color: "#fff" }}>
-                  Bu yerda sizning xabaringiz bo`lishi mumkin
-                </Typography>
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "5px",
-                  padding: "15px",
-                  bgcolor: "#4C6A55",
-                  borderRadius: "20px 20px 20px 0",
-                  marginBottom: "10px",
-                }}
-              >
-                <Typography level="title-sm" sx={{ color: "#fff", fontSize: "12px" }}>
-                  Сообщение от Куратора
-                </Typography>
-                <Typography level="body-sm" sx={{ color: "#fff" }}>
-                  Bu yerda sizning xabaringiz bo`lishi mumkin
-                </Typography>
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "5px",
-                  padding: "15px",
-                  bgcolor: "#4C6A55",
-                  borderRadius: "20px 20px 20px 0",
-                  marginBottom: "10px",
-                }}
-              >
-                <Typography level="title-sm" sx={{ color: "#fff", fontSize: "12px" }}>
-                  Сообщение от Куратора
-                </Typography>
-                <Typography level="body-sm" sx={{ color: "#fff" }}>
-                  Bu yerda sizning xabaringiz bo`lishi mumkin
-                </Typography>
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "5px",
-                  padding: "15px",
-                  bgcolor: "#4C6A55",
-                  borderRadius: "20px 20px 20px 0",
-                  marginBottom: "10px",
-                }}
-              >
-                <Typography level="title-sm" sx={{ color: "#fff", fontSize: "12px" }}>
-                  Сообщение от Куратора
-                </Typography>
-                <Typography level="body-sm" sx={{ color: "#fff" }}>
-                  Bu yerda sizning xabaringiz bo`lishi mumkin
-                </Typography>
-              </Box>
-
-              
+              {mentorMessages.map((message, index) => {
+                return (
+                  <Box
+                    key={index}
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "5px",
+                      padding: "15px",
+                      bgcolor: "#4C6A55",
+                      borderRadius: "20px 20px 20px 0",
+                      marginBottom: "10px",
+                    }}
+                  >
+                    <Typography
+                      level="title-sm"
+                      sx={{ color: "#fff", fontSize: "12px" }}
+                    >
+                      {message.title}
+                    </Typography>
+                    <Typography level="body-sm" sx={{ color: "#fff" }}>
+                      {message.description}
+                    </Typography>
+                    <Typography level="body-sm" sx={{ color: "#e6e6e6", fontSize: "10px" }}>
+                      {message.createdAt.slice(0, 10)}
+                    </Typography>
+                  </Box>
+                );
+              })}
             </TabPanel>
           </Tabs>
         </Sheet>

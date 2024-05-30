@@ -1,3 +1,4 @@
+"use client";
 import * as React from 'react';
 import Box from '@mui/joy/Box';
 import ListDivider from '@mui/joy/ListDivider';
@@ -8,7 +9,6 @@ import Typography from '@mui/joy/Typography';
 import CircleIcon from '@mui/icons-material/Circle';
 import AvatarWithStatus from './AvatarWithStatus';
 import { ChatProps, MessageProps, UserProps } from '../types';
-// import { toggleMessagesPane } from '../utils';
 
 type ChatListItemProps = ListItemButtonProps & {
   id: string;
@@ -27,7 +27,6 @@ export default function ChatListItem(props: ChatListItemProps) {
       <ListItem>
         <ListItemButton
           onClick={() => {
-            // toggleMessagesPane();
             setSelectedChat({ id, sender, messages });
           }}
           selected={selected}
