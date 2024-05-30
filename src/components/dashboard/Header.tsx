@@ -201,16 +201,16 @@ export default function Header(props) {
                 paddingLeft: "10px",
               }}
             >
-              Sizda {props.profile.balls} ballar bor
+              Вам доступно {props.profile.balls} балла
             </Typography>
             <MenuItem>
               <HelpRoundedIcon />
-              Yordam
+              Помощь
             </MenuItem>
             <a href="/profile" title="profile">
               <MenuItem>
                 <SettingsRoundedIcon />
-                Sozlama
+                Настройки
               </MenuItem>
             </a>
             <ListDivider />

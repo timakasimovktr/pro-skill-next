@@ -64,7 +64,7 @@ export default function JoySignUpSideTemplate() {
       })
       .catch((err) => {
         alert(
-          "Ushbu telefon raqami yoki elektron pochta manziliga ega foydalanuvchi allaqachon mavjud!"
+          "Пользователь с этим номером телефона или адресом электронной почты уже существует!"
         );
         setIsLoading(false);
       });
@@ -88,7 +88,7 @@ export default function JoySignUpSideTemplate() {
         router.push("/dashboard");
       })
       .catch((err) => {
-        alert("Tasdiqlash kodi noto'g'ri kiritildi!");
+        alert("Код подтверждения введен неправильно!");
       });
   };
 
@@ -169,12 +169,12 @@ export default function JoySignUpSideTemplate() {
             <Stack gap={4} sx={{ mb: 2 }}>
               <Stack gap={1}>
                 <Typography component="h1" level="h3">
-                  Royxatan otish!
+                  Зарегистрироваться!
                 </Typography>
                 <Typography level="body-sm">
-                  Hisob allaqachon bormi?{" "}
+                  Уже есть аккаунт?{" "}
                   <Link href="/" level="title-sm">
-                    Kirish!
+                    Вход!
                   </Link>
                 </Typography>
               </Stack>
@@ -182,11 +182,11 @@ export default function JoySignUpSideTemplate() {
             <Divider
               sx={(theme) => ({
                 [theme.getColorSchemeSelector("light")]: {
-                  color: { xs: "#000", md: "yoki" },
+                  color: { xs: "#000", md: "или" },
                 },
               })}
             >
-              yoki
+              или
             </Divider>
             <Stack gap={4} sx={{ mt: 2 }}>
               {!isOpenCheckPassword && (
@@ -207,7 +207,7 @@ export default function JoySignUpSideTemplate() {
                     <Input type="email" name="email" />
                   </FormControl>
                   <FormControl required>
-                    <FormLabel>Telefon raqami</FormLabel>
+                    <FormLabel>Номер телефона</FormLabel>
                     <Input
                       type="tel"
                       name="phoneNumber"
@@ -215,15 +215,15 @@ export default function JoySignUpSideTemplate() {
                     />
                   </FormControl>
                   <FormControl required>
-                    <FormLabel>Shahar</FormLabel>
+                    <FormLabel>Город</FormLabel>
                     <Input type="text" name="city" />
                   </FormControl>
                   <FormControl required>
-                    <FormLabel>Tugilgan sana</FormLabel>
+                    <FormLabel>Дата рождения</FormLabel>
                     <Input type="date" name="birthday" />
                   </FormControl>
                   <FormControl required>
-                    <FormLabel>Parol</FormLabel>
+                    <FormLabel>Пароль</FormLabel>
                     <Input type="password" name="password" />
                   </FormControl>
 
@@ -237,12 +237,22 @@ export default function JoySignUpSideTemplate() {
                     >
                       <Checkbox
                         size="sm"
-                        label="Meni eslang"
+                        label="запомнить меня"
                         name="persistent"
                       />
                     </Box>
-                    <Button type="submit" loading={isLoading} fullWidth>
-                      Royxatdan otish
+                    <Button
+                      type="submit"
+                      loading={isLoading}
+                      fullWidth
+                      sx={{
+                        bgcolor: "#4C6A55",
+                        "&:hover": {
+                          bgcolor: "#364b3d",
+                        },
+                      }}
+                    >
+                      Зарегистрироваться
                     </Button>
                   </Stack>
                 </form>
@@ -251,8 +261,8 @@ export default function JoySignUpSideTemplate() {
               {isOpenCheckPassword && (
                 <form onSubmit={(e) => handleCheckPassword(e)}>
                   <Typography level="body-sm">
-                    Tasdiqlash kodi elektron xatga yuborildi{" "}
-                    <b>+998903500137</b>
+                    Код подтверждения отправлен на номер телефона -{" "}
+                    <b>{registrationData.phoneNumber}</b>
                   </Typography>
                   <Box
                     sx={{
@@ -262,14 +272,22 @@ export default function JoySignUpSideTemplate() {
                     }}
                   >
                     <FormControl required>
-                      <FormLabel>Tasdiqlash kodi</FormLabel>
+                      <FormLabel>Код подтверждения</FormLabel>
                       <Input type="text" name="checkPass" />
                     </FormControl>
                     <Box>
-                      <Button type="submit" loading={isLoading} fullWidth sx={{
-                        bgcolor: "#4C6A55"
-                      }}>
-                        Saqlash
+                      <Button
+                        type="submit"
+                        loading={isLoading}
+                        fullWidth
+                        sx={{
+                          bgcolor: "#4C6A55",
+                          "&:hover": {
+                            bgcolor: "#364b3d",
+                          },
+                        }}
+                      >
+                        Отправить
                       </Button>
                     </Box>
                   </Box>

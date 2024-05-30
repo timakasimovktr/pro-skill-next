@@ -96,7 +96,7 @@ const CourseDashboard = () => {
         }
       )
       .then(function (response) {
-        toast.success("Sinov yakunlandi");
+        toast.success("Тест завершен");
         getProfile();
       })
       .catch(function (error) {
@@ -279,12 +279,12 @@ const CourseDashboard = () => {
                     }}
                   >
                     <FormControl>
-                      <FormLabel>Eslatma qoshish</FormLabel>
+                      <FormLabel>Заголовок заметки</FormLabel>
                       <Input type="text" name="title" />
                     </FormControl>
 
                     <FormControl required>
-                      <FormLabel>Matn</FormLabel>
+                      <FormLabel>Описание</FormLabel>
                       <Textarea minRows={4} name="description" />
                     </FormControl>
                     <Box>
@@ -316,7 +316,7 @@ const CourseDashboard = () => {
                     }}
                   >
                     <FormControl>
-                      <FormLabel>Eslatma qoshish</FormLabel>
+                      <FormLabel>Заголовок заметки</FormLabel>
                       <Input
                         type="text"
                         name="title"
@@ -328,7 +328,7 @@ const CourseDashboard = () => {
                     </FormControl>
 
                     <FormControl required>
-                      <FormLabel>Matn</FormLabel>
+                      <FormLabel>Описание</FormLabel>
                       <Textarea
                         type="text"
                         minRows={4}
@@ -473,24 +473,24 @@ const CourseDashboard = () => {
                     indicatorInset
                     sx={{ borderRadius: "10px" }}
                   >
-                    Kurs haqida malumot
+                    Информация о курсе
                   </Tab>
                   <Tab
                     indicatorInset
                     sx={{ borderRadius: "10px" }}
                   >
-                    Sinovlar
+                    Тесты
                   </Tab>
                   <Tab
                     indicatorInset
                     sx={{ borderRadius: "10px" }}
                   >
-                    Eslatmalar
+                    Заметки
                   </Tab>
                 </TabList>
                 <TabPanel value={0} className="courseInfoTabPanel">
                   <h2 style={{ marginBottom: "5px" }}>
-                    Dars nomi: {currentLesson?.title}
+                    Название урока: {currentLesson?.title}
                   </h2>
                   <h2
                     style={{
@@ -499,13 +499,13 @@ const CourseDashboard = () => {
                       opacity: "0.8",
                     }}
                   >
-                    Kurs nomi: {profile?.courses?.title}
+                    Название курса: {profile?.courses?.title}
                   </h2>
                   <h4 style={{ marginBottom: "5px" }}>
-                    Muallif: {profile?.courses?.author}
+                    Автор курса: {profile?.courses?.author}
                   </h4>
                   <h4 style={{ marginBottom: "10px" }}>
-                    Davomiyligi: {profile?.courses?.time}
+                    Длительность: {profile?.courses?.time}
                   </h4>
                   <Divider className="beautyDivider" />
                   <p style={{ marginTop: "10px" }}>
@@ -542,7 +542,7 @@ const CourseDashboard = () => {
                           }}
                         >
                           <h2 style={{ color: "white", fontSize: "20px" }}>
-                            Sinov tugadi. Sizning natijangiz:
+                            Тест окончен. Ваш результат:
                           </h2>
                         </Box>
                         <Box
@@ -619,7 +619,7 @@ const CourseDashboard = () => {
                           color="primary"
                           type="submit"
                         >
-                          Sinovni tugating
+                          Завершить тест
                         </Button>
                       </form>
                     )}
@@ -637,7 +637,7 @@ const CourseDashboard = () => {
                   >
                     <Box>
                       <Typography level="title-md">
-                        Sizning eslatmalaringiz
+                        Ваши заметки
                       </Typography>
                     </Box>
                     <Box>
@@ -747,9 +747,9 @@ const CourseDashboard = () => {
                 sx={{ width: "100%", height: "100%", minHeight: "400px" }}
               >
                 <TabList disableUnderline sx={{ paddingLeft: "10px" }}>
-                  <Tab sx={{ borderRadius: "10px" }} indicatorInset>Shashka</Tab>
-                  <Tab sx={{ borderRadius: "10px" }} indicatorInset>Iloncha</Tab>
-                  <Tab sx={{ borderRadius: "10px" }} indicatorInset>Shaxmat</Tab>
+                  <Tab sx={{ borderRadius: "10px" }} indicatorInset>Шашки</Tab>
+                  <Tab sx={{ borderRadius: "10px" }} indicatorInset>Змейка</Tab>
+                  <Tab sx={{ borderRadius: "10px" }} indicatorInset>Шахматы</Tab>
                 </TabList>
                 <TabPanel value={0}>
                   <iframe

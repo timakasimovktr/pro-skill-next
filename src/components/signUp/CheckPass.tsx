@@ -29,7 +29,7 @@ const CheckPass = () => {
             }}
           >
             <FormControl required>
-              <FormLabel>Matn</FormLabel>
+              <FormLabel>Описание</FormLabel>
               <Textarea minRows={4} name="description" />
             </FormControl>
             <Box>

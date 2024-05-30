@@ -156,7 +156,7 @@ export default function AccordionControlled(props) {
                           }}
                         >
                           <p style={{ fontSize: "13px" }}>
-                            Sinov natijalari:{" "}
+                            Результаты теста:{" "}
                             {props.profile.completedLessons.find(
                               (completedLesson) =>
                                 completedLesson.lessonId === lesson.id
@@ -170,7 +170,7 @@ export default function AccordionControlled(props) {
                                     .answers.filter((answer) => answer === true)
                                     .length
                                 }/${lesson.questions.length}`
-                              : "hali yakunlanmagan"}
+                              : "еще не завершено"}
                           </p>
                         </Box>
                         <Box
@@ -182,7 +182,7 @@ export default function AccordionControlled(props) {
                           }}
                         >
                           <Select
-                            placeholder="Dars materiallari"
+                            placeholder="Урок materiallari"
                             onClick={(e) => e.stopPropagation()}
                             sx={{ fontSize: "12px", color: "black" }}
                           >

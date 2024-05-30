@@ -18,17 +18,17 @@ import Stack from "@mui/joy/Stack";
 import DarkModeRoundedIcon from "@mui/icons-material/DarkModeRounded";
 import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
 import BadgeRoundedIcon from "@mui/icons-material/BadgeRounded";
-import TextField from '@mui/material/TextField';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+import TextField from "@mui/material/TextField";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 
 import axios from "axios";
-import { useCookies } from 'next-client-cookies';
+import { useCookies } from "next-client-cookies";
 import { APP_ROUTES } from "./Route";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
 import { FormatListBulletedTwoTone } from "@mui/icons-material";
 
 interface FormElements extends HTMLFormControlsCollection {
@@ -40,7 +40,7 @@ interface SignInFormElement extends HTMLFormElement {
   readonly elements: FormElements;
 }
 
-export default function JoySignInSideTemplate() {  
+export default function JoySignInSideTemplate() {
   const cookies = useCookies();
   const router = useRouter();
   const [open, setOpen] = React.useState(false);
@@ -132,12 +132,12 @@ export default function JoySignInSideTemplate() {
             <Stack gap={4} sx={{ mb: 2 }}>
               <Stack gap={1}>
                 <Typography component="h1" level="h3">
-                  Platformaga kirish!
+                  Вход на платформу!
                 </Typography>
                 <Typography level="body-sm">
-                  Yangi foydalanuvchi?{" "}
+                  Новый пользователь?{" "}
                   <Link href="/registration" level="title-sm">
-                   Royxatdan otish!
+                    Зарегистрироваться!
                   </Link>
                 </Typography>
               </Stack>
@@ -145,11 +145,11 @@ export default function JoySignInSideTemplate() {
             <Divider
               sx={(theme) => ({
                 [theme.getColorSchemeSelector("light")]: {
-                  color: { xs: "#000", md: "yoki" },
+                  color: { xs: "#000", md: "или" },
                 },
               })}
             >
-              yoki
+              или
             </Divider>
             <Stack gap={4} sx={{ mt: 2 }}>
               <form
@@ -162,27 +162,30 @@ export default function JoySignInSideTemplate() {
                     password: formElements.password.value,
                   };
 
-                  axios.post(APP_ROUTES.URL + '/auth/login', data).then((res) => {
-                    cookies.set('access_token', res.data.access_token, {
-                      expires: 1,
-                    });
-                    cookies.set('userId', res.data.userId, {
-                      expires: 1,
-                    });
+                  axios
+                    .post(APP_ROUTES.URL + "/auth/login", data)
+                    .then((res) => {
+                      cookies.set("access_token", res.data.access_token, {
+                        expires: 1,
+                      });
+                      cookies.set("userId", res.data.userId, {
+                        expires: 1,
+                      });
 
-                    router.push('/dashboard');
-                  }).catch((err) => {
-                    alert("Noto'g'ri Login yoki parol!");
-                    setIsLoading(false);
-                  });
+                      router.push("/dashboard");
+                    })
+                    .catch((err) => {
+                      alert("Noto'g'ri Login yoki parol!");
+                      setIsLoading(false);
+                    });
                 }}
               >
                 <FormControl required>
-                  <FormLabel>Telefon raqami</FormLabel>
+                  <FormLabel>Номер Телефона</FormLabel>
                   <Input type="tel" name="phoneNum" />
                 </FormControl>
                 <FormControl required>
-                  <FormLabel>Parol</FormLabel>
+                  <FormLabel>Пароль</FormLabel>
                   <Input type="password" name="password" />
                 </FormControl>
                 <Stack gap={4} sx={{ mt: 2 }}>
@@ -193,13 +196,17 @@ export default function JoySignInSideTemplate() {
                       alignItems: "center",
                     }}
                   >
-                    <Checkbox size="sm" label="Meni eslang" name="persistent" />
-                    <Link level="title-sm" href="#replace-with-a-link">
-                      Parolni unutdingizmi?
+                    <Checkbox size="sm" label="Запомнить меня" name="persistent" />
+                    <Link level="title-sm" href="#replace-with-a-link" sx={{color: "#4C6A55"}}>
+                      Забыли пароль?
                     </Link>
                   </Box>
-                  <Button type="submit" loading={isLoading} fullWidth>
-                    Kirish
+                  <Button type="submit" loading={isLoading} fullWidth sx={{bgcolor: "#4C6A55",
+                    "&:hover": {
+                      bgcolor: "#364b3d",
+                    },
+                  }}>
+                    Вход
                   </Button>
                 </Stack>
               </form>

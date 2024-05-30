@@ -90,21 +90,21 @@ export default function Chat() {
         console.log(response.data.isCoursePaid, "isCoursePaid");
         newCourses.push({
           el: response.data.courses,
-          text: "Kurs",
+          text: "Курс",
         });
       }
       if (response.data.isLessonPaid) {
         console.log(response.data.isLessonPaid, "isLessonPaid");
         newCourses.push({
           el: response.data.courses,
-          text: "Dars",
+          text: "Урок",
         });
       }
       if (response.data.isModulePaid) {
         console.log(response.data.isModulePaid, "isModulePaid");
         newCourses.push({
           el: response.data.courses,
-          text: "Modul",
+          text: "Модуль",
         });
       }
 
@@ -269,12 +269,12 @@ export default function Chat() {
                     }}
                   >
                     <FormControl>
-                      <FormLabel>Eslatma qoshish</FormLabel>
+                      <FormLabel>Заголовок заметки</FormLabel>
                       <Input type="text" name="title" />
                     </FormControl>
 
                     <FormControl required>
-                      <FormLabel>Matn</FormLabel>
+                      <>Описание</>
                       <Textarea minRows={4} name="description" />
                     </FormControl>
                     <Box>
@@ -306,7 +306,7 @@ export default function Chat() {
                     }}
                   >
                     <FormControl>
-                      <FormLabel>Eslatma qoshish</FormLabel>
+                      <FormLabel>Заголовок заметки</FormLabel>
                       <Input
                         type="text"
                         name="title"
@@ -318,7 +318,7 @@ export default function Chat() {
                     </FormControl>
 
                     <FormControl required>
-                      <FormLabel>Matn</FormLabel>
+                      <FormLabel>Описание</FormLabel>
                       <Textarea
                         type="text"
                         minRows={4}
@@ -374,17 +374,17 @@ export default function Chat() {
             className="beautyBlock"
           >
             <Typography level="title-md" sx={{ flex: 1, color: "#4C6A55" }}>
-              Foydali funktsiyalar
+              Полезные функции
             </Typography>
           </Box>
           {/* <Divider className="beautyDivider" /> */}
           <Tabs>
             <TabList disableUnderline>
               <Tab indicatorInset sx={{ flexGrow: 1, borderRadius: "10px" }}>
-                <Typography level="title-sm">Eslatmalar</Typography>
+                <Typography level="title-sm">Заметки</Typography>
               </Tab>
               <Tab indicatorInset sx={{ flexGrow: 1, borderRadius: "10px" }}>
-                <Typography level="title-sm">Xabarlar</Typography>
+                <Typography level="title-sm">Сообщения</Typography>
               </Tab>
             </TabList>
             <TabPanel
@@ -405,7 +405,7 @@ export default function Chat() {
               >
                 <Box>
                   <Typography level="title-md" sx={{ color: "#4C6A55" }}>
-                    Sizning eslatmalaringiz
+                    Ваши заметки
                   </Typography>
                 </Box>
                 <Box>

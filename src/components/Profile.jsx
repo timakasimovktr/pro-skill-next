@@ -85,21 +85,21 @@ export default function Profile() {
         console.log(response.data.isCoursePaid, "isCoursePaid");
         newCourses.push({
           el: response.data.courses,
-          text: "Kurs",
+          text: "Курс",
         });
       }
       if (response.data.isLessonPaid) {
         console.log(response.data.isLessonPaid, "isLessonPaid");
         newCourses.push({
           el: response.data.courses,
-          text: "Dars",
+          text: "Урок",
         });
       }
       if (response.data.isModulePaid) {
         console.log(response.data.isModulePaid, "isModulePaid");
         newCourses.push({
           el: response.data.courses,
-          text: "Modul",
+          text: "Модуль",
         });
       }
 
@@ -263,12 +263,12 @@ export default function Profile() {
                     }}
                   >
                     <FormControl>
-                      <FormLabel>Eslatma qoshish</FormLabel>
+                      <FormLabel>Заголовок заметки</FormLabel>
                       <Input type="text" name="title" />
                     </FormControl>
 
                     <FormControl required>
-                      <FormLabel>Matn</FormLabel>
+                      <FormLabel>Описание</FormLabel>
                       <Textarea minRows={4} name="description" />
                     </FormControl>
                     <Box>
@@ -300,7 +300,7 @@ export default function Profile() {
                     }}
                   >
                     <FormControl>
-                      <FormLabel>Eslatma qoshish</FormLabel>
+                      <FormLabel>Заголовок заметки</FormLabel>
                       <Input
                         type="text"
                         name="title"
@@ -312,7 +312,7 @@ export default function Profile() {
                     </FormControl>
 
                     <FormControl required>
-                      <FormLabel>Matn</FormLabel>
+                      <FormLabel>Описание</FormLabel>
                       <Textarea
                         type="text"
                         minRows={4}
@@ -375,11 +375,11 @@ export default function Profile() {
                   level="title-md"
                   sx={{ fontSize: 20, fontWeight: 700, color: "white" }}
                 >
-                  Xush kelibsiz {profile.fullName}!
+                  Добро подаловать, {profile.fullName}!
                 </Typography>
                 <Typography level="body-sm" sx={{ color: "white" }}>
-                  Shaxsiy hisobingizga xush kelibsiz. Bu erda siz bizning barcha
-                  xizmatlarimizdan foydalanishingiz mumkin.
+                  Добро пожаловать в личный кабинет. Здесь вы можете
+                  воспользоваться всеми нашими услугами.
                 </Typography>
               </Box>
             </Box>
@@ -401,9 +401,9 @@ export default function Profile() {
               }}
             >
               <Box sx={{ mb: 1 }}>
-                <Typography level="title-md">Shaxsiy malumotlar</Typography>
+                <Typography level="title-md">Личные данные</Typography>
                 <Typography level="body-sm">
-                  Bu sizning shaxsingiz haqidagi ma`lumotlarni ko`rsatadi
+                  Здесь отображена ваша личная информация.
                 </Typography>
               </Box>
               <Divider />
@@ -445,7 +445,7 @@ export default function Profile() {
                     </FormControl>
                   </Stack>
                   <Stack spacing={1}>
-                    <FormLabel>Shahar</FormLabel>
+                    <FormLabel>Город</FormLabel>
                     <FormControl
                       sx={{
                         display: { sm: "flex-column", md: "flex-row" },
@@ -462,7 +462,7 @@ export default function Profile() {
                     </FormControl>
                   </Stack>
                   <Stack spacing={1}>
-                    <FormLabel>Telefon</FormLabel>
+                    <FormLabel>Номер телефона</FormLabel>
                     <FormControl
                       sx={{
                         display: { sm: "flex-column", md: "flex-row" },
@@ -480,11 +480,11 @@ export default function Profile() {
                   </Stack>
                   <Stack direction="row" spacing={2}>
                     <FormControl>
-                      <FormLabel>Roli</FormLabel>
-                      <Input readOnly size="sm" defaultValue="Talaba" />
+                      <FormLabel>Роль</FormLabel>
+                      <Input readOnly size="sm" defaultValue="Студент" />
                     </FormControl>
                     <FormControl sx={{ flexGrow: 1 }}>
-                      <FormLabel>Email</FormLabel>
+                      <FormLabel>E-mail</FormLabel>
                       <Input
                         readOnly
                         size="sm"
@@ -616,17 +616,17 @@ export default function Profile() {
             className="beautyBlock"
           >
             <Typography level="title-md" sx={{ flex: 1, color: "#4C6A55" }}>
-              Foydali funktsiyalar
+              Полезные функции
             </Typography>
           </Box>
           {/* <Divider className="beautyDivider" /> */}
           <Tabs>
             <TabList disableUnderline>
               <Tab indicatorInset sx={{ flexGrow: 1, borderRadius: "10px" }}>
-                <Typography level="title-sm">Eslatmalar</Typography>
+                <Typography level="title-sm">Заметки</Typography>
               </Tab>
               <Tab indicatorInset sx={{ flexGrow: 1, borderRadius: "10px" }}>
-                <Typography level="title-sm">Xabarlar</Typography>
+                <Typography level="title-sm">Сообщения</Typography>
               </Tab>
             </TabList>
             <TabPanel
@@ -647,7 +647,7 @@ export default function Profile() {
               >
                 <Box>
                   <Typography level="title-md" sx={{ color: "#4C6A55" }}>
-                    Sizning eslatmalaringiz
+                    Ваши заметки
                   </Typography>
                 </Box>
                 <Box>

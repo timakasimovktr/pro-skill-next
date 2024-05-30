@@ -52,6 +52,7 @@ export default function MessagesPane() {
 
     return () => {
       socket.off('message');
+      socket.disconnect();
     };
   }, []);
 
