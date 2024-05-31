@@ -665,7 +665,7 @@ export default function Dashboard() {
                                 fontSize: "12px",
                               }}
                             >
-                              Tomosha qiling
+                              Читать далее
                             </Typography>
                             <SouthEastRoundedIcon
                               sx={{ color: "#50963b", width: "15px" }}
