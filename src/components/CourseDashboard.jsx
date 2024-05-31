@@ -31,11 +31,15 @@ import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
 import Input from "@mui/joy/Input";
 import Textarea from "@mui/joy/Textarea";
+import Modal from "@mui/joy/Modal";
+import ModalClose from "@mui/joy/ModalClose";
 
 import FolderRoundedIcon from "@mui/icons-material/FolderRounded";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
+import FileOpenIcon from "@mui/icons-material/FileOpen";
+import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -65,6 +69,8 @@ const CourseDashboard = () => {
   const [currentVideo, setCurrentVideo] = React.useState("");
   const [currentQuestions, setCurrentQuestions] = React.useState([]);
   const [currentLesson, setCurrentLesson] = React.useState({});
+  const [openModal, setOpenModal] = React.useState(false);
+  const [modalContent, setModalContent] = React.useState("");
 
   const onSubmitTests = (e) => {
     e.preventDefault();
@@ -78,7 +84,7 @@ const CourseDashboard = () => {
     }
 
     if (currentQuestions.length !== listAnswers.length) {
-      toast.error("Barcha savollarga javob bering");
+      toast.error("Ответьте на все тесты");
       return;
     }
 
@@ -266,6 +272,36 @@ const CourseDashboard = () => {
         >
           <ToastContainer />
           {/* =======================POPUP======================== */}
+          <Modal
+            aria-labelledby="modal-title"
+            aria-describedby="modal-desc"
+            open={openModal}
+            onClose={() => setOpenModal(false)}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Sheet
+              variant="outlined"
+              sx={{
+                maxWidth: 1000,
+                width: "calc(100vw - 40px)", 
+                height: "calc(100vh - 200px)",
+                borderRadius: "10px",
+                p: 2,
+                boxShadow: "lg",
+              }}
+            >
+                <iframe 
+                  style={{borderRadius: "10px"}}
+                  src={`${APP_ROUTES.URL}/${modalContent}#toolbar=0`}
+                  width="100%"
+                  height="100%"
+                />
+            </Sheet>
+          </Modal>
 
           {openCreateNote && (
             <DialogContainer onClose={() => setOpenCreateNote(false)}>
@@ -295,7 +331,7 @@ const CourseDashboard = () => {
                           bgcolor: "#4C6A55",
                         }}
                       >
-                        Saqlash
+                        Сохранить
                       </Button>
                     </Box>
                   </Box>
@@ -350,7 +386,7 @@ const CourseDashboard = () => {
                           bgcolor: "#4C6A55",
                         }}
                       >
-                        Saqlash
+                        Сохранить
                       </Button>
                     </Box>
                   </Box>
@@ -393,6 +429,7 @@ const CourseDashboard = () => {
               >
                 <video
                   src={currentVideo}
+                  controlsList="nodownload"
                   poster={
                     "https://www.gazeta.uz/media/img/2022/01/DhxJJ316424213436263_b.jpg"
                   }
@@ -469,29 +506,47 @@ const CourseDashboard = () => {
                 className="lessonInfoContainer"
               >
                 <TabList disableUnderline sx={{ paddingLeft: "10px" }}>
-                  <Tab
-                    indicatorInset
-                    sx={{ borderRadius: "10px" }}
-                  >
+                  <Tab indicatorInset sx={{ borderRadius: "10px" }}>
                     Информация о курсе
                   </Tab>
-                  <Tab
-                    indicatorInset
-                    sx={{ borderRadius: "10px" }}
-                  >
+                  <Tab indicatorInset sx={{ borderRadius: "10px" }}>
                     Тесты
-                  </Tab>
-                  <Tab
-                    indicatorInset
-                    sx={{ borderRadius: "10px" }}
-                  >
-                    Заметки
                   </Tab>
                 </TabList>
                 <TabPanel value={0} className="courseInfoTabPanel">
                   <h2 style={{ marginBottom: "5px" }}>
                     Название урока: {currentLesson?.title}
                   </h2>
+                  <Box sx={{ mb: "20px", display: "flex", gap: "20px" }}>
+                    {currentLesson?.items?.map((item, index) =>
+                      item.split(".").pop() === "pptx" ? null : (
+                        <Box
+                          key={index}
+                          sx={{ width: "120px", height: "50px" }}
+                          onClick={() => {
+                            setOpenModal(true);
+                            setModalContent(item);
+                          }}
+                        >
+                          <Box
+                            className="extraMaterials"
+                          >
+                            <OpenInFullIcon
+                              sx={{ fontSize: "30px", fill: "white" }}
+                              className="seeIcon"
+                            />
+                            <FileOpenIcon
+                              className="seeIconHidden"
+                              sx={{ fontSize: "22px", fill: "white", mr: 1 }}
+                            />
+                            <Typography level="title-sm">
+                              {item.split(".").pop()}
+                            </Typography>
+                          </Box>
+                        </Box>
+                      )
+                    )}
+                  </Box>
                   <h2
                     style={{
                       marginBottom: "5px",
@@ -625,7 +680,29 @@ const CourseDashboard = () => {
                     )}
                   </Box>
                 </TabPanel>
-                <TabPanel value={2} className="courseInfoTabPanel">
+              </Tabs>
+            </Box>
+            <Divider orientation="vertical" className="beautyDivider" />
+            <Box sx={{ width: "45%" }}>
+              <Tabs
+                aria-label="Vertical tabs"
+                sx={{ width: "100%", height: "100%", minHeight: "400px" }}
+              >
+                <TabList disableUnderline sx={{ paddingLeft: "10px" }}>
+                  <Tab indicatorInset sx={{ borderRadius: "10px" }}>
+                    Заметки
+                  </Tab>
+                  <Tab sx={{ borderRadius: "10px" }} indicatorInset>
+                    Шашки
+                  </Tab>
+                  <Tab sx={{ borderRadius: "10px" }} indicatorInset>
+                    Змейка
+                  </Tab>
+                  <Tab sx={{ borderRadius: "10px" }} indicatorInset>
+                    Шахматы
+                  </Tab>
+                </TabList>
+                <TabPanel value={0} className="courseInfoTabPanel">
                   <Box
                     sx={{
                       display: "flex",
@@ -636,9 +713,7 @@ const CourseDashboard = () => {
                     }}
                   >
                     <Box>
-                      <Typography level="title-md">
-                        Ваши заметки
-                      </Typography>
+                      <Typography level="title-md">Ваши заметки</Typography>
                     </Box>
                     <Box>
                       <IconButton
@@ -738,20 +813,7 @@ const CourseDashboard = () => {
                   })}
                   {/* Заметки */}
                 </TabPanel>
-              </Tabs>
-            </Box>
-            <Divider orientation="vertical" className="beautyDivider" />
-            <Box sx={{ width: "45%" }}>
-              <Tabs
-                aria-label="Vertical tabs"
-                sx={{ width: "100%", height: "100%", minHeight: "400px" }}
-              >
-                <TabList disableUnderline sx={{ paddingLeft: "10px" }}>
-                  <Tab sx={{ borderRadius: "10px" }} indicatorInset>Шашки</Tab>
-                  <Tab sx={{ borderRadius: "10px" }} indicatorInset>Змейка</Tab>
-                  <Tab sx={{ borderRadius: "10px" }} indicatorInset>Шахматы</Tab>
-                </TabList>
-                <TabPanel value={0}>
+                <TabPanel value={1}>
                   <iframe
                     src="https://f3.silvergames.com/m/master-checkers/"
                     style={{
@@ -762,7 +824,7 @@ const CourseDashboard = () => {
                     }}
                   ></iframe>
                 </TabPanel>
-                <TabPanel value={1}>
+                <TabPanel value={2}>
                   <iframe
                     src="https://f3.silvergames.com/m/snake/"
                     style={{
@@ -773,7 +835,7 @@ const CourseDashboard = () => {
                     }}
                   ></iframe>
                 </TabPanel>
-                <TabPanel value={2}>
+                <TabPanel value={3}>
                   <iframe
                     src="https://f3.silvergames.com/m/master-chess/"
                     style={{

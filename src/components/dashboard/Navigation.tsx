@@ -160,7 +160,7 @@ export default function Navigation() {
                     level="body-sm"
                     sx={{ color: "#50963b", fontWeight: "500" }}
                   >
-                    Китоб сотиб олинг
+                    Купите книгу
                   </Typography>
                   <SouthEastRoundedIcon
                     sx={{ color: "#50963b", width: "20px" }}

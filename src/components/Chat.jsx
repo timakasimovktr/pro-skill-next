@@ -285,7 +285,7 @@ export default function Chat() {
                           bgcolor: "#4C6A55",
                         }}
                       >
-                        Saqlash
+                        Сохранить
                       </Button>
                     </Box>
                   </Box>
@@ -340,7 +340,7 @@ export default function Chat() {
                           bgcolor: "#4C6A55",
                         }}
                       >
-                        Saqlash
+                        Сохранить
                       </Button>
                     </Box>
                   </Box>

@@ -305,7 +305,7 @@ export default function Dashboard() {
                           bgcolor: "#4C6A55",
                         }}
                       >
-                        Saqlash
+                        Сохранить
                       </Button>
                     </Box>
                   </Box>
@@ -360,7 +360,7 @@ export default function Dashboard() {
                           bgcolor: "#4C6A55",
                         }}
                       >
-                        Saqlash
+                        Сохранить
                       </Button>
                     </Box>
                   </Box>
@@ -488,7 +488,7 @@ export default function Dashboard() {
                                 level="body-sm"
                                 sx={{ color: "#50963b", fontWeight: "500" }}
                               >
-                                Tolov qilingan
+                                Купленно
                               </Typography>
                               <SouthEastRoundedIcon
                                 sx={{ color: "#50963b", width: "20px" }}
@@ -556,7 +556,7 @@ export default function Dashboard() {
                                 level="body-sm"
                                 sx={{ color: "#50963b", fontWeight: "500" }}
                               >
-                                Tolov qilingan
+                                Купленно
                               </Typography>
                               <SouthEastRoundedIcon
                                 sx={{ color: "#50963b", width: "20px" }}

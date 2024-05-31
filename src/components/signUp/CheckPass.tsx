@@ -40,7 +40,7 @@ const CheckPass = () => {
                   bgcolor: "#4C6A55",
                 }}
               >
-                Saqlash
+                Сохранить
               </Button>
             </Box>
           </Box>

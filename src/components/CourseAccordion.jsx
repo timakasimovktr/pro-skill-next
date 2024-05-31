@@ -74,7 +74,9 @@ export default function AccordionControlled(props) {
                   <Box
                     key={index}
                     className={`lessonButton ${
-                      props.currentLesson?.id === lesson.id ? "activeLesson" : "" 
+                      props.currentLesson?.id === lesson.id
+                        ? "activeLesson"
+                        : ""
                     }`}
                     sx={{
                       borderColor: "#4C6A55",
@@ -173,7 +175,7 @@ export default function AccordionControlled(props) {
                               : "еще не завершено"}
                           </p>
                         </Box>
-                        <Box
+                        {/* <Box
                           sx={{
                             display: "flex",
                             justifyContent: "flex-start",
@@ -182,24 +184,35 @@ export default function AccordionControlled(props) {
                           }}
                         >
                           <Select
-                            placeholder="Урок materiallari"
+                            placeholder="Материаллы урока"
                             onClick={(e) => e.stopPropagation()}
                             sx={{ fontSize: "12px", color: "black" }}
                           >
-                            {lesson.items.map((item, index) => (
-                              <Option key={index} sx={{ fontSize: "12px", color: "black" }}>
-                                <a
-                                  href={APP_ROUTES.URL + "/" + item}
-                                  target="_blank"
-                                  rel="noreferrer"
-                                  style={{ color: "black" }}
+                            {lesson.items.map((item, index) =>
+                              item.split(".").pop() === "pptx" ? null : (
+                                <Option
+                                  key={index}
+                                  sx={{ fontSize: "12px", color: "black" }}
                                 >
-                                  document.{item.split(".").pop()}
-                                </a>
-                              </Option>
-                            ))}
+                                  <a
+                                    href={APP_ROUTES.URL + "/" + item}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    style={{ color: "black" }}
+                                  >
+                                    document.{item.split(".").pop()}
+                                  </a>
+                                  <embed
+                                    controlsList="nodownload"
+                                    src={APP_ROUTES.URL + "/" + item}
+                                    width="100%"
+                                    height="100%"
+                                  />
+                                </Option>
+                              )
+                            )}
                           </Select>
-                        </Box>
+                        </Box> */}
                       </Box>
                     </Box>
                   </Box>
