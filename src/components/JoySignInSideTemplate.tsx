@@ -175,7 +175,7 @@ export default function JoySignInSideTemplate() {
                       router.push("/dashboard");
                     })
                     .catch((err) => {
-                      alert("Не превильный логин или пароль!");
+                      alert("Не правильный телефон или пароль!");
                       setIsLoading(false);
                     });
                 }}

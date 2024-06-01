@@ -114,7 +114,7 @@ export default function Navigation() {
       {books.length > 0 &&
         books.map((book, index) => (
           <a
-            href="http://proskill-academy.com/"
+            href="http://proskill-academy.com/library"
             target="_blank"
             key={index}
             style={{ width: "100%" }}

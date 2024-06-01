@@ -520,7 +520,7 @@ export default function Dashboard() {
                         >
                           <AspectRatio minHeight="120px" maxHeight="200px">
                             <Image
-                              src={APP_ROUTES.URL + el.item.photoUrl}
+                              src={APP_ROUTES.URL + "/" + el.item.photoUrl}
                               srcSet={APP_ROUTES.URL + "/" + el.item.photoUrl}
                               loading="lazy"
                               alt={el.item.title}
