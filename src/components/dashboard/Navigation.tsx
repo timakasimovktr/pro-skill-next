@@ -81,16 +81,6 @@ export default function Navigation() {
                 </ListItemButton>
               </ListItem>
             </a>
-            <a href="/profile" title="profile">
-              <ListItem>
-                <ListItemButton selected={pathName === "/profile"}>
-                  <ListItemDecorator>
-                    <SettingsRoundedIcon fontSize="medium" />
-                  </ListItemDecorator>
-                  <ListItemContent>Настройки</ListItemContent>
-                </ListItemButton>
-              </ListItem>
-            </a>
             <a href="/chat" title="profile">
               <ListItem>
                 <ListItemButton selected={pathName === "/chat"}>
@@ -98,6 +88,16 @@ export default function Navigation() {
                     <MarkUnreadChatAltRoundedIcon fontSize="medium" />
                   </ListItemDecorator>
                   <ListItemContent>Чат с куратором</ListItemContent>
+                </ListItemButton>
+              </ListItem>
+            </a>
+            <a href="/profile" title="profile">
+              <ListItem>
+                <ListItemButton selected={pathName === "/profile"}>
+                  <ListItemDecorator>
+                    <SettingsRoundedIcon fontSize="medium" />
+                  </ListItemDecorator>
+                  <ListItemContent>Настройки</ListItemContent>
                 </ListItemButton>
               </ListItem>
             </a>

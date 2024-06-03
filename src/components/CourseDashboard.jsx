@@ -323,6 +323,9 @@ const CourseDashboard = () => {
                         fullWidth
                         sx={{
                           bgcolor: "#4C6A55",
+                          "&:hover": {
+                            bgcolor: "#50963b",
+                          },
                         }}
                       >
                         Сохранить
