@@ -398,7 +398,7 @@ const CourseDashboard = () => {
           <Box
             sx={{
               minWidth: "100%",
-              height: { xs: "calc(100vh)", sm: "calc(100vh - 300px)" },
+              height: { xs: "calc(100vh)", sm: "calc(100vh - 200px)" },
               minHeight: "400px",
               display: "flex",
               justifyContent: "center",
@@ -410,7 +410,7 @@ const CourseDashboard = () => {
             <Box
               sx={{
                 width: { xs: "100%", sm: "75%" },
-                height: "calc(100vh - 300px)",
+                height: "calc(100vh - 200px)",
                 minHeight: "400px",
                 display: "flex",
                 justifyContent: "center",
