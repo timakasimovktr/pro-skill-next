@@ -158,12 +158,12 @@ export default function Navigation() {
                 >
                   <Typography
                     level="body-sm"
-                    sx={{ color: "#50963b", fontWeight: "500" }}
+                    sx={{ color: "#4C6A55", fontWeight: "500" }}
                   >
-                    Купите книгу
+                    Купить книгу
                   </Typography>
                   <SouthEastRoundedIcon
-                    sx={{ color: "#50963b", width: "20px" }}
+                    sx={{ color: "#4C6A55", width: "20px" }}
                   />
                 </Box>
               </div>

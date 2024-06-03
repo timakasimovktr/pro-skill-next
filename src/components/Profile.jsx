@@ -38,6 +38,7 @@ import AccessTimeFilledRoundedIcon from "@mui/icons-material/AccessTimeFilledRou
 import Layout from "./dashboard/Layout";
 import Navigation from "./dashboard/Navigation";
 import Header from "./dashboard/Header";
+import CustomRightSideBar from "./CustomRightSideBar";
 
 import DialogContainer from "./DialogContainer";
 import DialogPopup from "./DialogPopup";
@@ -51,23 +52,7 @@ export default function Profile() {
   const cookies = useCookies();
   const access_token = cookies.get("access_token");
   const [drawerOpen, setDrawerOpen] = React.useState(false);
-  const [notes, setNotes] = React.useState([]);
-  const [editNote, setEditNote] = React.useState([]);
-  const [openCreateNote, setOpenCreateNote] = React.useState(false);
-  const [openUpdateNote, setOpenUpdateNote] = React.useState(false);
   const [profile, setProfile] = React.useState({});
-  const [mentorMessages, setMentorMessages] = React.useState([]);
-
-  const getMentorMessages = async () => {
-    axios
-      .get(APP_ROUTES.URL + "/message")
-      .then(function (response) {
-        setMentorMessages(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
 
   const getProfile = async () => {
     try {
@@ -109,105 +94,8 @@ export default function Profile() {
     }
   };
 
-  const getNotes = async () => {
-    axios
-      .get(APP_ROUTES.URL + "/notes", {
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-        },
-      })
-      .then(function (response) {
-        setNotes(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-
-  const createNote = async (e) => {
-    e.preventDefault();
-    setOpenCreateNote(false);
-
-    const form = e.target;
-    const data = new FormData(form);
-    const title = data.get("title");
-    const description = data.get("description");
-
-    axios
-      .post(
-        APP_ROUTES.URL + "/notes",
-        {
-          title,
-          description,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${access_token}`,
-          },
-        }
-      )
-      .then(function (response) {
-        getNotes();
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-
-  const deleteNote = async (id) => {
-    axios
-      .delete(APP_ROUTES.URL + "/notes/" + id, {
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-        },
-      })
-      .then(function (response) {
-        getNotes();
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-
-  const updateNote = (id) => {
-    setEditNote(notes.find((note) => note.id === id));
-    setOpenUpdateNote(true);
-  };
-
-  const updateNoteByContent = async (id, e) => {
-    e.preventDefault();
-    setOpenUpdateNote(false);
-
-    const form = e.target;
-    const data = new FormData(form);
-    const title = data.get("title");
-    const description = data.get("description");
-
-    axios
-      .patch(
-        APP_ROUTES.URL + "/notes/" + +id,
-        {
-          title,
-          description,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${access_token}`,
-          },
-        }
-      )
-      .then(function (response) {
-        getNotes();
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-
   React.useEffect(() => {
-    getNotes();
     getProfile();
-    getMentorMessages();
   }, []);
 
   return (
@@ -249,102 +137,6 @@ export default function Profile() {
           }}
           className="mainContainer"
         >
-          {/* =======================POPUP======================== */}
-
-          {openCreateNote && (
-            <DialogContainer onClose={() => setOpenCreateNote(false)}>
-              <DialogPopup onClose={(e) => e.stopPropagation()}>
-                <form onSubmit={(e) => createNote(e)}>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: "15px",
-                    }}
-                  >
-                    <FormControl>
-                      <FormLabel>Заголовок заметки</FormLabel>
-                      <Input type="text" name="title" />
-                    </FormControl>
-
-                    <FormControl required>
-                      <FormLabel>Описание</FormLabel>
-                      <Textarea minRows={4} name="description" />
-                    </FormControl>
-                    <Box>
-                      <Button
-                        type="submit"
-                        fullWidth
-                        sx={{
-                          bgcolor: "#4C6A55",
-                        }}
-                      >
-                        Сохранить
-                      </Button>
-                    </Box>
-                  </Box>
-                </form>
-              </DialogPopup>
-            </DialogContainer>
-          )}
-
-          {openUpdateNote && (
-            <DialogContainer onClose={() => setOpenUpdateNote(false)}>
-              <DialogPopup onClose={(e) => e.stopPropagation()}>
-                <form onSubmit={(e) => updateNoteByContent(editNote.id, e)}>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: "15px",
-                    }}
-                  >
-                    <FormControl>
-                      <FormLabel>Заголовок заметки</FormLabel>
-                      <Input
-                        type="text"
-                        name="title"
-                        value={editNote ? editNote.title : ""}
-                        onChange={(e) =>
-                          setEditNote({ ...editNote, title: e.target.value })
-                        }
-                      />
-                    </FormControl>
-
-                    <FormControl required>
-                      <FormLabel>Описание</FormLabel>
-                      <Textarea
-                        type="text"
-                        minRows={4}
-                        value={editNote ? editNote.description : ""}
-                        onChange={(e) =>
-                          setEditNote({
-                            ...editNote,
-                            description: e.target.value,
-                          })
-                        }
-                        name="description"
-                      />
-                    </FormControl>
-                    <Box>
-                      <Button
-                        type="submit"
-                        fullWidth
-                        sx={{
-                          bgcolor: "#4C6A55",
-                        }}
-                      >
-                        Сохранить
-                      </Button>
-                    </Box>
-                  </Box>
-                </form>
-              </DialogPopup>
-            </DialogContainer>
-          )}
-
-          {/* =======================POPUP======================== */}
-
           <Box
             sx={{
               display: "grid",
@@ -504,307 +296,83 @@ export default function Profile() {
                 spacing={2}
                 sx={{ display: { xs: "flex", md: "none" }, my: 1 }}
               >
-                <Stack direction="row" spacing={2}>
-                  <Stack direction="column" spacing={1}>
-                    <AspectRatio
-                      ratio="1"
-                      maxHeight={108}
-                      sx={{ flex: 1, minWidth: 108, borderRadius: "100%" }}
-                    >
-                      <img
-                        src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=286"
-                        srcSet="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=286&dpr=2 2x"
-                        loading="lazy"
-                        alt=""
-                      />
-                    </AspectRatio>
-                    <IconButton
-                      aria-label="upload new picture"
-                      size="sm"
-                      variant="outlined"
-                      color="neutral"
-                      sx={{
-                        bgcolor: "background.body",
-                        position: "absolute",
-                        zIndex: 2,
-                        borderRadius: "50%",
-                        left: 85,
-                        top: 180,
-                        boxShadow: "sm",
-                      }}
-                    >
-                      <EditRoundedIcon />
-                    </IconButton>
-                  </Stack>
-                  <Stack spacing={1} sx={{ flexGrow: 1 }}>
-                    <FormLabel>Name</FormLabel>
+                <Stack spacing={2} sx={{ flexGrow: 1 }}>
+                  <Stack spacing={1}>
+                    <FormLabel>Ф.И.О.</FormLabel>
                     <FormControl
                       sx={{
-                        display: {
-                          sm: "flex-column",
-                          md: "flex-row",
-                        },
+                        display: { sm: "flex-column", md: "flex-row" },
                         gap: 2,
                       }}
                     >
-                      <Input size="sm" placeholder="First name" />
-                      <Input size="sm" placeholder="Last name" />
+                      <Input
+                        readOnly
+                        size="sm"
+                        placeholder="First name"
+                        value={profile.fullName}
+                        sx={{ borderRadius: "10px" }}
+                      />
+                    </FormControl>
+                  </Stack>
+                  <Stack spacing={1}>
+                    <FormLabel>Город</FormLabel>
+                    <FormControl
+                      sx={{
+                        display: { sm: "flex-column", md: "flex-row" },
+                        gap: 2,
+                      }}
+                    >
+                      <Input
+                        readOnly
+                        size="sm"
+                        placeholder="First name"
+                        value={profile.city}
+                        sx={{ borderRadius: "10px" }}
+                      />
+                    </FormControl>
+                  </Stack>
+                  <Stack spacing={1}>
+                    <FormLabel>Номер телефона</FormLabel>
+                    <FormControl
+                      sx={{
+                        display: { sm: "flex-column", md: "flex-row" },
+                        gap: 2,
+                      }}
+                    >
+                      <Input
+                        readOnly
+                        size="sm"
+                        placeholder="First name"
+                        value={profile.phoneNumber}
+                        sx={{ borderRadius: "10px" }}
+                      />
+                    </FormControl>
+                  </Stack>
+                  <Stack direction="row" spacing={2}>
+                    <FormControl>
+                      <FormLabel>Роль</FormLabel>
+                      <Input readOnly size="sm" defaultValue="Студент" />
+                    </FormControl>
+                    <FormControl sx={{ flexGrow: 1 }}>
+                      <FormLabel>E-mail</FormLabel>
+                      <Input
+                        readOnly
+                        size="sm"
+                        type="email"
+                        startDecorator={<EmailRoundedIcon />}
+                        placeholder="email"
+                        value={profile.email}
+                        defaultValue="siriwatk@test.com"
+                        sx={{ flexGrow: 1 }}
+                      />
                     </FormControl>
                   </Stack>
                 </Stack>
-                <FormControl>
-                  <FormLabel>Role</FormLabel>
-                  <Input size="sm" defaultValue="UI Developer" />
-                </FormControl>
-                <FormControl sx={{ flexGrow: 1 }}>
-                  <FormLabel>Email</FormLabel>
-                  <Input
-                    size="sm"
-                    type="email"
-                    startDecorator={<EmailRoundedIcon />}
-                    placeholder="email"
-                    defaultValue="siriwatk@test.com"
-                    sx={{ flexGrow: 1 }}
-                  />
-                </FormControl>
-                <div>{/* <CountrySelector /> */}</div>
-                <div>
-                  <FormControl sx={{ display: { sm: "contents" } }}>
-                    <FormLabel>Timezone</FormLabel>
-                    <Select
-                      size="sm"
-                      startDecorator={<AccessTimeFilledRoundedIcon />}
-                      defaultValue="1"
-                    >
-                      <Option value="1">
-                        Indochina Time (Bangkok){" "}
-                        <Typography textColor="text.tertiary" ml={0.5}>
-                          — GMT+07:00
-                        </Typography>
-                      </Option>
-                      <Option value="2">
-                        Indochina Time (Ho Chi Minh City){" "}
-                        <Typography textColor="text.tertiary" ml={0.5}>
-                          — GMT+07:00
-                        </Typography>
-                      </Option>
-                    </Select>
-                  </FormControl>
-                </div>
               </Stack>
             </Card>
           </Box>
         </Layout.Main>
-        <Sheet
-          className="sideSheet"
-          sx={{
-            display: { sm: "initial" },
-            // borderLeft: "1px solid",
-            borderColor: "neutral.outlinedBorder",
-            height: "calc(100vh - 64px)",
-            overflowY: "auto",
-          }}
-        >
-          <Box
-            sx={{
-              p: 2,
-              display: "flex",
-              alignItems: "center",
-              overflowY: "auto",
-              paddingLeft: { xs: "15px", sm: "0" },
-            }}
-            className="beautyBlock"
-          >
-            <Typography level="title-md" sx={{ flex: 1, color: "#4C6A55" }}>
-              Полезные функции
-            </Typography>
-          </Box>
-          {/* <Divider className="beautyDivider" /> */}
-          <Tabs>
-            <TabList disableUnderline>
-              <Tab indicatorInset sx={{ flexGrow: 1, borderRadius: "10px" }}>
-                <Typography level="title-sm">Заметки</Typography>
-              </Tab>
-              <Tab indicatorInset sx={{ flexGrow: 1, borderRadius: "10px" }}>
-                <Typography level="title-sm">Сообщения</Typography>
-              </Tab>
-            </TabList>
-            <TabPanel
-              value={0}
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                gap: 1,
-                paddingLeft: { xs: "15px", sm: "0" },
-              }}
-            >
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
-              >
-                <Box>
-                  <Typography level="title-md" sx={{ color: "#4C6A55" }}>
-                    Ваши заметки
-                  </Typography>
-                </Box>
-                <Box>
-                  <IconButton
-                    component="span"
-                    variant="plain"
-                    color="neutral"
-                    size="md"
-                    onClick={() => setOpenCreateNote(true)}
-                  >
-                    <AddRoundedIcon sx={{ color: "#50963b" }} />
-                  </IconButton>
-                </Box>
-              </Box>
-              {notes.map((note, index) => {
-                return (
-                  <Box
-                    className="beautyBlock"
-                    key={index}
-                    sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      flexDirection: "column",
-                      gap: 1,
-                      border: "1px solid #32383e40",
-                      padding: "20px",
-                      borderRadius: "15px",
-                      bgcolor: "#4C6A55",
-                    }}
-                  >
-                    <div>
-                      <Box
-                        sx={{
-                          display: "flex",
-                          gap: 0.5,
-                          alignItems: "flex-start",
-                          flexDirection: "column",
-                          justifyContent: "center",
-                          mb: 1,
-                        }}
-                      >
-                        <Typography
-                          level="title-md"
-                          sx={{
-                            alignItems: "center",
-                            fontWeight: 600,
-                            color: "white",
-                          }}
-                        >
-                          {note.title}
-                        </Typography>{" "}
-                        <Typography
-                          level="title-sm"
-                          sx={{
-                            alignItems: "center",
-                            overflowWrap: "anywhere",
-                            color: "white",
-                          }}
-                        >
-                          {note.description}
-                        </Typography>
-                      </Box>
-                    </div>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Box
-                        sx={{
-                          display: "flex",
-                          justifyContent: "center",
-                        }}
-                      >
-                        <Typography
-                          level="body-xs"
-                          sx={{ mt: 1, color: "white" }}
-                        >
-                          {note.createdAt.slice(0, 10)}
-                        </Typography>
-                      </Box>
-                      <Box>
-                        <IconButton
-                          component="span"
-                          variant="plain"
-                          color="neutral"
-                          size="sm"
-                          onClick={() => updateNote(note.id)}
-                        >
-                          <CreateRoundedIcon sx={{ color: "white" }} />
-                        </IconButton>
-                        <IconButton
-                          component="span"
-                          variant="plain"
-                          color="neutral"
-                          size="sm"
-                          onClick={() => deleteNote(note.id)}
-                        >
-                          <DeleteRoundedIcon sx={{ color: "white" }} />
-                        </IconButton>
-                      </Box>
-                    </Box>
-                  </Box>
-                );
-              })}
-              {/* Заметки */}
-            </TabPanel>
-            <TabPanel value={1} sx={{ p: 0, pr: "10px", mt: "10px" }}>
-              <AspectRatio
-                ratio="21/9"
-                sx={{ mb: "10px", borderRadius: "20px" }}
-              >
-                <Image
-                  alt=""
-                  width="400"
-                  height="200"
-                  src="https://www.gazeta.uz/media/img/2022/01/DhxJJ316424213436263_b.jpg"
-                  srcSet="https://www.gazeta.uz/media/img/2022/01/DhxJJ316424213436263_b.jpg 2x"
-                />
-              </AspectRatio>
-              {mentorMessages.map((message, index) => {
-                return (
-                  <Box
-                    key={index}
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: "5px",
-                      padding: "15px",
-                      bgcolor: "#4C6A55",
-                      borderRadius: "20px 20px 20px 0",
-                      marginBottom: "10px",
-                    }}
-                  >
-                    <Typography
-                      level="title-sm"
-                      sx={{ color: "#fff", fontSize: "12px" }}
-                    >
-                      {message.title}
-                    </Typography>
-                    <Typography level="body-sm" sx={{ color: "#fff" }}>
-                      {message.description}
-                    </Typography>
-                    <Typography
-                      level="body-sm"
-                      sx={{ color: "#e6e6e6", fontSize: "10px" }}
-                    >
-                      {message.createdAt.slice(0, 10)}
-                    </Typography>
-                  </Box>
-                );
-              })}
-            </TabPanel>
-          </Tabs>
-        </Sheet>
+        <CustomRightSideBar />
       </Layout.Root>
     </CssVarsProvider>
   );

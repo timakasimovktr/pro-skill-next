@@ -68,7 +68,7 @@ export default function ChatBubble(props: ChatBubbleProps) {
               borderTopRightRadius: isSent ? 0 : 'lg',
               borderTopLeftRadius: isSent ? 'lg' : 0,
               backgroundColor: isSent
-                ? '#4C6A55'
+                ? '#1d2d22'
                 : 'background.body',
             }}
           >

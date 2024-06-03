@@ -63,7 +63,7 @@ export default function MessagesPane() {
         height: { xs: "calc(100vh - 94px)" },
         display: "flex",
         flexDirection: "column",
-        backgroundColor: "background.level1",
+        backgroundColor: "#8EA488",
         border: "1px solid #32383e40",
       }}
     >

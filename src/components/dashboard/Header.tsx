@@ -105,7 +105,10 @@ export default function Header(props) {
           onClose={() => setOpen(false)}
         >
           <ModalClose />
-          <DialogTitle sx={{ fontSize: 18, color: "#4C6A55" }}>
+          <DialogTitle
+            sx={{ fontSize: 18, color: "#4C6A55", cursor: "pointer" }}
+            onClick={() => router.push("/dashboard")}
+          >
             Pro-Skill Academy
           </DialogTitle>
           <Box sx={{ px: 1 }}>
@@ -120,6 +123,7 @@ export default function Header(props) {
           justifyContent: "center",
           alignItems: "center",
         }}
+        onClick={() => router.push("/dashboard")}
       >
         <Typography
           component="h1"
@@ -128,11 +132,24 @@ export default function Header(props) {
           sx={{
             display: { xs: "flex", sm: "none" },
             fontSize: 20,
+            cursor: "pointer",
             color: "#4C6A55",
           }}
         >
           Pro-Skill Academy
         </Typography>
+      </Box>
+      <Box
+        sx={{
+          display: { xs: "none", sm: "flex" },
+          flexDirection: "row",
+          gap: "5px",
+          alignItems: "center",
+          mr: "20px",
+          fontWeight: "bold"
+        }}
+      >
+        <span style={{fontWeight: "normal"}}>Баллы:</span>{props.profile.balls}
       </Box>
       <Box
         sx={{

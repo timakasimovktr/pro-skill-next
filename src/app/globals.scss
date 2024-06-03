@@ -22,6 +22,11 @@
     }
 }
 
+body{
+    max-width: 2200px;
+    margin: 0 auto;
+}
+
 h1 {
     font-weight: 700 !important;
 }
@@ -143,6 +148,18 @@ h1 {
     align-items: center;
     border-radius: 50px;
     margin-bottom: 5px;
+}
+
+.sideSheet, .sideTabs{
+    background: white !important;
+}
+
+.shortDescription{
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .lessonButton {

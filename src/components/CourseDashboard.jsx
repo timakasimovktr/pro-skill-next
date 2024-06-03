@@ -40,6 +40,7 @@ import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import FileOpenIcon from "@mui/icons-material/FileOpen";
 import OpenInFullIcon from "@mui/icons-material/OpenInFull";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -51,6 +52,7 @@ import Header from "./dashboard/Header";
 import DialogContainer from "./DialogContainer";
 import DialogPopup from "./DialogPopup";
 import CourseAccordion from "./CourseAccordion.jsx";
+import DisableRightClick from "./DisableRightClick";
 
 import axios from "axios";
 import { useCookies } from "next-client-cookies";
@@ -236,19 +238,11 @@ const CourseDashboard = () => {
       <CssBaseline />
 
       <Layout.Root
-        // sx={{
-        //   gridTemplateColumns: {
-        //     xs: "1fr",
-        //     sm: "minmax(64px, 200px) minmax(450px, 1fr)",
-        //     md: "minmax(140px, 240px) minmax(600px, 1fr)",
-        //   },
-        //   width: "100%",
-        // }}
         sx={{
           gridTemplateColumns: {
             xs: "1fr",
-            sm: "minmax(450px, 1fr)",
-            md: "minmax(600px, 1fr)",
+            sm: "minmax(64px, 200px) minmax(450px, 1fr)",
+            md: "minmax(140px, 240px) minmax(600px, 1fr)",
           },
           width: "100%",
         }}
@@ -256,12 +250,12 @@ const CourseDashboard = () => {
         <Layout.Header>
           <Header profile={profile} />
         </Layout.Header>
-        {/* <Layout.SideNav
+        <Layout.SideNav
           sx={{ height: "calc(100vh - 64px)", overflowY: "auto" }}
           className="sideNav"
         >
           <Navigation />
-        </Layout.SideNav> */}
+        </Layout.SideNav>
         <Layout.Main
           sx={{
             width: "100%",
@@ -287,19 +281,19 @@ const CourseDashboard = () => {
               variant="outlined"
               sx={{
                 maxWidth: 1000,
-                width: "calc(100vw - 40px)", 
+                width: "calc(100vw - 40px)",
                 height: "calc(100vh - 200px)",
                 borderRadius: "10px",
                 p: 2,
                 boxShadow: "lg",
               }}
             >
-                <iframe 
-                  style={{borderRadius: "10px"}}
-                  src={`${APP_ROUTES.URL}/${modalContent}#toolbar=0`}
-                  width="100%"
-                  height="100%"
-                />
+              <iframe
+                style={{ borderRadius: "10px" }}
+                src={`${APP_ROUTES.URL}/${modalContent}#toolbar=0`}
+                width="100%"
+                height="100%"
+              />
             </Sheet>
           </Modal>
 
@@ -321,7 +315,7 @@ const CourseDashboard = () => {
 
                     <FormControl required>
                       <FormLabel>Описание</FormLabel>
-                      <Textarea minRows={4} name="description" />
+                      <Textarea minRows={4} maxRows={15} name="description" />
                     </FormControl>
                     <Box>
                       <Button
@@ -368,6 +362,7 @@ const CourseDashboard = () => {
                       <Textarea
                         type="text"
                         minRows={4}
+                        maxRows={15}
                         value={editNote ? editNote.description : ""}
                         onChange={(e) =>
                           setEditNote({
@@ -400,19 +395,19 @@ const CourseDashboard = () => {
           <Box
             sx={{
               minWidth: "100%",
-              height: "calc(100vh - 200px)",
+              height: { xs: "calc(100vh)", sm: "calc(100vh - 300px)" },
               minHeight: "400px",
               display: "flex",
               justifyContent: "center",
               alignItems: "flex-start",
-              // borderBottom: "1px solid",
               borderColor: "neutral.outlinedBorder",
+              flexDirection: { xs: "column", sm: "row" },
             }}
           >
             <Box
               sx={{
-                width: "75%",
-                height: "calc(100vh - 200px)",
+                width: { xs: "100%", sm: "75%" },
+                height: "calc(100vh - 300px)",
                 minHeight: "400px",
                 display: "flex",
                 justifyContent: "center",
@@ -447,10 +442,10 @@ const CourseDashboard = () => {
             </Box>
             <Box
               sx={{
-                width: "25%",
+                width: { xs: "100%", sm: "25%" },
                 overflowY: "auto",
                 height: "calc(100vh - 200px)",
-                padding: "10px 10px 10px 0",
+                padding: { xs: "0px 10px 10px 10px", sm: "10px 10px 10px 0" },
                 minHeight: "400px",
               }}
             >
@@ -494,10 +489,18 @@ const CourseDashboard = () => {
               </Box>
             </Box>
           </Box>
-          <Box sx={{ width: "100%", display: "flex" }}>
+          <Box
+            sx={{
+              width: "100%",
+              display: "flex",
+              backgroundColor: "#fff",
+              marginTop: { xs: "10px", sm: "0px" },
+              flexDirection: { xs: "column", sm: "row" },
+            }}
+          >
             <Box
               sx={{
-                width: "55%",
+                width: { xs: "100%", sm: "55%" },
               }}
             >
               <Tabs
@@ -528,9 +531,7 @@ const CourseDashboard = () => {
                             setModalContent(item);
                           }}
                         >
-                          <Box
-                            className="extraMaterials"
-                          >
+                          <Box className="extraMaterials">
                             <OpenInFullIcon
                               sx={{ fontSize: "30px", fill: "white" }}
                               className="seeIcon"
@@ -683,7 +684,7 @@ const CourseDashboard = () => {
               </Tabs>
             </Box>
             <Divider orientation="vertical" className="beautyDivider" />
-            <Box sx={{ width: "45%" }}>
+            <Box sx={{ width: { xs: "100%", sm: "45%" } }}>
               <Tabs
                 aria-label="Vertical tabs"
                 sx={{ width: "100%", height: "100%", minHeight: "400px" }}
@@ -765,6 +766,7 @@ const CourseDashboard = () => {
                                 alignItems: "center",
                                 overflowWrap: "anywhere",
                               }}
+                              className="shortDescription"
                             >
                               {note.description}
                             </Typography>
@@ -795,7 +797,7 @@ const CourseDashboard = () => {
                               size="sm"
                               onClick={() => updateNote(note.id)}
                             >
-                              <CreateRoundedIcon />
+                              <VisibilityIcon />
                             </IconButton>
                             <IconButton
                               component="span"
@@ -850,6 +852,7 @@ const CourseDashboard = () => {
             </Box>
           </Box>
         </Layout.Main>
+        <DisableRightClick />
       </Layout.Root>
     </CssVarsProvider>
   );
