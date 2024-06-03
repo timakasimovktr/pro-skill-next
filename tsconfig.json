@@ -20,18 +20,14 @@
       {
         "name": "next"
       }
-    ],
-    "strictNullChecks": true
+    ]
   },
   "include": [
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/app/layout.jsx",
-    "src/app/page.jsx",
-    "src/app/dashboard/page.jsx",
-    "src/components/JoyDashboard.jsx"
+    "src/app/layout.jsx", "src/app/page.jsx", "src/app/dashboard/page.jsx", "src/components/JoyDashboard.jsx" 
   ],
   "exclude": [
     "node_modules"
