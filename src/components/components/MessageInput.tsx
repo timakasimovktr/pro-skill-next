@@ -59,7 +59,7 @@ export default function MessageInput(props: MessageInputProps) {
               }}
             >
               <div>
-                <IconButton size="sm" variant="plain" color="neutral">
+                {/* <IconButton size="sm" variant="plain" color="neutral">
                   <FormatBoldRoundedIcon />
                 </IconButton>
                 <IconButton size="sm" variant="plain" color="neutral">
@@ -70,7 +70,7 @@ export default function MessageInput(props: MessageInputProps) {
                 </IconButton>
                 <IconButton size="sm" variant="plain" color="neutral">
                   <FormatListBulletedRoundedIcon />
-                </IconButton>
+                </IconButton> */}
               </div>
               <Button
                 size="sm"

@@ -231,7 +231,7 @@ export default function Dashboard() {
                   display: "flex",
                   gap: "15px",
                   flexWrap: "wrap",
-                  paddingRight: "10px",
+                  paddingRight: { xs: 0, md: "10px" }
                 }}
               >
                 {bought.length > 0 || profile.courses ? (
@@ -379,7 +379,7 @@ export default function Dashboard() {
               className="dashboardDivider beautyDivider"
             /> */}
             <Box
-              sx={{ width: "30%", overflowY: "auto", paddingRight: "10px" }}
+              sx={{ width: "30%", overflowY: "auto", paddingRight: { xs: 0, md: "10px" } }}
               className="newsWrapper"
             >
               {news.length > 0 && (

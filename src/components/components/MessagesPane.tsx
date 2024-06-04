@@ -99,6 +99,7 @@ export default function MessagesPane() {
                   variant={isYou ? "sent" : "received"}
                   sender={isYou ? "Вы" : "Куратор"}
                   content={message.message}
+                  timestamp={message.createdAt.slice(11, 16)}
                   {...message}
                 />
               </Stack>

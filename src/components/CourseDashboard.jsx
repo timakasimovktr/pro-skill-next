@@ -104,7 +104,7 @@ const CourseDashboard = () => {
         }
       )
       .then(function (response) {
-        toast.success("Тест завершен");
+        toast.success("Тест завершен. Вам начислены баллы.");
         getProfile();
       })
       .catch(function (error) {
