@@ -157,7 +157,6 @@ export default function CustomRightSideBar() {
       className="sideSheet"
       sx={{
         display: { sm: "initial" },
-        // borderLeft: "1px solid",
         borderColor: "neutral.outlinedBorder",
         height: "calc(100vh - 64px)",
         overflowY: "auto",
@@ -190,9 +189,9 @@ export default function CustomRightSideBar() {
                     type="submit"
                     fullWidth
                     sx={{
-                      bgcolor: "#4C6A55",
+                      bgcolor: "#50963b",
                       "&:hover": {
-                        bgcolor: "#50963b",
+                        bgcolor: "#4C6A55",
                       },
                     }}
                   >
@@ -249,7 +248,10 @@ export default function CustomRightSideBar() {
                     type="submit"
                     fullWidth
                     sx={{
-                      bgcolor: "#4C6A55",
+                      bgcolor: "#50963b",
+                      "&:hover": {
+                        bgcolor: "#4C6A55",
+                      },
                     }}
                   >
                     Сохранить
@@ -280,14 +282,67 @@ export default function CustomRightSideBar() {
       <Tabs className="sideTabs">
         <TabList disableUnderline>
           <Tab indicatorInset sx={{ flexGrow: 1, borderRadius: "10px" }}>
-            <Typography level="title-sm">Заметки</Typography>
+            <Typography level="title-sm">Сообщения</Typography>
           </Tab>
           <Tab indicatorInset sx={{ flexGrow: 1, borderRadius: "10px" }}>
-            <Typography level="title-sm">Сообщения</Typography>
+            <Typography level="title-sm">Заметки</Typography>
           </Tab>
         </TabList>
         <TabPanel
           value={0}
+          sx={{
+            pr: "10px",
+            mt: "10px",
+            display: "flex",
+            flexDirection: "column",
+            gap: 1,
+            paddingLeft: { xs: "10px", sm: "0" },
+          }}
+        >
+          <AspectRatio ratio="21/9" sx={{ mb: "10px", borderRadius: "20px" }}>
+            <Image
+              alt=""
+              width="400"
+              height="200"
+              src="https://www.gazeta.uz/media/img/2022/01/DhxJJ316424213436263_b.jpg"
+              srcSet="https://www.gazeta.uz/media/img/2022/01/DhxJJ316424213436263_b.jpg 2x"
+            />
+          </AspectRatio>
+          {mentorMessages.map((message, index) => {
+            return (
+              <Box
+                key={index}
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "5px",
+                  padding: "15px",
+                  bgcolor: "#4C6A55",
+                  borderRadius: "20px 20px 20px 0",
+                  marginBottom: "10px",
+                }}
+              >
+                <Typography
+                  level="title-sm"
+                  sx={{ color: "#fff", fontSize: "12px" }}
+                >
+                  {message.title}
+                </Typography>
+                <Typography level="body-sm" sx={{ color: "#fff" }}>
+                  {message.description}
+                </Typography>
+                <Typography
+                  level="body-sm"
+                  sx={{ color: "#e6e6e6", fontSize: "10px" }}
+                >
+                  {message.createdAt.slice(0, 10)}
+                </Typography>
+              </Box>
+            );
+          })}
+        </TabPanel>
+        <TabPanel
+          value={1}
           sx={{
             display: "flex",
             flexDirection: "column",
@@ -412,59 +467,6 @@ export default function CustomRightSideBar() {
             );
           })}
           {/* Заметки */}
-        </TabPanel>
-        <TabPanel
-          value={1}
-          sx={{
-            pr: "10px",
-            mt: "10px",
-            display: "flex",
-            flexDirection: "column",
-            gap: 1,
-            paddingLeft: { xs: "10px", sm: "0" },
-          }}
-        >
-          <AspectRatio ratio="21/9" sx={{ mb: "10px", borderRadius: "20px" }}>
-            <Image
-              alt=""
-              width="400"
-              height="200"
-              src="https://www.gazeta.uz/media/img/2022/01/DhxJJ316424213436263_b.jpg"
-              srcSet="https://www.gazeta.uz/media/img/2022/01/DhxJJ316424213436263_b.jpg 2x"
-            />
-          </AspectRatio>
-          {mentorMessages.map((message, index) => {
-            return (
-              <Box
-                key={index}
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "5px",
-                  padding: "15px",
-                  bgcolor: "#4C6A55",
-                  borderRadius: "20px 20px 20px 0",
-                  marginBottom: "10px",
-                }}
-              >
-                <Typography
-                  level="title-sm"
-                  sx={{ color: "#fff", fontSize: "12px" }}
-                >
-                  {message.title}
-                </Typography>
-                <Typography level="body-sm" sx={{ color: "#fff" }}>
-                  {message.description}
-                </Typography>
-                <Typography
-                  level="body-sm"
-                  sx={{ color: "#e6e6e6", fontSize: "10px" }}
-                >
-                  {message.createdAt.slice(0, 10)}
-                </Typography>
-              </Box>
-            );
-          })}
         </TabPanel>
       </Tabs>
     </Sheet>

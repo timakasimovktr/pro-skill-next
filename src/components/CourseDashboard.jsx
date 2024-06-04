@@ -322,9 +322,9 @@ const CourseDashboard = () => {
                         type="submit"
                         fullWidth
                         sx={{
-                          bgcolor: "#4C6A55",
+                          bgcolor: "#50963b",
                           "&:hover": {
-                            bgcolor: "#50963b",
+                            bgcolor: "#4C6A55",
                           },
                         }}
                       >
@@ -381,7 +381,10 @@ const CourseDashboard = () => {
                         type="submit"
                         fullWidth
                         sx={{
-                          bgcolor: "#4C6A55",
+                          bgcolor: "#50963b",
+                          "&:hover": {
+                            bgcolor: "#4C6A55",
+                          },
                         }}
                       >
                         Сохранить

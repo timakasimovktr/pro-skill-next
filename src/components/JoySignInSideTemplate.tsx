@@ -101,6 +101,7 @@ export default function JoySignInSideTemplate() {
       })
       .catch((err) => {
         toast.error("Номер телефона введен не правильно!");
+        setIsLoading(false);
       });
   };
 
@@ -120,6 +121,7 @@ export default function JoySignInSideTemplate() {
         toast.success("Пароль успешно изменен!");
       })
       .catch((err) => {
+        setIsLoading(false);
         toast.error("Код подтверждения введен неправильно!");
       });
   }
