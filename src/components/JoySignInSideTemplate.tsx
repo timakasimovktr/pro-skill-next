@@ -25,6 +25,9 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import axios from "axios";
 import { useCookies } from "next-client-cookies";
 import { APP_ROUTES } from "./Route";
@@ -45,6 +48,36 @@ export default function JoySignInSideTemplate() {
   const router = useRouter();
   const [open, setOpen] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
+  const [isOpenChangePassword, setIsOpenChangePassword] = React.useState(false);
+  const [isOpenSendPassword, setIsOpenSendPassword] = React.useState(true);
+  const [phoneNum, setPhoneNum] = React.useState("");
+
+  const signIn = (event) => {
+    event.preventDefault();
+    setIsLoading(true);
+    const formElements = event.currentTarget.elements;
+    const data = {
+      phoneNumber: formElements.phoneNum.value,
+      password: formElements.password.value,
+    };
+
+    axios
+      .post(APP_ROUTES.URL + "/auth/login", data)
+      .then((res) => {
+        cookies.set("access_token", res.data.access_token, {
+          expires: 1,
+        });
+        cookies.set("userId", res.data.userId, {
+          expires: 1,
+        });
+
+        router.push("/dashboard");
+      })
+      .catch((err) => {
+        toast.error("Не правильный телефон или пароль!");
+        setIsLoading(false);
+      });
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -54,9 +87,47 @@ export default function JoySignInSideTemplate() {
     setOpen(false);
   };
 
+  const handleSendPassword = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setPhoneNum(e.currentTarget.elements.resetPhone.value);
+    axios
+      .post(APP_ROUTES.URL + "/auth/send-phone-code", {
+        phoneNumber: e.currentTarget.elements.resetPhone.value,
+      })
+      .then((res) => {
+        setIsOpenSendPassword(false);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        toast.error("Номер телефона введен не правильно!");
+      });
+  };
+
+  const handleChangePassword = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    axios
+      .post(APP_ROUTES.URL + "/auth/change-password", {
+        phoneNumber: phoneNum,
+        newPassword: e.currentTarget.elements.newPass.value,
+        code: e.currentTarget.elements.checkPass.value,
+      })
+      .then((res) => {
+        setIsOpenChangePassword(false);
+        setIsOpenSendPassword(true);
+        setIsLoading(false);
+        toast.success("Пароль успешно изменен!");
+      })
+      .catch((err) => {
+        toast.error("Код подтверждения введен неправильно!");
+      });
+  }
+
   return (
     <CssVarsProvider defaultMode="light">
       <CssBaseline />
+      <ToastContainer />
       <GlobalStyles
         styles={{
           ":root": {
@@ -152,64 +223,136 @@ export default function JoySignInSideTemplate() {
               или
             </Divider>
             <Stack gap={4} sx={{ mt: 2 }}>
-              <form
-                onSubmit={(event: React.FormEvent<SignInFormElement>) => {
-                  event.preventDefault();
-                  setIsLoading(true);
-                  const formElements = event.currentTarget.elements;
-                  const data = {
-                    phoneNumber: formElements.phoneNum.value,
-                    password: formElements.password.value,
-                  };
+              {!isOpenChangePassword && (
+                <form
+                  onSubmit={(event: React.FormEvent<SignInFormElement>) => {
+                    signIn(event);
+                  }}
+                >
+                  <FormControl required>
+                    <FormLabel>Номер Телефона</FormLabel>
+                    <Input type="tel" name="phoneNum" />
+                  </FormControl>
+                  <FormControl required>
+                    <FormLabel>Пароль</FormLabel>
+                    <Input type="password" name="password" />
+                  </FormControl>
+                  <Stack gap={4} sx={{ mt: 2 }}>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Checkbox
+                        size="sm"
+                        label="Запомнить меня"
+                        name="persistent"
+                      />
+                      <Link
+                        level="title-sm"
+                        onClick={() => setIsOpenChangePassword(true)}
+                        sx={{ color: "#4C6A55" }}
+                      >
+                        Забыли пароль?
+                      </Link>
+                    </Box>
+                    <Button
+                      type="submit"
+                      loading={isLoading}
+                      fullWidth
+                      sx={{
+                        bgcolor: "#4C6A55",
+                        "&:hover": {
+                          bgcolor: "#364b3d",
+                        },
+                      }}
+                    >
+                      Вход
+                    </Button>
+                  </Stack>
+                </form>
+              )}
 
-                  axios
-                    .post(APP_ROUTES.URL + "/auth/login", data)
-                    .then((res) => {
-                      cookies.set("access_token", res.data.access_token, {
-                        expires: 1,
-                      });
-                      cookies.set("userId", res.data.userId, {
-                        expires: 1,
-                      });
-
-                      router.push("/dashboard");
-                    })
-                    .catch((err) => {
-                      alert("Не правильный телефон или пароль!");
-                      setIsLoading(false);
-                    });
-                }}
-              >
-                <FormControl required>
-                  <FormLabel>Номер Телефона</FormLabel>
-                  <Input type="tel" name="phoneNum" />
-                </FormControl>
-                <FormControl required>
-                  <FormLabel>Пароль</FormLabel>
-                  <Input type="password" name="password" />
-                </FormControl>
-                <Stack gap={4} sx={{ mt: 2 }}>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Checkbox size="sm" label="Запомнить меня" name="persistent" />
-                    <Link level="title-sm" href="#replace-with-a-link" sx={{color: "#4C6A55"}}>
-                      Забыли пароль?
-                    </Link>
-                  </Box>
-                  <Button type="submit" loading={isLoading} fullWidth sx={{bgcolor: "#4C6A55",
-                    "&:hover": {
-                      bgcolor: "#364b3d",
-                    },
-                  }}>
-                    Вход
-                  </Button>
-                </Stack>
-              </form>
+              {isOpenChangePassword && (
+                <>
+                  {isOpenSendPassword ? (
+                    <form onSubmit={(e) => handleSendPassword(e)}>
+                      <Typography level="body-sm">Сброс пароля</Typography>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: "15px",
+                        }}
+                      >
+                        <FormControl required>
+                          <FormLabel>Номер телефона</FormLabel>
+                          <Input type="tel" name="resetPhone" />
+                        </FormControl>
+                        <Box>
+                          <Button
+                            type="submit"
+                            loading={isLoading}
+                            fullWidth
+                            sx={{
+                              bgcolor: "#4C6A55",
+                              "&:hover": {
+                                bgcolor: "#364b3d",
+                              },
+                            }}
+                          >
+                            Отправить
+                          </Button>
+                        </Box>
+                      </Box>
+                    </form>
+                  ) : (
+                    <form onSubmit={(e) => handleChangePassword(e)}>
+                      <Typography level="body-sm">
+                        Код подтверждения отправлен на номер телефона -{" "}
+                        <b>{phoneNum}</b>
+                      </Typography>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: "15px",
+                        }}
+                      >
+                        <FormControl sx={{display: "none"}}>
+                          <FormLabel>Старый пароль</FormLabel>
+                          <Input type="text" name="oldPass" />
+                        </FormControl>
+                        <FormControl required>
+                          <FormLabel>Новый пароль</FormLabel>
+                          <Input type="text" name="newPass" />
+                        </FormControl>
+                        <FormControl required>
+                          <FormLabel>Код подтверждения</FormLabel>
+                          <Input type="text" name="checkPass" />
+                        </FormControl>
+                        <Box>
+                          <Button
+                            type="submit"
+                            loading={isLoading}
+                            fullWidth
+                            sx={{
+                              bgcolor: "#4C6A55",
+                              "&:hover": {
+                                bgcolor: "#364b3d",
+                              },
+                            }}
+                          >
+                            Отправить
+                          </Button>
+                        </Box>
+                      </Box>
+                    </form>
+                  )}
+                </>
+              )}
             </Stack>
           </Box>
           <Box component="footer" sx={{ py: 3 }}>
