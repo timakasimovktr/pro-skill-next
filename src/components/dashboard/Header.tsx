@@ -239,7 +239,7 @@ export default function Header(props) {
               }}
             >
               <LogoutRoundedIcon />
-              Chiqish
+              Выход
             </MenuItem>
           </Menu>
         </Dropdown>
