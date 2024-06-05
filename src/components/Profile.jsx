@@ -167,7 +167,7 @@ export default function Profile() {
                   level="title-md"
                   sx={{ fontSize: 20, fontWeight: 700, color: "white" }}
                 >
-                  Добро подаловать, {profile.fullName}!
+                  Добро пожаловать, {profile.fullName}!
                 </Typography>
                 <Typography level="body-sm" sx={{ color: "white" }}>
                   Добро пожаловать в личный кабинет. Здесь вы можете

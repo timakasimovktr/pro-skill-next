@@ -6,19 +6,15 @@ import GlobalStyles from "@mui/joy/GlobalStyles";
 import CssBaseline from "@mui/joy/CssBaseline";
 import Box from "@mui/joy/Box";
 import Button from "@mui/joy/Button";
-import Textarea from "@mui/joy/Textarea";
 import Checkbox from "@mui/joy/Checkbox";
 import Divider from "@mui/joy/Divider";
 import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
-import IconButton, { IconButtonProps } from "@mui/joy/IconButton";
 import Link from "@mui/joy/Link";
 import Input from "@mui/joy/Input";
 import Typography from "@mui/joy/Typography";
 import Stack from "@mui/joy/Stack";
-import DarkModeRoundedIcon from "@mui/icons-material/DarkModeRounded";
-import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
-import BadgeRoundedIcon from "@mui/icons-material/BadgeRounded";
+import Image from "next/image";
 
 import axios from "axios";
 import { useCookies } from "next-client-cookies";
@@ -137,10 +133,7 @@ export default function JoySignUpSideTemplate() {
             }}
           >
             <Box sx={{ gap: 2, display: "flex", alignItems: "center" }}>
-              <IconButton variant="soft" color="primary" size="sm">
-                <BadgeRoundedIcon />
-              </IconButton>
-              <Typography level="title-lg">Pro-Skill</Typography>
+              <Image src="https://proskill-academy.com/static/media/proskillLogo2.72ec72931c123705368a45e8403689a9.svg" alt="logo" width={70} height={70} />
             </Box>
           </Box>
           <Box
@@ -318,10 +311,10 @@ export default function JoySignUpSideTemplate() {
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           backgroundImage:
-            "url(https://images.unsplash.com/photo-1527181152855-fc03fc7949c8?auto=format&w=1000&dpr=2)",
+            "url(https://proskill-academy.com/static/media/course2.cae228c2a2aead76de18.jpg)",
           [theme.getColorSchemeSelector("dark")]: {
             backgroundImage:
-              "url(https://images.unsplash.com/photo-1572072393749-3ca9c8ea0831?auto=format&w=1000&dpr=2)",
+              "url(https://proskill-academy.com/static/media/course2.cae228c2a2aead76de18.jpg)",
           },
         })}
       />

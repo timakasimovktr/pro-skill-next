@@ -231,7 +231,7 @@ export default function Dashboard() {
                   display: "flex",
                   gap: "15px",
                   flexWrap: "wrap",
-                  paddingRight: { xs: 0, md: "10px" }
+                  paddingRight: { xs: 0, md: "10px" },
                 }}
               >
                 {bought.length > 0 || profile.courses ? (
@@ -369,7 +369,8 @@ export default function Dashboard() {
                       width: "100%",
                     }}
                   >
-                    Siz hali hech narsa sotib olmadingiz!
+                    Вы еще не купили ни одного материала или курса! <br />
+                    <a href="https://proskill-academy.com" title="proskill" style={{fontSize: "24px", textDecoration: "underline"}}>Купить курсы!</a>
                   </Typography>
                 )}
               </Box>
@@ -379,7 +380,11 @@ export default function Dashboard() {
               className="dashboardDivider beautyDivider"
             /> */}
             <Box
-              sx={{ width: "30%", overflowY: "auto", paddingRight: { xs: 0, md: "10px" } }}
+              sx={{
+                width: "30%",
+                overflowY: "auto",
+                paddingRight: { xs: 0, md: "10px" },
+              }}
               className="newsWrapper"
             >
               {news.length > 0 && (
