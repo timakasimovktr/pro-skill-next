@@ -100,7 +100,7 @@ export default function JoySignUpSideTemplate() {
         }}
       />
       <Box
-        sx={(theme) => ({
+        sx={{
           width: { xs: "100%", md: "50vw" },
           transition: "width var(--Transition-duration)",
           transitionDelay: "calc(var(--Transition-duration) + 0.1s)",
@@ -110,10 +110,7 @@ export default function JoySignUpSideTemplate() {
           justifyContent: "flex-end",
           backdropFilter: "blur(12px)",
           backgroundColor: "rgba(255 255 255 / 0.2)",
-          [theme.getColorSchemeSelector("dark")]: {
-            backgroundColor: "rgba(19 19 24 / 0.4)",
-          },
-        })}
+        }}
       >
         <Box
           sx={{
@@ -133,7 +130,12 @@ export default function JoySignUpSideTemplate() {
             }}
           >
             <Box sx={{ gap: 2, display: "flex", alignItems: "center" }}>
-              <Image src="https://proskill-academy.com/static/media/proskillLogo2.72ec72931c123705368a45e8403689a9.svg" alt="logo" width={70} height={70} />
+              <Image
+                src="https://proskill-academy.com/static/media/proskillLogo2.72ec72931c123705368a45e8403689a9.svg"
+                alt="logo"
+                width={70}
+                height={70}
+              />
             </Box>
           </Box>
           <Box
@@ -173,11 +175,9 @@ export default function JoySignUpSideTemplate() {
               </Stack>
             </Stack>
             <Divider
-              sx={(theme) => ({
-                [theme.getColorSchemeSelector("light")]: {
-                  color: { xs: "#000", md: "или" },
-                },
-              })}
+              sx={{
+                color: { xs: "#000", md: "или" },
+              }}
             >
               или
             </Divider>
@@ -296,7 +296,7 @@ export default function JoySignUpSideTemplate() {
         </Box>
       </Box>
       <Box
-        sx={(theme) => ({
+        sx={{
           height: "100%",
           position: "fixed",
           right: 0,
@@ -312,11 +312,7 @@ export default function JoySignUpSideTemplate() {
           backgroundRepeat: "no-repeat",
           backgroundImage:
             "url(https://proskill-academy.com/static/media/course2.cae228c2a2aead76de18.jpg)",
-          [theme.getColorSchemeSelector("dark")]: {
-            backgroundImage:
-              "url(https://proskill-academy.com/static/media/course2.cae228c2a2aead76de18.jpg)",
-          },
-        })}
+        }}
       />
     </CssVarsProvider>
   );
