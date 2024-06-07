@@ -140,7 +140,7 @@ export default function JoySignInSideTemplate() {
           display: "flex",
           justifyContent: "flex-end",
           backdropFilter: "blur(12px)",
-          backgroundColor: "rgba(255 255 255 / 0.2)",
+          backgroundColor: "rgb(255 255 255 / 72%)",
         }}
       >
         <Box
