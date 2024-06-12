@@ -146,10 +146,11 @@ export default function Header(props) {
           gap: "5px",
           alignItems: "center",
           mr: "20px",
-          fontWeight: "bold"
+          fontWeight: "bold",
         }}
       >
-        <span style={{fontWeight: "normal"}}>Баллы:</span>{props.profile.balls}
+        <span style={{ fontWeight: "normal" }}>Баллы:</span>
+        {props.profile.balls}
       </Box>
       <Box
         sx={{
@@ -220,10 +221,12 @@ export default function Header(props) {
             >
               Вам доступно {props.profile.balls} балла
             </Typography>
-            <MenuItem>
-              <HelpRoundedIcon />
-              Помощь
-            </MenuItem>
+            <a href="https://t.me/ProskillAcademyHelp" title="profile">
+              <MenuItem>
+                <HelpRoundedIcon />
+                Помощь
+              </MenuItem>
+            </a>
             <a href="/profile" title="profile">
               <MenuItem>
                 <SettingsRoundedIcon />
