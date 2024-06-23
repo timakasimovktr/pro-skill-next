@@ -297,7 +297,7 @@ export default function Dashboard() {
                       <a
                         href={`${APP_ROUTES.URL}/${el.item.fileUrl}`}
                         key={index}
-                        // style={{ width: xs ? "100%" : "calc(50% - 7.5px)" }}
+                        style={{ width: "calc(50% - 7.5px)" }}
                         className="soldProductCard"
                       >
                         <Card
