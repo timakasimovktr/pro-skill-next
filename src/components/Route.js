@@ -1,3 +1,3 @@
 export const APP_ROUTES = {
-  URL: "http://proskill-academy.com/api",
+  URL: "https://proskill-academy.com:5000",
 };

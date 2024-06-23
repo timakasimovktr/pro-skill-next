@@ -9,6 +9,7 @@
 * {
     font-family: "Rubik", sans-serif !important;
     box-sizing: border-box !important;
+
     &::-webkit-scrollbar {
         width: 1px;
 
@@ -22,7 +23,7 @@
     }
 }
 
-body{
+body {
     max-width: 2200px;
     margin: 0 auto;
 }
@@ -36,6 +37,7 @@ h1 {
 }
 
 .soldProductCard {
+    width: calc(100% - 7.5px);
     transition: all 0.3s ease;
     border-radius: 8px;
 
@@ -98,7 +100,8 @@ h1 {
         position: absolute;
     }
 
-    p, .seeIconHidden {
+    p,
+    .seeIconHidden {
         color: #fff;
         font-size: 20px !important;
         transition: 0.3s;
@@ -107,7 +110,8 @@ h1 {
     &:hover {
         background: #3d3d3d;
 
-        p, .seeIconHidden {
+        p,
+        .seeIconHidden {
             opacity: 0;
         }
 
@@ -150,11 +154,12 @@ h1 {
     margin-bottom: 5px;
 }
 
-.sideSheet, .sideTabs{
+.sideSheet,
+.sideTabs {
     background: white !important;
 }
 
-.shortDescription{
+.shortDescription {
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 4;
@@ -267,6 +272,12 @@ input[type=checkbox] {
 
     100% {
         top: 110%;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .soldProductCard {
+        width: 100% !important;
     }
 }
 
