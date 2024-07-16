@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { CssVarsProvider, useColorScheme } from "@mui/joy/styles";
+import { IMaskInput } from "react-imask";
 import GlobalStyles from "@mui/joy/GlobalStyles";
 import CssBaseline from "@mui/joy/CssBaseline";
 import Box from "@mui/joy/Box";
@@ -15,6 +16,7 @@ import Input from "@mui/joy/Input";
 import Typography from "@mui/joy/Typography";
 import Stack from "@mui/joy/Stack";
 import Image from "next/image";
+import CourseImage from "../images/course.jpg";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -35,6 +37,7 @@ interface SignInFormElement extends HTMLFormElement {
 }
 
 export default function JoySignInSideTemplate() {
+  const phoneMask = "+998 (00) 000-00-00";
   const cookies = useCookies();
   const router = useRouter();
   const [open, setOpen] = React.useState(false);
@@ -42,6 +45,12 @@ export default function JoySignInSideTemplate() {
   const [isOpenChangePassword, setIsOpenChangePassword] = React.useState(false);
   const [isOpenSendPassword, setIsOpenSendPassword] = React.useState(true);
   const [phoneNum, setPhoneNum] = React.useState("");
+
+  const Mask = [
+    {
+      mask: phoneMask,
+    },
+  ];
 
   const signIn = (event) => {
     event.preventDefault();
@@ -221,7 +230,9 @@ export default function JoySignInSideTemplate() {
                 >
                   <FormControl required>
                     <FormLabel>Номер Телефона</FormLabel>
-                    <Input type="tel" name="phoneNum" />
+                    <div className="MuiInput-root MuiInput-variantOutlined MuiInput-colorNeutral MuiInput-sizeMd MuiInput-formControl css-iosh9v-JoyInput-root">
+                      <IMaskInput className="MuiInput-input css-1gw9vc6-JoyInput-input" mask={Mask} type="tel" name="phoneNum" />
+                    </div>
                   </FormControl>
                   <FormControl required>
                     <FormLabel>Пароль</FormLabel>
@@ -365,10 +376,9 @@ export default function JoySignInSideTemplate() {
           transitionDelay: "calc(var(--Transition-duration) + 0.1s)",
           backgroundColor: "background.level1",
           backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundPosition: "bottom",
           backgroundRepeat: "no-repeat",
-          backgroundImage:
-            "url(https://proskill-academy.com/static/media/course2.cae228c2a2aead76de18.jpg)",
+          backgroundImage: `url(${CourseImage.src})`,
         }}
       />
     </CssVarsProvider>

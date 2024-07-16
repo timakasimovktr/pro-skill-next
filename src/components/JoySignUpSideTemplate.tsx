@@ -15,6 +15,7 @@ import Input from "@mui/joy/Input";
 import Typography from "@mui/joy/Typography";
 import Stack from "@mui/joy/Stack";
 import Image from "next/image";
+import CourseImage from "../images/course.jpg";
 
 import axios from "axios";
 import { useCookies } from "next-client-cookies";
@@ -308,10 +309,9 @@ export default function JoySignUpSideTemplate() {
           transitionDelay: "calc(var(--Transition-duration) + 0.1s)",
           backgroundColor: "background.level1",
           backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundPosition: "bottom",
           backgroundRepeat: "no-repeat",
-          backgroundImage:
-            "url(https://proskill-academy.com/static/media/course2.cae228c2a2aead76de18.jpg)",
+          backgroundImage: `url(${CourseImage.src})`,
         }}
       />
     </CssVarsProvider>
