@@ -47,32 +47,6 @@ export default function Chat() {
       });
 
       setProfile(response.data);
-
-      const newCourses = [];
-
-      if (response.data.isCoursePaid) {
-        console.log(response.data.isCoursePaid, "isCoursePaid");
-        newCourses.push({
-          el: response.data.courses,
-          text: "Курс",
-        });
-      }
-      if (response.data.isLessonPaid) {
-        console.log(response.data.isLessonPaid, "isLessonPaid");
-        newCourses.push({
-          el: response.data.courses,
-          text: "Урок",
-        });
-      }
-      if (response.data.isModulePaid) {
-        console.log(response.data.isModulePaid, "isModulePaid");
-        newCourses.push({
-          el: response.data.courses,
-          text: "Модуль",
-        });
-      }
-
-      setBoughtCourses(newCourses);
     } catch (error) {
       console.log(error);
     }
