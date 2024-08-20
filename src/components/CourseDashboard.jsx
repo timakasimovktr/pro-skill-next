@@ -59,7 +59,7 @@ import { useCookies } from "next-client-cookies";
 import { APP_ROUTES } from "./Route";
 import { useRouter } from "next/navigation";
 
-const CourseDashboard = () => {
+const CourseDashboard = (props) => {
   const router = useRouter();
   const cookies = useCookies();
   const access_token = cookies.get("access_token");
@@ -73,6 +73,7 @@ const CourseDashboard = () => {
   const [currentLesson, setCurrentLesson] = React.useState({});
   const [openModal, setOpenModal] = React.useState(false);
   const [modalContent, setModalContent] = React.useState("");
+  const [course, setCourse] = React.useState({});
 
   const onSubmitTests = (e) => {
     e.preventDefault();
@@ -173,8 +174,6 @@ const CourseDashboard = () => {
   };
 
   const updateNote = (id) => {
-    console.log(notes);
-    console.log(id);
     setEditNote(notes.find((note) => note.id === id));
     setOpenUpdateNote(true);
   };
@@ -209,6 +208,34 @@ const CourseDashboard = () => {
       });
   };
 
+  const getCourse = React.useCallback(async () => {
+    axios
+      .get(APP_ROUTES.URL + `/courses/bought/${props.courseId}`, {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      })
+      .then(function (response) {
+        setCourse(response.data);
+        if (response.data.modules) {
+          if (response.data.modules[0].videoUrl) {
+            setCurrentVideo(
+              APP_ROUTES.URL + "/" + response.data.modules[0].videoUrl
+            );
+          } else {
+            console.log("No video");
+          }
+          setCurrentQuestions(response.data.modules[0].questions);
+          setCurrentLesson(response.data.modules[0]);
+        } else {
+          router.push("/dashboard");
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, [access_token, props.courseId]);
+
   const getProfile = React.useCallback(async () => {
     axios
       .get(APP_ROUTES.URL + "/auth/profile", {
@@ -217,11 +244,11 @@ const CourseDashboard = () => {
         },
       })
       .then(function (response) {
-        if (response.data.courses) {
-          setProfile(response.data);
-        } else {
-          router.push("/dashboard");
-        }
+        setProfile(response.data);
+        // if (response.data.courses) {
+        // } else {
+        //   router.push("/dashboard");
+        // }
       })
       .catch(function (error) {
         console.log(error);
@@ -229,9 +256,10 @@ const CourseDashboard = () => {
   }, [access_token, router]);
 
   React.useEffect(() => {
+    getCourse();
     getProfile();
     getNotes();
-  }, [getNotes, getProfile]);
+  }, [getNotes, getProfile, getCourse]);
 
   return (
     <CssVarsProvider>
@@ -480,9 +508,7 @@ const CourseDashboard = () => {
                     borderRadius: "20px 20px 0 0",
                   }}
                 >
-                  <span style={{ color: "white" }}>
-                    {profile.courses?.title}
-                  </span>
+                  <span style={{ color: "white" }}>{course?.title}</span>
                 </Typography>
                 <CourseAccordion
                   setCurrentVideo={setCurrentVideo}
@@ -491,6 +517,7 @@ const CourseDashboard = () => {
                   setCurrentLesson={setCurrentLesson}
                   currentLesson={currentLesson}
                   profile={profile}
+                  courseInfo={course}
                 />
               </Box>
             </Box>
@@ -561,18 +588,16 @@ const CourseDashboard = () => {
                       opacity: "0.8",
                     }}
                   >
-                    Название курса: {profile?.courses?.title}
+                    Название курса: {course?.title}
                   </h2>
                   <h4 style={{ marginBottom: "5px" }}>
-                    Автор курса: {profile?.courses?.author}
+                    Автор курса: {course?.author}
                   </h4>
                   <h4 style={{ marginBottom: "10px" }}>
-                    Длительность: {profile?.courses?.time}
+                    Длительность: {course?.time}
                   </h4>
                   <Divider className="beautyDivider" />
-                  <p style={{ marginTop: "10px" }}>
-                    {profile?.courses?.description}
-                  </p>
+                  <p style={{ marginTop: "10px" }}>{course?.description}</p>
                 </TabPanel>
                 <TabPanel value={1} className="courseInfoTabPanel">
                   <Box>
@@ -643,7 +668,7 @@ const CourseDashboard = () => {
                         completedLesson.lessonId === currentLesson.id
                     ) && (
                       <form onSubmit={onSubmitTests}>
-                        {currentQuestions.map((question, index) => (
+                        {currentQuestions?.map((question, index) => (
                           <Box
                             key={index}
                             sx={{

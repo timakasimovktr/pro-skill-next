@@ -57,7 +57,7 @@ export default function JoySignInSideTemplate() {
     setIsLoading(true);
     const formElements = event.currentTarget.elements;
     const data = {
-      phoneNumber: formElements.phoneNum.value,
+      phoneNumber: formElements.phoneNum.value.replace(/[()\-\s]/g, ''),
       password: formElements.password.value,
     };
 

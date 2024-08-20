@@ -14,33 +14,10 @@ import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 
 export default function AccordionControlled(props) {
-  const profileProps = props.profile.courses?.modules[0].lessons[0];
-  const [videoUrl, setVideoUrl] = React.useState(null);
   const [i, setI] = React.useState(0);
-
-  const handleStartVideo = () => {
-    if (videoUrl && !props.currentVideo) {
-      props.setCurrentVideo(APP_ROUTES.URL + "/" + videoUrl);
-    } else {
-      console.error("Video URL is not available");
-    }
-  };
-
-  React.useEffect(() => {
-    if (profileProps?.videoUrl && !props.currentVideo) {
-      setVideoUrl(profileProps.videoUrl);
-      props.setCurrentQuestions(profileProps.questions);
-      props.setCurrentLesson(profileProps);
-    }
-  }, [profileProps, props]);
-
-  React.useEffect(() => {
-    handleStartVideo();
-  });
-
   return (
     <AccordionGroup sx={{ width: "100%" }}>
-      {props.profile.courses?.modules.map((module, index) => {
+      {props.courseInfo?.modules.map((module, index) => {
         return (
           <Accordion
             key={index}

@@ -81,7 +81,7 @@ export default function Dashboard() {
 
   const getProfile = async () => {
     try {
-      const response = await axios.get(APP_ROUTES.URL + "/auth/profile", {
+      const response = await axios.get(APP_ROUTES.URL + "/courses/bought", {
         headers: {
           Authorization: `Bearer ${access_token}`,
         },
@@ -89,31 +89,7 @@ export default function Dashboard() {
 
       setProfile(response.data);
 
-      const newCourses = [];
-
-      if (response.data.isCoursePaid) {
-        console.log(response.data.isCoursePaid, "isCoursePaid");
-        newCourses.push({
-          el: response.data.courses,
-          text: "Курс",
-        });
-      }
-      if (response.data.isLessonPaid) {
-        console.log(response.data.isLessonPaid, "isLessonPaid");
-        newCourses.push({
-          el: response.data.courses,
-          text: "Урок",
-        });
-      }
-      if (response.data.isModulePaid) {
-        console.log(response.data.isModulePaid, "isModulePaid");
-        newCourses.push({
-          el: response.data.courses,
-          text: "Модуль",
-        });
-      }
-
-      setBoughtCourses(newCourses);
+      setBoughtCourses(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -234,11 +210,11 @@ export default function Dashboard() {
                   paddingRight: { xs: 0, md: "10px" },
                 }}
               >
-                {bought.length > 0 || profile.courses ? (
+                {boughtCourses.length > 0 || bought.length > 0 ? (
                   <>
                     {boughtCourses.map((el, index) => (
                       <a
-                        href="/dashboard/course"
+                        href={`/dashboard/course/${el.id}`}
                         key={index}
                         style={{ width: "calc(50% - 7.5px)" }}
                         className="soldProductCard"
@@ -253,21 +229,19 @@ export default function Dashboard() {
                         >
                           <AspectRatio minHeight="120px" maxHeight="200px">
                             <img
-                              src={APP_ROUTES.URL + "/" + el.el.photoUrls[0]}
-                              srcSet={APP_ROUTES.URL + "/" + el.el.photoUrls[0]}
+                              src={APP_ROUTES.URL + "/" + el.photoUrls[0]}
+                              srcSet={APP_ROUTES.URL + "/" + el.photoUrls[0]}
                               loading="lazy"
-                              alt={el.el.title}
+                              alt={el.title}
                             />
                           </AspectRatio>
                           <div>
-                            <Typography level="title-md">
-                              {el.el.title}
-                            </Typography>
+                            <Typography level="title-md">{el.title}</Typography>
                             <div className="chip">
-                              <Typography level="body-xs">{el.text}</Typography>
+                              <Typography level="body-xs">Курс</Typography>
                             </div>
                             <Typography level="body-sm">
-                              {el.el.description.slice(0, 90) + "..."}
+                              {el.description.slice(0, 90) + "..."}
                             </Typography>
                             <Box
                               sx={{
@@ -370,7 +344,13 @@ export default function Dashboard() {
                     }}
                   >
                     Вы еще не купили ни одного материала или курса! <br />
-                    <a href="https://proskill-academy.com" title="proskill" style={{fontSize: "24px", textDecoration: "underline"}}>Купить курсы!</a>
+                    <a
+                      href="https://proskill-academy.com"
+                      title="proskill"
+                      style={{ fontSize: "24px", textDecoration: "underline" }}
+                    >
+                      Купить курсы!
+                    </a>
                   </Typography>
                 )}
               </Box>
