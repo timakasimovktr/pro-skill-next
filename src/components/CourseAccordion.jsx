@@ -17,7 +17,7 @@ export default function AccordionControlled(props) {
   const [i, setI] = React.useState(0);
   return (
     <AccordionGroup sx={{ width: "100%" }}>
-      {props.courseInfo?.modules.map((module, index) => {
+      {props.courseInfo?.modules?.map((module, index) => {
         return (
           <Accordion
             key={index}
