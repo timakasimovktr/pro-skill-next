@@ -150,7 +150,7 @@ export default function Header(props) {
         }}
       >
         <span style={{ fontWeight: "normal" }}>Баллы:</span>
-        {props.profile.balls}
+        {props?.profile?.balls}
       </Box>
       <Box
         sx={{

@@ -20,7 +20,7 @@ export default function MessagesPane() {
   const [textAreaValue, setTextAreaValue] = React.useState("");
   const [userMessages, setUserMessages] = React.useState([]);
 
-  const socket = io("http://213.230.71.82:5000", {
+  const socket = io("https://proskill-academy.com:5000", {
     transportOptions: {
       polling: {
         extraHeaders: {

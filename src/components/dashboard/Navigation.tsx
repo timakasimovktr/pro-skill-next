@@ -71,16 +71,6 @@ export default function Navigation() {
                 </ListItemButton>
               </ListItem>
             </a>
-            <a href="/dashboard/course" title="course">
-              <ListItem>
-                <ListItemButton selected={pathName === "/dashboard/course"}>
-                  <ListItemDecorator>
-                    <SchoolRoundedIcon fontSize="large" />
-                  </ListItemDecorator>
-                  <ListItemContent>Курс</ListItemContent>
-                </ListItemButton>
-              </ListItem>
-            </a>
             <a href="/chat" title="profile">
               <ListItem>
                 <ListItemButton selected={pathName === "/chat"}>
