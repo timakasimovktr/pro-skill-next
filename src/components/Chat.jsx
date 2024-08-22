@@ -38,23 +38,24 @@ export default function Chat() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const [profile, setProfile] = React.useState({});
 
-  const getProfile = async () => {
-    try {
-      const response = await axios.get(APP_ROUTES.URL + "/auth/profile", {
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-        },
-      });
-
-      setProfile(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   React.useEffect(() => {
+    const getProfile = async () => {
+      try {
+        const response = await axios.get(APP_ROUTES.URL + "/auth/profile", {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        });
+  
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     getProfile();
-  }, []);
+  }, [access_token]);
 
   return (
     <CssVarsProvider>

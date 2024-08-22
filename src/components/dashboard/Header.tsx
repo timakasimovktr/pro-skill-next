@@ -47,12 +47,13 @@ export default function Header(props) {
   React.useEffect(() => {
     const getUserInfo = async () => {
       try {
-        const { data } = await axios.get(APP_ROUTES.URL + "/auth/profile", {
+        const response = await axios.get(APP_ROUTES.URL + "/auth/profile", {
           headers: {
             Authorization: `Bearer ${cookies.get("access_token")}`,
           },
         });
-        setUserInfo(data);
+
+        setUserInfo(response.data);
       } catch (error) {
         router.push("/");
         cookies.remove("access_token");
@@ -150,7 +151,7 @@ export default function Header(props) {
         }}
       >
         <span style={{ fontWeight: "normal" }}>Баллы:</span>
-        {props?.profile?.balls}
+        {userInfo?.balls}
       </Box>
       <Box
         sx={{
@@ -200,10 +201,10 @@ export default function Header(props) {
                 />
                 <Box sx={{ ml: 1.5 }}>
                   <Typography level="title-sm" textColor="text.primary">
-                    {props.profile.fullName}
+                    {userInfo?.fullName}
                   </Typography>
                   <Typography level="body-xs" textColor="text.tertiary">
-                    {props.profile.email}
+                    {userInfo?.email}
                   </Typography>
                 </Box>
               </Box>
@@ -219,7 +220,7 @@ export default function Header(props) {
                 paddingLeft: "10px",
               }}
             >
-              Вам доступно {props.profile.balls} балла
+              Вам доступно {userInfo?.balls} балла
             </Typography>
             <a href="https://t.me/ProskillAcademyHelp" title="profile">
               <MenuItem>

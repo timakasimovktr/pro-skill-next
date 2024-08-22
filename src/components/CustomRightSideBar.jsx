@@ -306,6 +306,7 @@ export default function CustomRightSideBar() {
               height="200"
               src="https://www.gazeta.uz/media/img/2022/01/DhxJJ316424213436263_b.jpg"
               srcSet="https://www.gazeta.uz/media/img/2022/01/DhxJJ316424213436263_b.jpg 2x"
+              priority
             />
           </AspectRatio>
           {mentorMessages.map((message, index) => {

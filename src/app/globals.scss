@@ -281,6 +281,13 @@ input[type=checkbox] {
     }
 }
 
+.MuiInputPhone input {
+    width: 100%;
+    padding: 6px 12px !important;
+    border-radius: 6px !important;
+    border: 1px solid #c7c7c7 !important;
+}
+
 @media screen and (max-width: 900px) {
     .sideSheet {
         width: 100%;

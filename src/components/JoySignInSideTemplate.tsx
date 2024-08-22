@@ -230,7 +230,7 @@ export default function JoySignInSideTemplate() {
                 >
                   <FormControl required>
                     <FormLabel>Номер Телефона</FormLabel>
-                    <div className="MuiInput-root MuiInput-variantOutlined MuiInput-colorNeutral MuiInput-sizeMd MuiInput-formControl css-iosh9v-JoyInput-root">
+                    <div className="MuiInputPhone">
                       <IMaskInput className="MuiInput-input css-1gw9vc6-JoyInput-input" mask={Mask} type="tel" name="phoneNum" />
                     </div>
                   </FormControl>

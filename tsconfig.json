@@ -28,7 +28,7 @@
     "**/*.ts",
     "**/*.tsx",
     "src/app/layout.jsx", "src/app/page.jsx", "src/app/dashboard/page.jsx", "src/components/JoyDashboard.jsx" 
-  ],
+, "src/components/JoySignInSideTemplate.tsx"  ],
   "exclude": [
     "node_modules"
   ]

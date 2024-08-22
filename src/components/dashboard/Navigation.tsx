@@ -36,7 +36,7 @@ export default function Navigation() {
       .get(APP_ROUTES.URL + "/library/withItems")
       .then(function (response) {
         const booksArray = response.data.filter((item) => item.id === 1)[0];
-        setBooks(booksArray.items);
+        setBooks(booksArray?.items);
       })
       .catch(function (error) {
         console.log(error);
@@ -101,8 +101,8 @@ export default function Navigation() {
       >
         Книги:
       </Typography>
-      {books.length > 0 &&
-        books.map((book, index) => (
+      {books?.length > 0 &&
+        books?.map((book, index) => (
           <a
             href="http://proskill-academy.com/library"
             target="_blank"

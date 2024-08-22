@@ -463,6 +463,7 @@ const CourseDashboard = (props) => {
                     "https://www.gazeta.uz/media/img/2022/01/DhxJJ316424213436263_b.jpg"
                   }
                   controls
+                  priority
                   style={{
                     width: "100%",
                     height: "100%",
