@@ -38,11 +38,17 @@ import { APP_ROUTES } from "../Route";
 import { useRouter } from "next/navigation";
 import { responsiveFontSizes } from "@mui/material";
 
+type UserInfo = {
+  fullName: string;
+  email: string;
+  balls: number;
+};
+
 export default function Header(props) {
   const cookies = useCookies();
   const router = useRouter();
   const [open, setOpen] = React.useState(false);
-  const [userInfo, setUserInfo] = React.useState({});
+  const [userInfo, setUserInfo] = React.useState<UserInfo | null>(null);
 
   React.useEffect(() => {
     const getUserInfo = async () => {
