@@ -9,8 +9,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <CookiesProvider>
-      <body>{children}</body>
-    </CookiesProvider>
+    <html>
+      <CookiesProvider>
+        <body>{children}</body>
+      </CookiesProvider>
+    </html>
   );
 }
