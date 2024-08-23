@@ -170,11 +170,11 @@ export default function Dashboard() {
                   level="title-md"
                   sx={{ fontSize: 20, fontWeight: 700, color: "white" }}
                 >
-                  Добро пожаловать {profile.fullName}!
+                  Xush kelibsiz {profile.fullName}!
                 </Typography>
                 <Typography level="body-sm" sx={{ color: "white" }}>
-                  Добро пожаловать в личный кабинет. Здесь вы можете
-                  воспользоваться всеми нашими услугами.
+                  Shaxsiy hisobingizga xush kelibsiz. Bu erda siz bizning barcha
+                  xizmatlarimizdan foydalanishingiz mumkin.
                 </Typography>
               </Box>
             </Box>
@@ -197,7 +197,7 @@ export default function Dashboard() {
                   alignItems: "center",
                 }}
               >
-                Купленные материалы
+                Sotib olingan materiallar
                 <InventoryRoundedIcon
                   sx={{ color: "#4C6A55", width: "20px", marginLeft: "10px" }}
                 />
@@ -343,13 +343,13 @@ export default function Dashboard() {
                       width: "100%",
                     }}
                   >
-                    Вы еще не купили ни одного материала или курса! <br />
+                    Siz hali hech narsa sotib olmadingiz! <br />
                     <a
                       href="https://proskill-academy.com"
                       title="proskill"
                       style={{ fontSize: "24px", textDecoration: "underline" }}
                     >
-                      Купить курсы!
+                      Kurs sotib oling!
                     </a>
                   </Typography>
                 )}
@@ -376,7 +376,7 @@ export default function Dashboard() {
                     fontWeight: "500",
                   }}
                 >
-                  Новости
+                  Yangiliklar
                   <NewspaperRoundedIcon
                     sx={{ color: "#4C6A55", width: "20px", marginLeft: "10px" }}
                   />
@@ -444,7 +444,7 @@ export default function Dashboard() {
                                 fontSize: "12px",
                               }}
                             >
-                              Читать далее
+                              Tomosha qiling
                             </Typography>
                             <SouthEastRoundedIcon
                               sx={{ color: "#4C6A55", width: "15px" }}

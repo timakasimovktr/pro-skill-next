@@ -57,7 +57,7 @@ export default function JoySignInSideTemplate() {
     setIsLoading(true);
     const formElements = event.currentTarget.elements;
     const data = {
-      phoneNumber: formElements.phoneNum.value.replace(/[()\-\s]/g, ''),
+      phoneNumber: formElements.phoneNum.value.replace(/[()\-\s]/g, ""),
       password: formElements.password.value,
     };
 
@@ -74,7 +74,7 @@ export default function JoySignInSideTemplate() {
         router.push("/dashboard");
       })
       .catch((err) => {
-        toast.error("Не правильный телефон или пароль!");
+        toast.error("Notog`ri telefon raqami yoki parol!");
         setIsLoading(false);
       });
   };
@@ -204,12 +204,12 @@ export default function JoySignInSideTemplate() {
             <Stack gap={4} sx={{ mb: 2 }}>
               <Stack gap={1}>
                 <Typography component="h1" level="h3">
-                  Вход на платформу!
+                  Platformaga kirish!
                 </Typography>
                 <Typography level="body-sm">
-                  Новый пользователь?{" "}
+                  Yangi foydalanuvchi?{" "}
                   <Link href="/registration" level="title-sm">
-                    Зарегистрироваться!
+                    Royxatdan otish!
                   </Link>
                 </Typography>
               </Stack>
@@ -229,13 +229,18 @@ export default function JoySignInSideTemplate() {
                   }}
                 >
                   <FormControl required>
-                    <FormLabel>Номер Телефона</FormLabel>
+                    <FormLabel>Telefon raqami</FormLabel>
                     <div className="MuiInputPhone">
-                      <IMaskInput className="MuiInput-input css-1gw9vc6-JoyInput-input" mask={Mask} type="tel" name="phoneNum" />
+                      <IMaskInput
+                        className="MuiInput-input css-1gw9vc6-JoyInput-input"
+                        mask={Mask}
+                        type="tel"
+                        name="phoneNum"
+                      />
                     </div>
                   </FormControl>
                   <FormControl required>
-                    <FormLabel>Пароль</FormLabel>
+                    <FormLabel>Parol</FormLabel>
                     <Input type="password" name="password" />
                   </FormControl>
                   <Stack gap={4} sx={{ mt: 2 }}>
@@ -248,7 +253,7 @@ export default function JoySignInSideTemplate() {
                     >
                       <Checkbox
                         size="sm"
-                        label="Запомнить меня"
+                        label="Meni eslang"
                         name="persistent"
                       />
                       <Link
@@ -256,7 +261,7 @@ export default function JoySignInSideTemplate() {
                         onClick={() => setIsOpenChangePassword(true)}
                         sx={{ color: "#4C6A55" }}
                       >
-                        Забыли пароль?
+                         Parolni unutdingizmi?
                       </Link>
                     </Box>
                     <Button
@@ -270,7 +275,7 @@ export default function JoySignInSideTemplate() {
                         },
                       }}
                     >
-                      Вход
+                      Kirish
                     </Button>
                   </Stack>
                 </form>
