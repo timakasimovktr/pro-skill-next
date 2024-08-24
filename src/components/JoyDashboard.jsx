@@ -256,7 +256,7 @@ export default function Dashboard() {
                                 level="body-sm"
                                 sx={{ color: "#4C6A55", fontWeight: "500" }}
                               >
-                                Купленно
+                                Sotib olingan
                               </Typography>
                               <SouthEastRoundedIcon
                                 sx={{ color: "#4C6A55", width: "20px" }}
@@ -324,7 +324,7 @@ export default function Dashboard() {
                                 level="body-sm"
                                 sx={{ color: "#50963b", fontWeight: "500" }}
                               >
-                                Купленно
+                                Sotib olingan
                               </Typography>
                               <SouthEastRoundedIcon
                                 sx={{ color: "#50963b", width: "20px" }}

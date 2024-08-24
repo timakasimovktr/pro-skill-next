@@ -193,7 +193,7 @@ export default function JoySignUpSideTemplate() {
                   }}
                 >
                   <FormControl required>
-                    <FormLabel>Ф.И.О</FormLabel>
+                    <FormLabel>To'liq ism</FormLabel>
                     <Input type="text" name="fullName" />
                   </FormControl>
                   <FormControl required>

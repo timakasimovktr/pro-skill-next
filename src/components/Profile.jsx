@@ -167,11 +167,11 @@ export default function Profile() {
                   level="title-md"
                   sx={{ fontSize: 20, fontWeight: 700, color: "white" }}
                 >
-                  Добро пожаловать, {profile.fullName}!
+                 Xush kelibsiz, {profile.fullName}!
                 </Typography>
                 <Typography level="body-sm" sx={{ color: "white" }}>
-                  Добро пожаловать в личный кабинет. Здесь вы можете
-                  воспользоваться всеми нашими услугами.
+                Shaxsiy hisobingizga xush kelibsiz. Bu yerda mumkin
+                barcha xizmatlarimizdan foydalaning.
                 </Typography>
               </Box>
             </Box>
@@ -193,9 +193,9 @@ export default function Profile() {
               }}
             >
               <Box sx={{ mb: 1 }}>
-                <Typography level="title-md">Личные данные</Typography>
+                <Typography level="title-md">Shaxsiy ma'lumot</Typography>
                 <Typography level="body-sm">
-                  Здесь отображена ваша личная информация.
+                Sizning shaxsiy ma'lumotlaringiz bu erda ko'rsatiladi.
                 </Typography>
               </Box>
               <Divider />
@@ -220,7 +220,7 @@ export default function Profile() {
                 </Stack>
                 <Stack spacing={2} sx={{ flexGrow: 1 }}>
                   <Stack spacing={1}>
-                    <FormLabel>Ф.И.О.</FormLabel>
+                    <FormLabel>To'liq ism</FormLabel>
                     <FormControl
                       sx={{
                         display: { sm: "flex-column", md: "flex-row" },
@@ -237,7 +237,7 @@ export default function Profile() {
                     </FormControl>
                   </Stack>
                   <Stack spacing={1}>
-                    <FormLabel>Город</FormLabel>
+                    <FormLabel>Shahar</FormLabel>
                     <FormControl
                       sx={{
                         display: { sm: "flex-column", md: "flex-row" },
@@ -254,7 +254,7 @@ export default function Profile() {
                     </FormControl>
                   </Stack>
                   <Stack spacing={1}>
-                    <FormLabel>Номер телефона</FormLabel>
+                    <FormLabel>Telefon raqami</FormLabel>
                     <FormControl
                       sx={{
                         display: { sm: "flex-column", md: "flex-row" },
@@ -272,7 +272,7 @@ export default function Profile() {
                   </Stack>
                   <Stack direction="row" spacing={2}>
                     <FormControl>
-                      <FormLabel>Роль</FormLabel>
+                      <FormLabel>Rol</FormLabel>
                       <Input readOnly size="sm" defaultValue="Студент" />
                     </FormControl>
                     <FormControl sx={{ flexGrow: 1 }}>
@@ -298,7 +298,7 @@ export default function Profile() {
               >
                 <Stack spacing={2} sx={{ flexGrow: 1 }}>
                   <Stack spacing={1}>
-                    <FormLabel>Ф.И.О.</FormLabel>
+                    <FormLabel>To'liq ism</FormLabel>
                     <FormControl
                       sx={{
                         display: { sm: "flex-column", md: "flex-row" },
@@ -315,7 +315,7 @@ export default function Profile() {
                     </FormControl>
                   </Stack>
                   <Stack spacing={1}>
-                    <FormLabel>Город</FormLabel>
+                    <FormLabel>Shahar</FormLabel>
                     <FormControl
                       sx={{
                         display: { sm: "flex-column", md: "flex-row" },
@@ -332,7 +332,7 @@ export default function Profile() {
                     </FormControl>
                   </Stack>
                   <Stack spacing={1}>
-                    <FormLabel>Номер телефона</FormLabel>
+                    <FormLabel>Telefon raqami</FormLabel>
                     <FormControl
                       sx={{
                         display: { sm: "flex-column", md: "flex-row" },
@@ -350,7 +350,7 @@ export default function Profile() {
                   </Stack>
                   <Stack direction="row" spacing={2}>
                     <FormControl>
-                      <FormLabel>Роль</FormLabel>
+                      <FormLabel>Rol</FormLabel>
                       <Input readOnly size="sm" defaultValue="Студент" />
                     </FormControl>
                     <FormControl sx={{ flexGrow: 1 }}>

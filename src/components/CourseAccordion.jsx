@@ -136,7 +136,7 @@ export default function AccordionControlled(props) {
                             }}
                           >
                             <p style={{ fontSize: "13px" }}>
-                              Результаты теста:{" "}
+                            Test natijalari:{" "}
                               {props.profile.completedLessons.find(
                                 (completedLesson) =>
                                   completedLesson.lessonId === lesson.id

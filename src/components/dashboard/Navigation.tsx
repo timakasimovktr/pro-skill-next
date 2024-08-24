@@ -67,7 +67,7 @@ export default function Navigation() {
                   <ListItemDecorator>
                     <HomeRoundedIcon fontSize="large" />
                   </ListItemDecorator>
-                  <ListItemContent>Главная</ListItemContent>
+                  <ListItemContent>Asosiy</ListItemContent>
                 </ListItemButton>
               </ListItem>
             </a>
@@ -77,7 +77,7 @@ export default function Navigation() {
                   <ListItemDecorator>
                     <MarkUnreadChatAltRoundedIcon fontSize="medium" />
                   </ListItemDecorator>
-                  <ListItemContent>Чат с куратором</ListItemContent>
+                  <ListItemContent>Kurator bilan chat</ListItemContent>
                 </ListItemButton>
               </ListItem>
             </a>
@@ -87,7 +87,7 @@ export default function Navigation() {
                   <ListItemDecorator>
                     <SettingsRoundedIcon fontSize="medium" />
                   </ListItemDecorator>
-                  <ListItemContent>Настройки</ListItemContent>
+                  <ListItemContent>Sozlamalar</ListItemContent>
                 </ListItemButton>
               </ListItem>
             </a>
@@ -99,7 +99,7 @@ export default function Navigation() {
         level="title-md"
         sx={{ marginBottom: "15px", fontWeight: "500", color: "#4C6A55", }}
       >
-        Книги:
+        Kitoblar:
       </Typography>
       {books?.length > 0 &&
         books?.map((book, index) => (
@@ -150,7 +150,7 @@ export default function Navigation() {
                     level="body-sm"
                     sx={{ color: "#4C6A55", fontWeight: "500" }}
                   >
-                    Купить книгу
+                    Kitob sotib olish
                   </Typography>
                   <SouthEastRoundedIcon
                     sx={{ color: "#4C6A55", width: "20px" }}

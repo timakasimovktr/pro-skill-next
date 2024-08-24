@@ -29,7 +29,7 @@ const CheckPass = () => {
             }}
           >
             <FormControl required>
-              <FormLabel>Описание</FormLabel>
+              <FormLabel>Tavsif</FormLabel>
               <Textarea minRows={4} name="description" />
             </FormControl>
             <Box>
@@ -43,7 +43,7 @@ const CheckPass = () => {
                   },
                 }}
               >
-                Сохранить
+                Saqlash
               </Button>
             </Box>
           </Box>
