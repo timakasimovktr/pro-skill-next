@@ -176,12 +176,12 @@ export default function CustomRightSideBar() {
                 }}
               >
                 <FormControl>
-                  <FormLabel>Заголовок заметки</FormLabel>
+                  <FormLabel>Eslatma sarlavhasi</FormLabel>
                   <Input type="text" name="title" />
                 </FormControl>
 
                 <FormControl required>
-                  <>Описание</>
+                  <>Tavsif</>
                   <Textarea minRows={4} maxRows={15} name="description" />
                 </FormControl>
                 <Box>
@@ -195,7 +195,7 @@ export default function CustomRightSideBar() {
                       },
                     }}
                   >
-                    Сохранить
+                    Saqlash
                   </Button>
                 </Box>
               </Box>
@@ -216,7 +216,7 @@ export default function CustomRightSideBar() {
                 }}
               >
                 <FormControl>
-                  <FormLabel>Заголовок заметки</FormLabel>
+                  <FormLabel>Eslatma sarlavhasi</FormLabel>
                   <Input
                     type="text"
                     name="title"
@@ -228,7 +228,7 @@ export default function CustomRightSideBar() {
                 </FormControl>
 
                 <FormControl required>
-                  <FormLabel>Описание</FormLabel>
+                  <FormLabel>Tavsif</FormLabel>
                   <Textarea
                     type="text"
                     minRows={4}
@@ -254,7 +254,7 @@ export default function CustomRightSideBar() {
                       },
                     }}
                   >
-                    Сохранить
+                    Saqlash
                   </Button>
                 </Box>
               </Box>
@@ -276,16 +276,16 @@ export default function CustomRightSideBar() {
         className="beautyBlock"
       >
         <Typography level="title-md" sx={{ flex: 1, color: "#4C6A55" }}>
-          Полезные функции
+        Foydali qoshimchalar
         </Typography>
       </Box>
       <Tabs className="sideTabs">
         <TabList disableUnderline>
           <Tab indicatorInset sx={{ flexGrow: 1, borderRadius: "10px" }}>
-            <Typography level="title-sm">Сообщения</Typography>
+            <Typography level="title-sm">Xabarlar</Typography>
           </Tab>
           <Tab indicatorInset sx={{ flexGrow: 1, borderRadius: "10px" }}>
-            <Typography level="title-sm">Заметки</Typography>
+            <Typography level="title-sm">Eslatmalar</Typography>
           </Tab>
         </TabList>
         <TabPanel
@@ -360,7 +360,7 @@ export default function CustomRightSideBar() {
           >
             <Box>
               <Typography level="title-md" sx={{ color: "#4C6A55" }}>
-                Ваши заметки
+              Sizning qaydlaringiz
               </Typography>
             </Box>
             <Box>

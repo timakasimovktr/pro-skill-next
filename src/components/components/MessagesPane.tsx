@@ -97,7 +97,7 @@ export default function MessagesPane() {
                 )}
                 <ChatBubble
                   variant={isYou ? "sent" : "received"}
-                  sender={isYou ? "Вы" : "Куратор"}
+                  sender={isYou ? "Siz" : "Kurator"}
                   content={message.message}
                   timestamp={message.createdAt.slice(11, 16)}
                   {...message}

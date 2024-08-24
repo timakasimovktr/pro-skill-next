@@ -30,7 +30,7 @@ export default function MessageInput(props: MessageInputProps) {
     <Box sx={{ px: 2, pb: 2, borderRadius: "20px" }}>
       <FormControl sx={{borderRadius: "20px"}}>
         <Textarea
-          placeholder="Напишите куратору (куратор ответит в течении 5 минут)"
+          placeholder="Kuratorga yozing (kurator 5 daqiqa ichida javob beradi)"
           aria-label="Message"
           ref={textAreaRef}
           onChange={(e) => {
@@ -78,7 +78,7 @@ export default function MessageInput(props: MessageInputProps) {
                 endDecorator={<SendRoundedIcon />}
                 onClick={handleClick}
               >
-                Отправить
+                Yuborish
               </Button>
             </Stack>
           }

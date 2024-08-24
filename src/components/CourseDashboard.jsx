@@ -87,7 +87,7 @@ const CourseDashboard = (props) => {
     }
 
     if (currentQuestions.length !== listAnswers.length) {
-      toast.error("Ответьте на все тесты");
+      toast.error("Barcha testlarga javob bering");
       return;
     }
 
@@ -105,7 +105,7 @@ const CourseDashboard = (props) => {
         }
       )
       .then(function (response) {
-        toast.success("Тест завершен. Вам начислены баллы.");
+        toast.success("Sinov tugallandi. Sizga ball berildi.");
         getProfile();
       })
       .catch(function (error) {
@@ -337,12 +337,12 @@ const CourseDashboard = (props) => {
                     }}
                   >
                     <FormControl>
-                      <FormLabel>Заголовок заметки</FormLabel>
+                      <FormLabel>Eslatma sarlavhasi</FormLabel>
                       <Input type="text" name="title" />
                     </FormControl>
 
                     <FormControl required>
-                      <FormLabel>Описание</FormLabel>
+                      <FormLabel>Tavsif</FormLabel>
                       <Textarea minRows={4} maxRows={15} name="description" />
                     </FormControl>
                     <Box>
@@ -356,7 +356,7 @@ const CourseDashboard = (props) => {
                           },
                         }}
                       >
-                        Сохранить
+                        Saqlash
                       </Button>
                     </Box>
                   </Box>
@@ -377,7 +377,7 @@ const CourseDashboard = (props) => {
                     }}
                   >
                     <FormControl>
-                      <FormLabel>Заголовок заметки</FormLabel>
+                      <FormLabel>Eslatma sarlavhasi</FormLabel>
                       <Input
                         type="text"
                         name="title"
@@ -389,7 +389,7 @@ const CourseDashboard = (props) => {
                     </FormControl>
 
                     <FormControl required>
-                      <FormLabel>Описание</FormLabel>
+                      <FormLabel>Tavsif</FormLabel>
                       <Textarea
                         type="text"
                         minRows={4}
@@ -415,7 +415,7 @@ const CourseDashboard = (props) => {
                           },
                         }}
                       >
-                        Сохранить
+                        Saqlash
                       </Button>
                     </Box>
                   </Box>
@@ -544,15 +544,15 @@ const CourseDashboard = (props) => {
               >
                 <TabList disableUnderline sx={{ paddingLeft: "10px" }}>
                   <Tab indicatorInset sx={{ borderRadius: "10px" }}>
-                    Информация о курсе
+                  Kurs haqida ma'lumot
                   </Tab>
                   <Tab indicatorInset sx={{ borderRadius: "10px" }}>
-                    Тесты
+                  Testlar
                   </Tab>
                 </TabList>
                 <TabPanel value={0} className="courseInfoTabPanel">
                   <h2 style={{ marginBottom: "5px" }}>
-                    Название урока: {currentLesson?.title}
+                  Dars nomi: {currentLesson?.title}
                   </h2>
                   <Box sx={{ mb: "20px", display: "flex", gap: "20px" }}>
                     {currentLesson?.items?.map((item, index) =>
@@ -589,13 +589,13 @@ const CourseDashboard = (props) => {
                       opacity: "0.8",
                     }}
                   >
-                    Название курса: {course?.title}
+                    Kurs nomi: {course?.title}
                   </h2>
                   <h4 style={{ marginBottom: "5px" }}>
-                    Автор курса: {course?.author}
+                  Kurs muallifi: {course?.author}
                   </h4>
                   <h4 style={{ marginBottom: "10px" }}>
-                    Длительность: {course?.time}
+                  Davomiyligi: {course?.time}
                   </h4>
                   <Divider className="beautyDivider" />
                   <p style={{ marginTop: "10px" }}>{course?.description}</p>
@@ -630,7 +630,7 @@ const CourseDashboard = (props) => {
                           }}
                         >
                           <h2 style={{ color: "white", fontSize: "20px" }}>
-                            Тест окончен. Ваш результат:
+                          Sinov tugadi. Sizning natijangiz:
                           </h2>
                         </Box>
                         <Box
@@ -707,7 +707,7 @@ const CourseDashboard = (props) => {
                           color="primary"
                           type="submit"
                         >
-                          Завершить тест
+                          Sinovni yakunlang
                         </Button>
                       </form>
                     )}
@@ -723,16 +723,16 @@ const CourseDashboard = (props) => {
               >
                 <TabList disableUnderline sx={{ paddingLeft: "10px" }}>
                   <Tab indicatorInset sx={{ borderRadius: "10px" }}>
-                    Заметки
+                  Eslatmalar
                   </Tab>
                   <Tab sx={{ borderRadius: "10px" }} indicatorInset>
-                    Шашки
+                  Shashka
                   </Tab>
                   <Tab sx={{ borderRadius: "10px" }} indicatorInset>
-                    Змейка
+                  Ilon
                   </Tab>
                   <Tab sx={{ borderRadius: "10px" }} indicatorInset>
-                    Шахматы
+                  Shaxmat
                   </Tab>
                 </TabList>
                 <TabPanel value={0} className="courseInfoTabPanel">
@@ -746,7 +746,7 @@ const CourseDashboard = (props) => {
                     }}
                   >
                     <Box>
-                      <Typography level="title-md">Ваши заметки</Typography>
+                      <Typography level="title-md">Sizning qaydlaringiz</Typography>
                     </Box>
                     <Box>
                       <IconButton

@@ -156,7 +156,7 @@ export default function Header(props) {
           fontWeight: "bold",
         }}
       >
-        <span style={{ fontWeight: "normal" }}>Баллы:</span>
+        <span style={{ fontWeight: "normal" }}>Ballar:</span>
         {userInfo?.balls}
       </Box>
       <Box
@@ -226,18 +226,18 @@ export default function Header(props) {
                 paddingLeft: "10px",
               }}
             >
-              Вам доступно {userInfo?.balls} балла
+              Siz uchun mavjud {userInfo?.balls} ball
             </Typography>
             <a href="https://t.me/ProskillAcademyHelp" title="profile">
               <MenuItem>
                 <HelpRoundedIcon />
-                Помощь
+                Yordam
               </MenuItem>
             </a>
             <a href="/profile" title="profile">
               <MenuItem>
                 <SettingsRoundedIcon />
-                Настройки
+                Sozlamalar
               </MenuItem>
             </a>
             <ListDivider />
@@ -249,7 +249,7 @@ export default function Header(props) {
               }}
             >
               <LogoutRoundedIcon />
-              Выход
+              Chiqish
             </MenuItem>
           </Menu>
         </Dropdown>
