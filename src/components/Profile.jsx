@@ -193,9 +193,9 @@ export default function Profile() {
               }}
             >
               <Box sx={{ mb: 1 }}>
-                <Typography level="title-md">Shaxsiy ma'lumot</Typography>
+                <Typography level="title-md">Shaxsiy ma&apos;lumot</Typography>
                 <Typography level="body-sm">
-                Sizning shaxsiy ma'lumotlaringiz bu erda ko'rsatiladi.
+                Sizning shaxsiy ma&apos;lumotlaringiz bu erda ko&apos;rsatiladi.
                 </Typography>
               </Box>
               <Divider />
@@ -220,7 +220,7 @@ export default function Profile() {
                 </Stack>
                 <Stack spacing={2} sx={{ flexGrow: 1 }}>
                   <Stack spacing={1}>
-                    <FormLabel>To'liq ism</FormLabel>
+                    <FormLabel>To&apos;liq ism</FormLabel>
                     <FormControl
                       sx={{
                         display: { sm: "flex-column", md: "flex-row" },
@@ -298,7 +298,7 @@ export default function Profile() {
               >
                 <Stack spacing={2} sx={{ flexGrow: 1 }}>
                   <Stack spacing={1}>
-                    <FormLabel>To'liq ism</FormLabel>
+                    <FormLabel>To&apos;liq ism</FormLabel>
                     <FormControl
                       sx={{
                         display: { sm: "flex-column", md: "flex-row" },

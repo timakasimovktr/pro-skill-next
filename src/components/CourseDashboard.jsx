@@ -544,7 +544,7 @@ const CourseDashboard = (props) => {
               >
                 <TabList disableUnderline sx={{ paddingLeft: "10px" }}>
                   <Tab indicatorInset sx={{ borderRadius: "10px" }}>
-                  Kurs haqida ma'lumot
+                  Kurs haqida ma&apos;lumot
                   </Tab>
                   <Tab indicatorInset sx={{ borderRadius: "10px" }}>
                   Testlar
