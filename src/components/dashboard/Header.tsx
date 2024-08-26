@@ -146,6 +146,23 @@ export default function Header(props) {
           Pro-Skill Academy
         </Typography>
       </Box>
+      <a href="https://proskill-academy.com/#price" title="Купить">
+        <Button
+          variant="plain"
+          sx={{
+            display: { xs: "none", sm: "flex" },
+            backgroundColor: "#4C6A55",
+            color: "#fff",
+            mr: "20px",
+            "&:hover": {
+              backgroundColor: "#374c3d",
+              сolor: "#fff",
+            },
+          }}
+        >
+          Купить предметы
+        </Button>
+      </a>
       <Box
         sx={{
           display: { xs: "none", sm: "flex" },

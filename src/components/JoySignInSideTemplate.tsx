@@ -216,10 +216,10 @@ export default function JoySignInSideTemplate() {
             </Stack>
             <Divider
               sx={{
-                color: { xs: "#000", md: "или" },
+                color: { xs: "#000", md: "yoki" },
               }}
             >
-              или
+              yoki
             </Divider>
             <Stack gap={4} sx={{ mt: 2 }}>
               {!isOpenChangePassword && (

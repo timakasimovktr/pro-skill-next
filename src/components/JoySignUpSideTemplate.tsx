@@ -177,7 +177,7 @@ export default function JoySignUpSideTemplate() {
             </Stack>
             <Divider
               sx={{
-                color: { xs: "#000", md: "или" },
+                color: { xs: "#000", md: "yoki" },
               }}
             >
               yoki

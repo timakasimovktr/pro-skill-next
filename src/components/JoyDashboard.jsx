@@ -176,6 +176,23 @@ export default function Dashboard() {
                   Shaxsiy hisobingizga xush kelibsiz. Bu erda siz bizning barcha
                   xizmatlarimizdan foydalanishingiz mumkin.
                 </Typography>
+                <a href="https://proskill-academy.com/#price" title="Купить">
+                  <Button
+                    variant="plain"
+                    sx={{
+                      display: { xs: "flex", sm: "none" },
+                      backgroundColor: "#4C6A55",
+                      color: "#fff",
+                      mt: "10px",
+                      "&:hover": {
+                        backgroundColor: "#374c3d",
+                        сolor: "#fff",
+                      },
+                    }}
+                  >
+                    Купить предметы
+                  </Button>
+                </a>
               </Box>
             </Box>
           </Box>
