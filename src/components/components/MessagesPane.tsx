@@ -108,10 +108,7 @@ export default function MessagesPane() {
         onSubmit={() => {
           socket.emit("message", { text: textAreaValue });
           setTextAreaValue("");
-
-          setTimeout(() => {
-            getUserMessages();
-          }, 200);
+          getUserMessages();
         }}
       />
     </Sheet>
