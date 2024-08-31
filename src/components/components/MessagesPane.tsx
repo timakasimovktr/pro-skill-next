@@ -49,11 +49,6 @@ export default function MessagesPane() {
 
   React.useEffect(() => {
     getUserMessages();
-
-    return () => {
-      socket.off("message");
-      socket.disconnect();
-    };
   }, []);
 
   return (
