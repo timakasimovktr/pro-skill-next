@@ -51,27 +51,15 @@ export default function MessagesPane() {
     getUserMessages();
 
     return () => {
-      socket.off('message');
+      socket.off("message");
       socket.disconnect();
     };
   }, []);
 
-  const handleSubmit = async () => {
-    socket.emit("message", {
-      text: textAreaValue,
-    });
-
-    setTextAreaValue("");
-
-    setTimeout(() => {
-      getUserMessages
-    }, 200);
-  };
-
   return (
     <Sheet
       sx={{
-        borderRadius: '15px',
+        borderRadius: "15px",
         height: { xs: "calc(100vh - 94px)" },
         display: "flex",
         flexDirection: "column",
@@ -122,7 +110,14 @@ export default function MessagesPane() {
       <MessageInput
         textAreaValue={textAreaValue}
         setTextAreaValue={setTextAreaValue}
-        onSubmit={handleSubmit}
+        onSubmit={() => {
+          socket.emit("message", { text: textAreaValue });
+          setTextAreaValue("");
+
+          setTimeout(() => {
+            getUserMessages();
+          }, 200);
+        }}
       />
     </Sheet>
   );
