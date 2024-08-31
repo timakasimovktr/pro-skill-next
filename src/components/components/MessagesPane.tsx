@@ -44,7 +44,9 @@ export default function MessagesPane() {
   };
 
   socket.on("message", (data) => {
-    getUserMessages();
+    setTimeout(() => {
+      getUserMessages();
+    }, 200);
   });
 
   React.useEffect(() => {
