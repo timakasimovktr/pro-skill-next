@@ -56,6 +56,18 @@ export default function MessagesPane() {
     };
   }, []);
 
+  const handleSubmit = async () => {
+    socket.emit("message", {
+      text: textAreaValue,
+    });
+
+    setTextAreaValue("");
+
+    setTimeout(() => {
+      getUserMessages
+    }, 200);
+  };
+
   return (
     <Sheet
       sx={{
@@ -110,11 +122,7 @@ export default function MessagesPane() {
       <MessageInput
         textAreaValue={textAreaValue}
         setTextAreaValue={setTextAreaValue}
-        onSubmit={() => {
-          socket.emit("message", { text: textAreaValue });
-          setTextAreaValue("");
-          getUserMessages();
-        }}
+        onSubmit={handleSubmit}
       />
     </Sheet>
   );
