@@ -218,15 +218,15 @@ const CourseDashboard = (props) => {
       .then(function (response) {
         setCourse(response.data);
         if (response.data.modules) {
-          if (response.data.modules[0].videoUrl) {
+          if (response.data.modules[0].lessons[0].videoUrl) {
             setCurrentVideo(
-              APP_ROUTES.URL + "/" + response.data.modules[0].videoUrl
+              APP_ROUTES.URL + "/" + response.data.modules[0].lessons[0].videoUrl
             );
           } else {
             console.log("No video");
           }
-          setCurrentQuestions(response.data.modules[0].questions);
-          setCurrentLesson(response.data.modules[0]);
+          setCurrentQuestions(response.data.modules[0].lessons[0].questions);
+          setCurrentLesson(response.data.modules[0].lessons[0]);
         } else {
           router.push("/dashboard");
         }
@@ -234,7 +234,7 @@ const CourseDashboard = (props) => {
       .catch(function (error) {
         console.log(error);
       });
-  }, [access_token, props.courseId]);
+  }, [access_token, props.courseId, router]);
 
   const getProfile = React.useCallback(async () => {
     axios
@@ -253,7 +253,7 @@ const CourseDashboard = (props) => {
       .catch(function (error) {
         console.log(error);
       });
-  }, [access_token, router]);
+  }, [access_token]);
 
   React.useEffect(() => {
     getCourse();
@@ -659,7 +659,7 @@ const CourseDashboard = (props) => {
                               )
                               .answers.filter((answer) => answer).length
                           }{" "}
-                          / {currentQuestions.length}
+                          / {currentQuestions.length ? currentQuestions.length : "Хамма"}
                         </Box>
                       </Box>
                     )}

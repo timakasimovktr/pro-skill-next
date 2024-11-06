@@ -48,7 +48,7 @@ export default function MessagesPane() {
   });
 
   React.useEffect(() => {
-    getUserMessages();
+    getUserMessages();``
   }, []);
 
   return (
